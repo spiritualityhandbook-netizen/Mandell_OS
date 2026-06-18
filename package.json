@@ -1,0 +1,26 @@
+{
+  "name": "mandell-os",
+  "version": "1.0.0",
+  "description": "Mandellamatrix Operating System: A 8-Dimensional Multi-Vector Compiler",
+  "main": "run.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node run.js",
+    "test": "node test/test_runner.js",
+    "audit": "node run.js --audit",
+    "dev": "node run.js"
+  },
+  "keywords": [
+    "Mandell",
+    "compiler",
+    "lexer",
+    "parser",
+    "runtime"
+  ],
+  "author": "Mandell Architect",
+  "license": "MIT",
+  "dependencies": {
+    "@google/generative-ai": "^0.16.0",
+    "dotenv": "^16.3.1"
+  }
+}

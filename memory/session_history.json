@@ -1,0 +1,206 @@
+{
+  "sessions": [],
+  "rupats": [
+    {
+      "timestamp": 1781823816431,
+      "dell": "00",
+      "input": "Nova",
+      "output": {
+        "status": "CLEARED",
+        "origin": true
+      }
+    },
+    {
+      "timestamp": 1781823816433,
+      "dell": "08",
+      "input": "test_output.txt",
+      "output": {
+        "status": "CREATED_FILE",
+        "path": "test_output.txt"
+      }
+    },
+    {
+      "timestamp": 1781823816434,
+      "dell": "09",
+      "input": "Show",
+      "output": {
+        "status": "DISPLAYED",
+        "payload": "Show"
+      }
+    },
+    {
+      "timestamp": 1781823859624,
+      "dell": "00",
+      "input": "Nova",
+      "output": {
+        "status": "CLEARED",
+        "origin": true
+      }
+    },
+    {
+      "timestamp": 1781823859626,
+      "dell": "08",
+      "input": "Hello_World.txt",
+      "output": {
+        "status": "CREATED_FILE",
+        "path": "Hello_World.txt"
+      }
+    },
+    {
+      "timestamp": 1781823859627,
+      "dell": "09",
+      "input": "Show",
+      "output": {
+        "status": "DISPLAYED",
+        "payload": "Show"
+      }
+    },
+    {
+      "timestamp": 1781824070119,
+      "dell": "00",
+      "input": "Nova",
+      "output": {
+        "status": "CLEARED",
+        "origin": true
+      }
+    },
+    {
+      "timestamp": 1781824070121,
+      "dell": "08",
+      "input": "Hello_World.txt",
+      "output": {
+        "status": "CREATED_FILE",
+        "path": "Hello_World.txt"
+      }
+    },
+    {
+      "timestamp": 1781824070122,
+      "dell": "09",
+      "input": "Show",
+      "output": {
+        "status": "DISPLAYED",
+        "payload": "Show"
+      }
+    },
+    {
+      "timestamp": 1781824079969,
+      "dell": "00",
+      "input": "Nova",
+      "output": {
+        "status": "CLEARED",
+        "origin": true
+      }
+    },
+    {
+      "timestamp": 1781824079971,
+      "dell": "08",
+      "input": "Hello_World2.txt",
+      "output": {
+        "status": "CREATED_FILE",
+        "path": "Hello_World2.txt"
+      }
+    },
+    {
+      "timestamp": 1781824079972,
+      "dell": "09",
+      "input": "Show",
+      "output": {
+        "status": "DISPLAYED",
+        "payload": "Show"
+      }
+    },
+    {
+      "timestamp": 1781824455429,
+      "dell": "00",
+      "input": null,
+      "output": {
+        "status": "CLEARED",
+        "origin": true
+      }
+    },
+    {
+      "timestamp": 1781824455431,
+      "dell": "08",
+      "input": "Hello_World_English.txt",
+      "output": {
+        "status": "CREATED_FILE",
+        "path": "Hello_World_English.txt"
+      }
+    },
+    {
+      "timestamp": 1781824455433,
+      "dell": "09",
+      "input": {
+        "status": "CREATED_FILE",
+        "path": "Hello_World_English.txt"
+      },
+      "output": {
+        "status": "DISPLAYED",
+        "payload": {
+          "status": "CREATED_FILE",
+          "path": "Hello_World_English.txt"
+        }
+      }
+    },
+    {
+      "timestamp": 1781824502314,
+      "dell": "00",
+      "input": "Nova",
+      "output": {
+        "status": "CLEARED",
+        "origin": true
+      }
+    },
+    {
+      "timestamp": 1781824502315,
+      "dell": "08",
+      "input": "test_output.txt",
+      "output": {
+        "status": "CREATED_FILE",
+        "path": "test_output.txt"
+      }
+    },
+    {
+      "timestamp": 1781824502316,
+      "dell": "09",
+      "input": "Show",
+      "output": {
+        "status": "DISPLAYED",
+        "payload": "Show"
+      }
+    },
+    {
+      "timestamp": 1781824634363,
+      "dell": "00",
+      "input": null,
+      "output": {
+        "status": "CLEARED",
+        "origin": true
+      }
+    },
+    {
+      "timestamp": 1781824634365,
+      "dell": "08",
+      "input": "Test_File.txt",
+      "output": {
+        "status": "CREATED_FILE",
+        "path": "Test_File.txt"
+      }
+    },
+    {
+      "timestamp": 1781824634370,
+      "dell": "09",
+      "input": {
+        "status": "CREATED_FILE",
+        "path": "Test_File.txt"
+      },
+      "output": {
+        "status": "DISPLAYED",
+        "payload": {
+          "status": "CREATED_FILE",
+          "path": "Test_File.txt"
+        }
+      }
+    }
+  ]
+}

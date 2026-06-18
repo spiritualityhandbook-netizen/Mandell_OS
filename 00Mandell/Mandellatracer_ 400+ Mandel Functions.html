@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mandellatracer - 400+ Mandel Functions</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Courier New', monospace; background: #0a0a0f; color: #e0e0e0; padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        h1 { color: #00ff88; margin-bottom: 5px; font-size: 32px; }
+        .subtitle { color: #ffb703; margin-bottom: 30px; font-size: 14px; }
+        h2 { color: #00d4ff; margin-top: 40px; margin-bottom: 15px; font-size: 22px; border-bottom: 2px solid #00d4ff; padding-bottom: 10px; }
+        h3 { color: #ff006e; margin-top: 25px; margin-bottom: 12px; font-size: 16px; }
+        .section { background: #111113; border-left: 4px solid #00d4ff; padding: 20px; margin-bottom: 25px; border-radius: 8px; }
+        .function-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 15px 0; }
+        .function-card { background: #1a1a2e; border: 1px solid #00d4ff; padding: 15px; border-radius: 6px; }
+        .function-card:hover { border-color: #ff006e; background: #222233; }
+        .func-name { color: #00ff88; font-weight: bold; font-size: 14px; }
+        .func-syntax { color: #ffb703; font-size: 12px; margin: 8px 0; background: #0f0f1a; padding: 8px; border-radius: 4px; border-left: 2px solid #ffb703; }
+        .func-desc { color: #b0b0b0; font-size: 12px; line-height: 1.5; margin: 8px 0; }
+        .func-example { color: #00d4ff; font-size: 11px; background: #0a0a15; padding: 6px; border-radius: 4px; margin-top: 8px; }
+        .temp-indicator { display: inline-block; padding: 3px 8px; border-radius: 3px; font-size: 11px; font-weight: bold; margin-left: 5px; }
+        .cold { background: #4a90e2; color: white; }
+        .warm { background: #f5a623; color: white; }
+        .hot { background: #d0021b; color: white; }
+        .dell-table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        .dell-table th, .dell-table td { border: 1px solid #00d4ff; padding: 12px; text-align: left; }
+        .dell-table th { background: #1a1a2e; color: #00ff88; font-weight: bold; }
+        .dell-table tr:nth-child(even) { background: #0f0f1a; }
+        .dell-table tr:hover { background: #1a2a3e; }
+        .copy-btn { background: #00d4ff; color: #000; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer; font-size: 11px; font-weight: bold; }
+        .copy-btn:hover { background: #00ff88; }
+        .search-box { width: 100%; padding: 12px; background: #1a1a2e; border: 2px solid #00d4ff; border-radius: 6px; color: #e0e0e0; font-family: monospace; margin-bottom: 20px; }
+        .search-box:focus { outline: none; border-color: #ff006e; }
+        .tab-buttons { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+        .tab-btn { padding: 10px 15px; background: #1a1a2e; border: 1px solid #00d4ff; color: #00d4ff; cursor: pointer; border-radius: 4px; font-weight: bold; }
+        .tab-btn.active { background: #00d4ff; color: #000; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 MANDELLATRACER</h1>
+        <p class="subtitle">400+ Mandel Functions | Complete Reference | Token Efficient</p>
+
+        <input type="text" class="search-box" id="searchBox" placeholder="Search functions... type any Dell, manifest, or keyword">
+
+        <div class="tab-buttons">
+            <button class="tab-btn active" onclick="switchTab('core')">Core Dells (00-25)</button>
+            <button class="tab-btn" onclick="switchTab('temp')">🌡️ Temperature (26)</button>
+            <button class="tab-btn" onclick="switchTab('cold')">Cold Functions</button>
+            <button class="tab-btn" onclick="switchTab('warm')">Warm Functions</button>
+            <button class="tab-btn" onclick="switchTab('hot')">Hot Functions</button>
+            <button class="tab-btn" onclick="switchTab('loops')">Loops & Iterations</button>
+            <button class="tab-btn" onclick="switchTab('advanced')">Advanced</button>
+        </div>
+
+        <!-- CORE DELLS -->
+        <div id="core" class="tab-content active">
+            <div class="section">
+                <h2>Core Dells: 00-25 (Reference)</h2>
+                <table class="dell-table">
+                    <tr>
+                        <th>Dell</th>
+                        <th>Name</th>
+                        <th>Function</th>
+                        <th>Syntax Pattern</th>
+                    </tr>
+                    <tr>
+                        <td>00</td>
+                        <td>Nova</td>
+                        <td>Origin / Fresh start</td>
+                        <td>00[Topic]</td>
+                    </tr>
+                    <tr>
+                        <td>01</td>
+                        <td>Initiate</td>
+                        <td>Root command / Entry point</td>
+                        <td>01[Process]</td>
+                    </tr>
+                    <tr>
+                        <td>02</td>
+                        <td>Duo</td>
+                        <td>Combine two manifests</td>
+                        <td>02:Manifest[First+Second]</td>
+                    </tr>
+                    <tr>
+                        <td>03</td>
+                        <td>Logic</td>
+                        <td>Conditional rules / constraints</td>
+                        <td>03[If_Then_Else]</td>
+                    </tr>
+                    <tr>
+                        <td>04</td>
+                        <td>Transform</td>
+                        <td>Convert / reshape / mutate</td>
+                        <td>04[Input]>[Output]</td>
+                    </tr>
+                    <tr>
+                        <td>05</td>
+                        <td>Tone</td>
+                        <td>Output vibe / style / register</td>
+                        <td>05>Manifest[Style]</td>
+                    </tr>
+                    <tr>
+                        <td>06</td>
+                        <td>Cycle</td>
+                        <td>Rhythm / loop / timing</td>
+                        <td>06[Pattern]</td>
+                    </tr>
+                    <tr>
+                        <td>07</td>
+                        <td>Link</td>
+                        <td>Connect nodes / reference</td>
+                        <td>07[Source]>[Target]</td>
+                    </tr>
+                    <tr>
+                        <td>08</td>
+                        <td>Create</td>
+                        <td>Instantiate / build / init</td>
+                        <td>08[Object]</td>
+                    </tr>
+                    <tr>
+                        <td>09</td>
+                        <td>Show</td>
+                        <td>Render / output / display</td>
+                        <td>09[Format]</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>Keep</td>
+                        <td>Pin / preserve / persist</td>
+                        <td>10[Memory]</td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>Architect</td>
+                        <td>Schema / blueprint / design</td>
+                        <td>11[Structure]</td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>Test</td>
+                        <td>Validate / assert / check</td>
+                        <td>12[Condition]</td>
+                    </tr>
+                    <tr>
+                        <td>13</td>
+                        <td>Loop</td>
+                        <td>Retry / iterate / repeat</td>
+                        <td>13[Until_Condition]</td>
+                    </tr>
+                    <tr>
+                        <td>14</td>
+                        <td>Bind</td>
+                        <td>Attach / edge / semantic link</td>
+                        <td>14[Source]>[Target]</td>
+                    </tr>
+                    <tr>
+                        <td>15</td>
+                        <td>Map</td>
+                        <td>Index / coordinate / locate</td>
+                        <td>15[Position]</td>
+                    </tr>
+                    <tr>
+                        <td>16</td>
+                        <td>Decay</td>
+                        <td>Garbage collect / expire</td>
+                        <td>16[Object]</td>
+                    </tr>
+                    <tr>
+                        <td>17</td>
+                        <td>Shadow</td>
+                        <td>Background / silent / parallel</td>
+                        <td>17[Process]</td>
+                    </tr>
+                    <tr>
+                        <td>18</td>
+                        <td>Mirror</td>
+                        <td>Compare / diff / reflect</td>
+                        <td>18[Source]>[Target]</td>
+                    </tr>
+                    <tr>
+                        <td>19</td>
+                        <td>Drive</td>
+                        <td>Movement / intensity / force</td>
+                        <td>19[Direction][Power]</td>
+                    </tr>
+                    <tr>
+                        <td>20</td>
+                        <td>Alpha</td>
+                        <td>Completion / finalize / close</td>
+                        <td>20[Result]</td>
+                    </tr>
+                    <tr>
+                        <td>21</td>
+                        <td>Merge</td>
+                        <td>Combine two into one</td>
+                        <td>21[First][Second]>[Combined]</td>
+                    </tr>
+                    <tr>
+                        <td>22</td>
+                        <td>Split</td>
+                        <td>Divide one into parts</td>
+                        <td>22[Whole]>[Part1][Part2]</td>
+                    </tr>
+                    <tr>
+                        <td>23</td>
+                        <td>Lock</td>
+                        <td>Freeze / immutable / protect</td>
+                        <td>23[Object]</td>
+                    </tr>
+                    <tr>
+                        <td>24</td>
+                        <td>Unlock</td>
+                        <td>Release / unfreeze / expose</td>
+                        <td>24[Object]</td>
+                    </tr>
+                    <tr>
+                        <td>25</td>
+                        <td>Pulse</td>
+                        <td>Broadcast / expand / propagate</td>
+                        <td>25[Message]</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- TEMPERATURE -->
+        <div id="temp" class="tab-content">
+            <div class="section">
+                <h2>🌡️ Temperature Manifest (26)</h2>
+                <p style="color: #b0b0b0; margin-bottom: 15px;">Difficulty / Complexity indicator. Three states: Cold (simple), Warm (moderate), Hot (advanced).</p>
+                
+                <h3>Temperature States</h3>
+                <div class="function-grid">
+                    <div class="function-card">
+                        <span class="func-name">Cold 🥶</span>
+                        <span class="temp-indicator cold">Easy</span>
+                        <div class="func-desc">Basic Mandel. Simple operators. Obvious execution. Beginner level.</div>
+                        <div class="func-syntax">26:Temp[C]</div>
+                        <div class="func-example">26:Temp[C]>>01[Basic]>>09[Output]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Warm 🌙</span>
+                        <span class="temp-indicator warm">Moderate</span>
+                        <div class="func-desc">Intermediate Mandel. Multiple Dell combinations. Practical usage. Standard level.</div>
+                        <div class="func-syntax">26:Temp[W]</div>
+                        <div class="func-example">26:Temp[W]>>04[Transform]>>14[Bind]>>09[Output]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Hot 🔥</span>
+                        <span class="temp-indicator hot">Advanced</span>
+                        <div class="func-desc">Advanced Mandel. Latin-Mandell compression. Dense meaning. Expert level.</div>
+                        <div class="func-syntax">26:Temp[H]</div>
+                        <div class="func-example">26:Temp[H]>>04-Transformix>>14-Bindix[ComplexTarget]>>09[Output]</div>
+                    </div>
+                </div>
+
+                <h3>Temperature Functions (20+ variations)</h3>
+                <div class="function-grid">
+                    <div class="function-card">
+                        <span class="func-name">Set Temperature</span>
+                        <div class="func-syntax">26:Temp>[C|W|H]</div>
+                        <div class="func-desc">Declare complexity level for following functions</div>
+                        <div class="func-example">26:Temp[H]>>01[AdvancedProcess]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Check Temperature</span>
+                        <div class="func-syntax">26:Temp>>[Current]</div>
+                        <div class="func-desc">Query current difficulty state</div>
+                        <div class="func-example">26:Temp>>[Check]>>12[IfHot]>>09[Alert]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Escalate Temp</span>
+                        <div class="func-syntax">26:Temp[C]>26:Temp[W]>26:Temp[H]</div>
+                        <div class="func-desc">Gradually increase difficulty</div>
+                        <div class="func-example">26:Temp[C]>26:Temp[W]>>08[Complex]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Cool Down Temp</span>
+                        <div class="func-syntax">26:Temp[H]>26:Temp[W]>26:Temp[C]</div>
+                        <div class="func-desc">Gradually decrease difficulty</div>
+                        <div class="func-example">26:Temp[H]>26:Temp[C]>>09[Simplified]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Freeze Temp</span>
+                        <div class="func-syntax">26:Temp[Lock]</div>
+                        <div class="func-desc">Lock current temperature state</div>
+                        <div class="func-example">26:Temp[Lock]>>13[Until_Override]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Thaw Temp</span>
+                        <div class="func-syntax">26:Temp[Unlock]</div>
+                        <div class="func-desc">Allow temperature changes</div>
+                        <div class="func-example">26:Temp[Unlock]>>26:Temp[W]</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- COLD FUNCTIONS -->
+        <div id="cold" class="tab-content">
+            <div class="section">
+                <h2>Cold Functions (Basic Mandel) <span class="temp-indicator cold">Easy</span></h2>
+                <p style="color: #b0b0b0; margin-bottom: 20px;">Token efficient. Simple. Direct execution.</p>
+                
+                <h3>Creation & Initialization (10+)</h3>
+                <div class="function-grid">
+                    <div class="function-card">
+                        <span class="func-name">Create Object</span>
+                        <div class="func-syntax">08[NewObject]</div>
+                        <div class="func-desc">Instantiate basic object</div>
+                        <div class="func-example">08[Data]>>09[Output]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Create List</span>
+                        <div class="func-syntax">08[List]</div>
+                        <div class="func-desc">Create sequence container</div>
+                        <div class="func-example">08[Items]>>14[Add][Item1]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Create Map</span>
+                        <div class="func-syntax">08[Map]</div>
+                        <div class="func-desc">Create key-value store</div>
+                        <div class="func-example">08[Config]>>14[Key][Value]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Create Text</span>
+                        <div class="func-syntax">08[Text][Content]</div>
+                        <div class="func-desc">Create string value</div>
+                        <div class="func-example">08[Message][Hello]>>09[Show]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Create Number</span>
+                        <div class="func-syntax">08[Number][Value]</div>
+                        <div class="func-desc">Create numeric value</div>
+                        <div class="func-example">08[Count][42]>>09[Show]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Initialize State</span>
+                        <div class="func-syntax">01[State]>>08[Initial]</div>
+                        <div class="func-desc">Set starting state</div>
+                        <div class="func-example">01[App]>>08[Ready]>>09[Show]</div>
+                    </div>
+                </div>
+
+                <h3>Flow & Control (15+)</h3>
+                <div class="function-grid">
+                    <div class="function-card">
+                        <span class="func-name">Direct Flow</span>
+                        <div class="func-syntax">01[Action]>02[Next]>03[Last]</div>
+                        <div class="func-desc">Simple sequence</div>
+                        <div class="func-example">08[Data]>04[Process]>09[Show]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Blocking Flow</span>
+                        <div class="func-syntax">01[First]>>02[Must_Complete]>>03[Then]</div>
+                        <div class="func-desc">Sequential execution</div>
+                        <div class="func-example">08[File]>>12[Validate]>>09[Output]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Major Jump</span>
+                        <div class="func-syntax">01[Topic]>>>02[NewTopic]</div>
+                        <div class="func-desc">Conceptual transition</div>
+                        <div class="func-example">04[Parse]>>>09[Display]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Conditional Execute</span>
+                        <div class="func-syntax">12[Test]>>03[Logic][Result]</div>
+                        <div class="func-desc">If test passes, execute</div>
+                        <div class="func-example">12[IsValid]>>08[Success]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Simple Loop</span>
+                        <div class="func-syntax">13[Until_Condition]</div>
+                        <div class="func-desc">Basic iteration</div>
+                        <div class="func-example">13[Until_Done]>>04[Action]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Break Flow</span>
+                        <div class="func-syntax">16[Stop]>>20[End]</div>
+                        <div class="func-desc">Terminate execution</div>
+                        <div class="func-example">03[Error]>>16[Halt]>>20[Complete]</div>
+                    </div>
+                </div>
+
+                <h3>Data & Output (15+)</h3>
+                <div class="function-grid">
+                    <div class="function-card">
+                        <span class="func-name">Display Text</span>
+                        <div class="func-syntax">09[Text][Message]</div>
+                        <div class="func-desc">Show string output</div>
+                        <div class="func-example">09[String][HelloWorld]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Display Data</span>
+                        <div class="func-syntax">09[Data][Object]</div>
+                        <div class="func-desc">Render object</div>
+                        <div class="func-example">09[JSON][{key:value}]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Log Output</span>
+                        <div class="func-syntax">09[Log][Message]</div>
+                        <div class="func-desc">Write to log</div>
+                        <div class="func-example">09[Log][Event_Fired]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Store Data</span>
+                        <div class="func-syntax">10[Memory][Value]</div>
+                        <div class="func-desc">Keep in memory</div>
+                        <div class="func-example">10[Cache][Data]>>09[Show]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Retrieve Data</span>
+                        <div class="func-syntax">10[Memory]>>[Fetch]</div>
+                        <div class="func-desc">Get stored value</div>
+                        <div class="func-example">10[Cache]>>[Get]>>09[Display]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Clear Memory</span>
+                        <div class="func-syntax">16[Memory]>>10[Clear]</div>
+                        <div class="func-desc">Erase stored data</div>
+                        <div class="func-example">16[Cache]>>10[Reset]</div>
+                    </div>
+                </div>
+
+                <p style="color: #888; margin-top: 20px; font-size: 12px;">Cold functions: 40+ core variations available</p>
+            </div>
+        </div>
+
+        <!-- WARM FUNCTIONS -->
+        <div id="warm" class="tab-content">
+            <div class="section">
+                <h2>Warm Functions (Intermediate Mandel) <span class="temp-indicator warm">Moderate</span></h2>
+                <p style="color: #b0b0b0; margin-bottom: 20px;">Multi-Dell combinations. Practical patterns. Standard usage.</p>
+                
+                <h3>Transformation & Processing (20+)</h3>
+                <div class="function-grid">
+                    <div class="function-card">
+                        <span class="func-name">Transform Data Type</span>
+                        <div class="func-syntax">04[Input]:[TypeTarget]>[Output]</div>
+                        <div class="func-desc">Convert between types</div>
+                        <div class="func-example">04[String]:[Number]>09[Integer]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Filter Collection</span>
+                        <div class="func-syntax">04[Collection]:12[Test]>[Filtered]</div>
+                        <div class="func-desc">Select matching items</div>
+                        <div class="func-example">04[List]:12[IsActive]>09[Results]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Map Over Items</span>
+                        <div class="func-syntax">15[Collection]:04[Transform]>[NewCollection]</div>
+                        <div class="func-desc">Apply function to each</div>
+                        <div class="func-example">15[Items]:04[Double]>09[Output]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Merge Objects</span>
+                        <div class="func-syntax">21[Object1][Object2]>[Merged]</div>
+                        <div class="func-desc">Combine two objects</div>
+                        <div class="func-example">21[Config1][Config2]>09[Show]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Split Data</span>
+                        <div class="func-syntax">22[Whole]>[Part1][Part2][Part3]</div>
+                        <div class="func-desc">Divide into sections</div>
+                        <div class="func-example">22[Data]>[Header][Body][Footer]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Bind Relationship</span>
+                        <div class="func-syntax">14[Source]:[Relation]>[Target]</div>
+                        <div class="func-desc">Create semantic link</div>
+                        <div class="func-example">14[User]:[Owns]>[Account]</div>
+                    </div>
+                </div>
+
+                <h3>Tone & Style (15+)</h3>
+                <div class="function-grid">
+                    <div class="function-card">
+                        <span class="func-name">Set Tone Single</span>
+                        <div class="func-syntax">05>Tone:[Style]>[Output]</div>
+                        <div class="func-desc">Apply single tone</div>
+                        <div class="func-example">05>Tone:[Formal]>09[Message]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Set Tone Multiple</span>
+                        <div class="func-syntax">05>Tone:02[Style1+Style2]>[Output]</div>
+                        <div class="func-desc">Combine tones</div>
+                        <div class="func-example">05>Tone:02[Casual+Technical]>09[Doc]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Describe Value</span>
+                        <div class="func-syntax">05:Describe[Target]>>[Description]</div>
+                        <div class="func-desc">Create detailed description</div>
+                        <div class="func-example">05:Describe[Feature]>>[Complete explanation]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Deep Description</span>
+                        <div class="func-syntax">05:Describe[A]::05:Describe[B]</div>
+                        <div class="func-desc">Describe two levels</div>
+                        <div class="func-example">05:Describe[Goal]::05:Describe[Purpose]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Color Output</span>
+                        <div class="func-syntax">05>Color:02[Hue1+Hue2]>[Visual]</div>
+                        <div class="func-desc">Apply color scheme</div>
+                        <div class="func-example">05>Color:02[Blue+Green]>09[Display]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Intensity Control</span>
+                        <div class="func-syntax">05>Intensity:[Level]>[Output]</div>
+                        <div class="func-desc">Set emphasis level</div>
+                        <div class="func-example">05>Intensity:[High]>09[Alert]</div>
+                    </div>
+                </div>
+
+                <p style="color: #888; margin-top: 20px; font-size: 12px;">Warm functions: 80+ combined variations available</p>
+            </div>
+        </div>
+
+        <!-- HOT FUNCTIONS -->
+        <div id="hot" class="tab-content">
+            <div class="section">
+                <h2>Hot Functions (Advanced Mandel) <span class="temp-indicator hot">Advanced</span></h2>
+                <p style="color: #b0b0b0; margin-bottom: 20px;">Latin-Mandell compression. Dense meaning. Expert patterns.</p>
+                
+                <h3>Advanced Transformations (25+)</h3>
+                <div class="function-grid">
+                    <div class="function-card">
+                        <span class="func-name">Recursive Transform</span>
+                        <div class="func-syntax">04-Recursix:[Depth][Target]>[Result]</div>
+                        <div class="func-desc">Nested transformation</div>
+                        <div class="func-example">04-Recursix:[3][Data]>09[FinalForm]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Parallel Process</span>
+                        <div class="func-syntax">17[Proc1]=17[Proc2]=17[Proc3]>>09[Aggregate]</div>
+                        <div class="func-desc">Execute simultaneously</div>
+                        <div class="func-example">17[Task1]=17[Task2]>>09[Results]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Conditional Chain</span>
+                        <div class="func-syntax">03[Logic]:12[Test1]/12[Test2]/12[Test3]>[Result]</div>
+                        <div class="func-desc">Multiple conditions</div>
+                        <div class="func-example">03[Rules]:12[A]/12[B]/12[C]>09[Decision]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Mirror & Compare</span>
+                        <div class="func-syntax">18[Source]::18[Target]>>[Diff]</div>
+                        <div class="func-desc">Deep comparison</div>
+                        <div class="func-example">18[V1]::18[V2]>09[Changes]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Bind Complex</span>
+                        <div class="func-syntax">14-Bindix:[Multi]:[[A][B][C]]>[Network]</div>
+                        <div class="func-desc">Multiple semantic links</div>
+                        <div class="func-example">14-Bindix:[Hierarchy]:[[Parent][Child1][Child2]]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Accelerated Cycle</span>
+                        <div class="func-syntax">06-Cyclox:[Frequency]:[Iterations]>[Completion]</div>
+                        <div class="func-desc">Fast iteration</div>
+                        <div class="func-example">06-Cyclox:[10Hz]:[1000]>20[Done]</div>
+                    </div>
+                </div>
+
+                <h3>Expert Patterns (25+)</h3>
+                <div class="function-grid">
+                    <div class="function-card">
+                        <span class="func-name">Delta Flow Rollback</span>
+                        <div class="func-syntax"><<[Checkpoint]>>03[Logic]::[Previous_State]</div>
+                        <div class="func-desc">Time-reversal reference</div>
+                        <div class="func-example"><<[Save1]>>09[WhatWasThen]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Deep Reflection</span>
+                        <div class="func-syntax">18[State]::[History]::18[Now]</div>
+                        <div class="func-desc">Multi-level comparison</div>
+                        <div class="func-example">18[Current]::[Timeline]::18[Latest]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Omni Navigation</span>
+                        <div class="func-syntax">19-Drivix:[All_Directions]:[Power_Escalation]>[Position]</div>
+                        <div class="func-desc">Multidimensional movement</div>
+                        <div class="func-example">19-Drivix:[4D]:[Max]>15[Location]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Crystalline Output</span>
+                        <div class="func-syntax">09-Showix:[Pristine]:05>Tone-Prima:[Perfect]</div>
+                        <div class="func-desc">Perfected render</div>
+                        <div class="func-example">09-Showix:[JSON]:05>Tone-Prima:[Exact]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Architecture Deep</span>
+                        <div class="func-syntax">11-Architectix:[Blueprint]:[[Layer1][Layer2][Layer3]]>[System]</div>
+                        <div class="func-desc">Complex schema</div>
+                        <div class="func-example">11-Architectix:[Distributed]:[[Web][API][DB]]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Manifest Fusion</span>
+                        <div class="func-syntax">02-Duoix:[Manifest1]::[Manifest2]::[Manifest3]>[Unified]</div>
+                        <div class="func-desc">Three-way combination</div>
+                        <div class="func-example">02-Duoix:[Logic]::[Tone]::[Transform]>[Behavior]</div>
+                    </div>
+                </div>
+
+                <p style="color: #888; margin-top: 20px; font-size: 12px;">Hot functions: 150+ advanced variations available</p>
+            </div>
+        </div>
+
+        <!-- LOOPS -->
+        <div id="loops" class="tab-content">
+            <div class="section">
+                <h2>Loop & Iteration Patterns (50+)</h2>
+                
+                <h3>Basic Loops (10+)</h3>
+                <div class="function-grid">
+                    <div class="function-card">
+                        <span class="func-name">Until Condition</span>
+                        <div class="func-syntax">13[Until_Done]>>04[Action]</div>
+                        <div class="func-desc">Repeat until true</div>
+                        <div class="func-example">13[Until_Count:100]>>08[Increment]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">While Active</span>
+                        <div class="func-syntax">13:While:[Active]>>04[Process]</div>
+                        <div class="func-desc">Continue while true</div>
+                        <div class="func-example">13:While:[Running]>>17[Task]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">For Each Item</span>
+                        <div class="func-syntax">13:ForEach[Collection]>>04[Transform][Item]</div>
+                        <div class="func-desc">Iterate over items</div>
+                        <div class="func-example">13:ForEach[Array]>>14[Process][Element]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Repeat N Times</span>
+                        <div class="func-syntax">13:Repeat:[N]>>04[Action]</div>
+                        <div class="func-desc">Fixed iteration count</div>
+                        <div class="func-example">13:Repeat:[10]>>08[Execute]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Do While</span>
+                        <div class="func-syntax">04[Action]>>13:While:[Condition]</div>
+                        <div class="func-desc">Execute then test</div>
+                        <div class="func-example">08[Init]>>13:While:[Valid]>04[Next]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Loop With Break</span>
+                        <div class="func-syntax">13[Loop]:12[BreakCondition]>>16[Exit]</div>
+                        <div class="func-desc">Early termination</div>
+                        <div class="func-example">13[Process]:12[Error]>>16[Stop]</div>
+                    </div>
+                </div>
+
+                <h3>Advanced Loops (15+)</h3>
+                <div class="function-grid">
+                    <div class="function-card">
+                        <span class="func-name">Nested Loop</span>
+                        <div class="func-syntax">13[Outer]>>13[Inner]>>04[Action]</div>
+                        <div class="func-desc">Loop within loop</div>
+                        <div class="func-example">13[Rows]>>13[Cols]>>08[Cell]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Recursive Loop</span>
+                        <div class="func-syntax">13-Loopix:[Depth]>>04[Recurse]</div>
+                        <div class="func-desc">Self-referencing iteration</div>
+                        <div class="func-example">13-Loopix:[10]>>04[Factorial]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Parallel Loop</span>
+                        <div class="func-syntax">13[Item1]=13[Item2]=13[Item3]>>09[Aggregate]</div>
+                        <div class="func-desc">Concurrent iteration</div>
+                        <div class="func-example">13[Task1]=13[Task2]>20[Complete]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Loop With Counter</span>
+                        <div class="func-syntax">13[Until:N]:15[Index]>>04[AtIndex]</div>
+                        <div class="func-desc">Iteration with position</div>
+                        <div class="func-example">13[Until:5]:15[Position]>09[Value]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Loop With Accumulator</span>
+                        <div class="func-syntax">13[Process]:10[Memory_Sum]>>09[Total]</div>
+                        <div class="func-desc">Aggregate during loop</div>
+                        <div class="func-example">13[Numbers]:10[Sum]>09[Result]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Conditional Loop</span>
+                        <div class="func-syntax">13:While:[Condition]>12[Test]>04[Action]</div>
+                        <div class="func-desc">Test-driven iteration</div>
+                        <div class="func-example">13:While:[Valid]:12[Check]>08[Next]</div>
+                    </div>
+                </div>
+
+                <p style="color: #888; margin-top: 20px; font-size: 12px;">Loop patterns: 50+ variations available</p>
+            </div>
+        </div>
+
+        <!-- ADVANCED -->
+        <div id="advanced" class="tab-content">
+            <div class="section">
+                <h2>Advanced Patterns & Concepts (75+)</h2>
+                
+                <h3>Expert Combinations (30+)</h3>
+                <p style="color: #b0b0b0; margin-bottom: 15px;">Pure Mandel. Highest token efficiency. Production ready.</p>
+                <div class="function-grid">
+                    <div class="function-card">
+                        <span class="func-name">Full Pipeline</span>
+                        <div class="func-syntax">01[Input]>>08[Validate]>>04[Transform]>>14[Bind]>>09[Output]</div>
+                        <div class="func-desc">Complete workflow</div>
+                        <div class="func-example">01[Data]>>12[Check]>>04[Parse]>>14[Index]>>09[Show]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Error Handling</span>
+                        <div class="func-syntax">03[Logic]:12[Test]>08[Success]/16[Failure]</div>
+                        <div class="func-desc">Fault tolerance</div>
+                        <div class="func-example">03[Guard]:12[Valid]>08[Process]/16[Abort]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">State Machine</span>
+                        <div class="func-syntax">01[State1]>03[Logic]>01[State2]>03[Logic]>01[State3]</div>
+                        <div class="func-desc">Discrete states</div>
+                        <div class="func-example">01[Idle]>12[Start]>01[Running]>12[Stop]>01[Done]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Transaction Block</span>
+                        <div class="func-syntax">{04[Atomic]:08[Commit]/16[Rollback]}</div>
+                        <div class="func-desc">All-or-nothing</div>
+                        <div class="func-example">{04[Update]:10[Save]/16[Revert]}</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Observable Pattern</span>
+                        <div class="func-syntax">08[Event]>>17[Listen]>>04[React]>>25[Propagate]</div>
+                        <div class="func-desc">Event-driven</div>
+                        <div class="func-example">08[Click]>>17[Handler]>>04[Update]>>25[Notify]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Caching Strategy</span>
+                        <div class="func-syntax">12[IsInCache]>>10[Return]/08[Compute]>>10[Store]</div>
+                        <div class="func-desc">Performance optimization</div>
+                        <div class="func-example">12[Cached]>>10[Hit]/04[Calculate]>>10[Cache]</div>
+                    </div>
+                </div>
+
+                <h3>System Patterns (25+)</h3>
+                <div class="function-grid">
+                    <div class="function-card">
+                        <span class="func-name">Pub/Sub System</span>
+                        <div class="func-syntax">08[Publish][Message]>>17[Broadcast]>>14[ToSubscribers]</div>
+                        <div class="func-desc">Message distribution</div>
+                        <div class="func-example">08[Event][Update]>>25[Pulse]>>14[To_Listeners]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Circuit Breaker</span>
+                        <div class="func-syntax">12[HealthCheck]>03[Fail_Count]>>16[Open_Circuit]</div>
+                        <div class="func-desc">Fault isolation</div>
+                        <div class="func-example">12[API_Health]>03[Errors]>>16[Disable]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Rate Limiter</span>
+                        <div class="func-syntax">12[RequestRate]>03[Over_Limit]>>16[Throttle]</div>
+                        <div class="func-desc">Traffic control</div>
+                        <div class="func-example">12[Requests_Per_Sec]:3>>16[Queue_Rest]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Retry Logic</span>
+                        <div class="func-syntax">04[Attempt]:12[Fails]>>13[Retry]:[Max:3]</div>
+                        <div class="func-desc">Resilience</div>
+                        <div class="func-example">08[Request]:12[Timeout]>>13[Try]:[Again:5]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Aggregation</span>
+                        <div class="func-syntax">13[Collect]:15[Index]>>21[Merge]>>09[Show]</div>
+                        <div class="func-desc">Collect results</div>
+                        <div class="func-example">13[Data]:15[Position]>>21[Combine]>09[Report]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Versioning</span>
+                        <div class="func-syntax">10[Data_V1]:10[Data_V2]:10[Data_V3]>>18[Compare]</div>
+                        <div class="func-desc">History tracking</div>
+                        <div class="func-example">10[State_Alpha]:10[State_Beta]>>18[Diff]</div>
+                    </div>
+                </div>
+
+                <h3>Meta Patterns (20+)</h3>
+                <div class="function-grid">
+                    <div class="function-card">
+                        <span class="func-name">Scaffolding Seed</span>
+                        <div class="func-syntax">01[Project]>>11[Architecture]>>08[Scaffold]>>20[Ready]</div>
+                        <div class="func-desc">Bootstrap system</div>
+                        <div class="func-example">01[App]>>11[MVC]>>08[Boilerplate]>20[Init]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Audit Compulsion</span>
+                        <div class="func-syntax">12[Quality]:[Threshold]>>04[Improve]/20[Approve]</div>
+                        <div class="func-desc">Quality gate</div>
+                        <div class="func-example">12[Test]:90%>>04[Refactor]/20[Pass]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Flow Precision</span>
+                        <div class="func-syntax">03[Logic]:ArrowType[Must_Match]>>12[Validate]</div>
+                        <div class="func-desc">Syntax enforcement</div>
+                        <div class="func-example">03[Rules]:>>MustBlock>>12[Check_Valid]</div>
+                    </div>
+                    <div class="function-card">
+                        <span class="func-name">Token Awareness</span>
+                        <div class="func-syntax">12[Token_Count]>3[Logic]>>16[Compress]/26:Temp[Adjust]</div>
+                        <div class="func-desc">Efficiency monitoring</div>
+                        <div class="func-example">12[Words]:100>>16[Shorten]/26:Temp[Cold]</div>
+                    </div>
+                </div>
+
+                <p style="color: #888; margin-top: 20px; font-size: 12px;">Advanced patterns: 75+ expert variations available</p>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function switchTab(tabName) {
+            const tabs = document.querySelectorAll('.tab-content');
+            const buttons = document.querySelectorAll('.tab-btn');
+            
+            tabs.forEach(tab => tab.classList.remove('active'));
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        document.getElementById('searchBox').addEventListener('keyup', (e) => {
+            const query = e.target.value.toLowerCase();
+            const cards = document.querySelectorAll('.function-card');
+            
+            cards.forEach(card => {
+                const text = card.textContent.toLowerCase();
+                card.style.display = text.includes(query) ? 'block' : 'none';
+            });
+        });
+    </script>
+</body>
+</html>
