@@ -10,8 +10,8 @@ class GridRenderer {
     this.width = width;
     this.height = height;
     this.grid = this.initializeGrid();
-    this.nodeMap = {};      // Maps Dells to coordinates
-    this.pathHistory = [];  // Track executed paths
+    this.nodeMap = {}; // Maps Dells to coordinates
+    this.pathHistory = []; // Track executed paths
   }
 
   initializeGrid() {
@@ -30,7 +30,7 @@ class GridRenderer {
   placeDell(dellCode, x, y) {
     const box = this.dellToBox(dellCode);
     this.nodeMap[dellCode] = { x, y, box };
-    
+
     // Place the box on grid
     if (x < this.width && y < this.height) {
       this.grid[y][x] = box;
@@ -82,7 +82,7 @@ class GridRenderer {
       FLOW_INOUT: '⇳',
       FLOW_PULSE: '↯',
       FLOW_RECURSIVE: '⟲',
-      FLOW_CYCLE: '↺'
+      FLOW_CYCLE: '↺',
     };
     return map[flowType] || '→';
   }
@@ -94,7 +94,7 @@ class GridRenderer {
     let y = 2;
     let previousDell = null;
 
-    astBody.forEach((node) => {
+    astBody.forEach(node => {
       if (node.type === 'FlowOperator') {
         return;
       }
@@ -187,7 +187,7 @@ class GridRenderer {
       width: this.width,
       height: this.height,
       nodesPlaced: Object.keys(this.nodeMap).length,
-      pathsDrawn: this.pathHistory.length
+      pathsDrawn: this.pathHistory.length,
     };
   }
 }

@@ -16,7 +16,7 @@ class TerminalArchitect {
     this.dellExecutor = new DellExecutor();
     this.personaSnap = new PersonaSnap();
     this.geminiReady = this.apiKey ? true : false;
-    
+
     // Load Gemini.md for system instruction
     this.geminiMd = this.loadGeminiMd();
   }
@@ -36,18 +36,21 @@ class TerminalArchitect {
 
   // Inject Gemini.md as system instruction
   getSystemInstruction() {
-    return this.geminiMd || 'You are the Mandell OS Architect. Execute precise computational instructions.';
+    return (
+      this.geminiMd ||
+      'You are the Mandell OS Architect. Execute precise computational instructions.'
+    );
   }
 
   // Mock Gemini API call (when real API is unavailable)
   async mockGeminiCall(seed) {
     console.log('[MOCK_GEMINI] Received seed:', seed);
-    
+
     // Echo back a basic Mandell response
     return {
       status: 'MOCK_RESPONSE',
       response: `00[Nova] >>> 08[Mandell_Output.txt] >>> 09[Show]`,
-      seed
+      seed,
     };
   }
 
@@ -70,11 +73,11 @@ class TerminalArchitect {
             role: 'user',
             parts: [
               {
-                text: `${systemPrompt}\n\nExecute this Mandell seed: ${seed}`
-              }
-            ]
-          }
-        ]
+                text: `${systemPrompt}\n\nExecute this Mandell seed: ${seed}`,
+              },
+            ],
+          },
+        ],
       });
 
       const mandellCode = response.response.text();
@@ -90,7 +93,7 @@ class TerminalArchitect {
     try {
       // Step 1: Get Gemini response
       const geminiResult = await this.callGeminiAPI(seed);
-      
+
       if (geminiResult.error) {
         return { error: geminiResult.error };
       }
@@ -99,13 +102,13 @@ class TerminalArchitect {
 
       // Step 2: Parse and execute via runtime
       // (Parser would go here in full implementation)
-      
+
       // Step 3: Return execution result
       return {
         status: 'EXECUTED',
         seed,
         mandellCode,
-        timestamp: Date.now()
+        timestamp: Date.now(),
       };
     } catch (err) {
       return { error: err.message };
@@ -116,7 +119,7 @@ class TerminalArchitect {
   async startInteractive() {
     const rl = readline.createInterface({
       input: process.stdin,
-      output: process.stdout
+      output: process.stdout,
     });
 
     console.log('╔═══════════════════════════════════════╗');
@@ -128,7 +131,7 @@ class TerminalArchitect {
     console.log('');
 
     const askForSeed = () => {
-      rl.question('📍 Mandell Seed > ', async (seed) => {
+      rl.question('📍 Mandell Seed > ', async seed => {
         if (seed.toLowerCase() === 'exit') {
           console.log('👋 Exiting Terminal Architect.');
           rl.close();
@@ -155,7 +158,10 @@ class TerminalArchitect {
   // Batch mode: process multiple seeds from file
   async processBatch(filePath) {
     try {
-      const seeds = fs.readFileSync(filePath, 'utf8').split('\n').filter(s => s.trim());
+      const seeds = fs
+        .readFileSync(filePath, 'utf8')
+        .split('\n')
+        .filter(s => s.trim());
       const results = [];
 
       for (const seed of seeds) {

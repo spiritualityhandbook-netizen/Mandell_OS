@@ -7,16 +7,22 @@ function testDeepMergeDeeperVariant() {
   const res = executor.merge(payload);
   if (!Array.isArray(res.result)) throw new Error('Expected merged result array');
   // deep merge behavior in this implementation flattens nested arrays
-  assert(res.result.some(item => item.a && (item.a.x === 1 || item.a.y === 2)), 'Deep merge should preserve nested object entries');
+  assert(
+    res.result.some(item => item.a && (item.a.x === 1 || item.a.y === 2)),
+    'Deep merge should preserve nested object entries'
+  );
 }
 
 function testApplyManifestSettings() {
   const executor = new DellExecutor();
   const manifest = executor.selectManifest('26', { manifest: 'blend' });
-  const wrapped = { data: [1,2,3], info: 'test' };
+  const wrapped = { data: [1, 2, 3], info: 'test' };
   const applied = executor.applyManifestSettings(manifest, wrapped);
   assert(applied.manifest === manifest.key, 'applyManifestSettings should attach manifest key');
-  assert(applied.tuning && applied.tuning.blend === true, 'applyManifestSettings should include tuning');
+  assert(
+    applied.tuning && applied.tuning.blend === true,
+    'applyManifestSettings should include tuning'
+  );
 }
 
 function testManifestApplyDell50() {
@@ -29,10 +35,11 @@ function run() {
   const tests = [
     { name: 'Deep merge (deeper)', fn: testDeepMergeDeeperVariant },
     { name: 'applyManifestSettings', fn: testApplyManifestSettings },
-    { name: 'Dell 50 manifest apply', fn: testManifestApplyDell50 }
+    { name: 'Dell 50 manifest apply', fn: testManifestApplyDell50 },
   ];
 
-  let passed = 0; let failed = 0;
+  let passed = 0;
+  let failed = 0;
   for (const t of tests) {
     try {
       t.fn();

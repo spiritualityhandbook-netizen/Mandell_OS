@@ -1,511 +1,615 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>KODEX PRIME - Strict Forward Lattice</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        :root {
-            --bg-dark: #030303;
-            --grid-color: rgba(0, 255, 255, 0.03);
-            --node-border: #00ffff;
-            --node-bg: rgba(0, 15, 15, 0.95);
-            --text-main: #e0e0e0;
-            --text-accent: #00ffff;
-            --orbit-color: #ff00ff;
-        }
-        body, html {
-            margin: 0; padding: 0; width: 100%; height: 100%;
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            font-family: 'Courier New', Courier, monospace;
-            overflow: hidden;
-            user-select: none;
-        }
-        #canvas-container {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;
-        }
-        canvas { display: block; cursor: crosshair; }
-        
-        #ui-layer {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 10; pointer-events: none;
-            display: flex; flex-direction: column; justify-content: space-between;
-        }
-        .panel {
-            pointer-events: auto;
-            background: rgba(3, 3, 3, 0.85);
-            border: 1px solid var(--node-border);
-            backdrop-filter: blur(10px);
-        }
-        #input-panel {
-            margin: 20px; padding: 15px; width: 500px;
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.05);
-        }
-        textarea {
-            width: 100%; height: 80px; background: transparent;
-            border: 1px solid rgba(0, 255, 255, 0.3);
-            color: var(--text-accent); font-family: inherit;
-            padding: 10px; resize: vertical; outline: none;
-            font-size: 14px;
-        }
-        textarea:focus { border-color: var(--node-border); }
-        button {
-            width: 100%; padding: 10px; margin-top: 10px;
-            background: rgba(0, 255, 255, 0.1); border: 1px solid var(--node-border);
-            color: var(--text-accent); cursor: pointer;
-            text-transform: uppercase; font-weight: bold; transition: all 0.2s;
-        }
-        button:hover {
-            background: var(--node-border); color: var(--bg-dark);
-        }
-        
-        /* Interactive Possibility Panel */
-        #possibility-panel {
-            position: absolute; display: none;
-            background: rgba(0, 10, 10, 0.95);
-            border: 1px solid var(--orbit-color);
-            padding: 10px; min-width: 200px;
-            pointer-events: auto; z-index: 20;
-            box-shadow: 0 0 15px rgba(255, 0, 255, 0.2);
-            color: #ff00ff;
-        }
-        .pos-title { font-weight: bold; border-bottom: 1px solid #ff00ff; margin-bottom: 5px; padding-bottom: 5px; }
-        .pos-item { font-size: 12px; padding: 4px; cursor: pointer; transition: 0.1s; }
-        .pos-item:hover { background: rgba(255, 0, 255, 0.2); }
+      :root {
+        --bg-dark: #030303;
+        --grid-color: rgba(0, 255, 255, 0.03);
+        --node-border: #00ffff;
+        --node-bg: rgba(0, 15, 15, 0.95);
+        --text-main: #e0e0e0;
+        --text-accent: #00ffff;
+        --orbit-color: #ff00ff;
+      }
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        background-color: var(--bg-dark);
+        color: var(--text-main);
+        font-family: 'Courier New', Courier, monospace;
+        overflow: hidden;
+        user-select: none;
+      }
+      #canvas-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+      }
+      canvas {
+        display: block;
+        cursor: crosshair;
+      }
 
-        #audit-log {
-            margin: 20px; padding: 15px; width: 500px; max-height: 150px;
-            overflow-y: auto; align-self: flex-end; font-size: 0.85rem;
-        }
-        .log-entry { margin-bottom: 5px; opacity: 0.8; }
-        .log-sys { color: var(--text-accent); }
-        .log-crit { color: var(--orbit-color); }
-        
-        ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: var(--node-border); }
+      #ui-layer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 10;
+        pointer-events: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .panel {
+        pointer-events: auto;
+        background: rgba(3, 3, 3, 0.85);
+        border: 1px solid var(--node-border);
+        backdrop-filter: blur(10px);
+      }
+      #input-panel {
+        margin: 20px;
+        padding: 15px;
+        width: 500px;
+        box-shadow: 0 0 20px rgba(0, 255, 255, 0.05);
+      }
+      textarea {
+        width: 100%;
+        height: 80px;
+        background: transparent;
+        border: 1px solid rgba(0, 255, 255, 0.3);
+        color: var(--text-accent);
+        font-family: inherit;
+        padding: 10px;
+        resize: vertical;
+        outline: none;
+        font-size: 14px;
+      }
+      textarea:focus {
+        border-color: var(--node-border);
+      }
+      button {
+        width: 100%;
+        padding: 10px;
+        margin-top: 10px;
+        background: rgba(0, 255, 255, 0.1);
+        border: 1px solid var(--node-border);
+        color: var(--text-accent);
+        cursor: pointer;
+        text-transform: uppercase;
+        font-weight: bold;
+        transition: all 0.2s;
+      }
+      button:hover {
+        background: var(--node-border);
+        color: var(--bg-dark);
+      }
+
+      /* Interactive Possibility Panel */
+      #possibility-panel {
+        position: absolute;
+        display: none;
+        background: rgba(0, 10, 10, 0.95);
+        border: 1px solid var(--orbit-color);
+        padding: 10px;
+        min-width: 200px;
+        pointer-events: auto;
+        z-index: 20;
+        box-shadow: 0 0 15px rgba(255, 0, 255, 0.2);
+        color: #ff00ff;
+      }
+      .pos-title {
+        font-weight: bold;
+        border-bottom: 1px solid #ff00ff;
+        margin-bottom: 5px;
+        padding-bottom: 5px;
+      }
+      .pos-item {
+        font-size: 12px;
+        padding: 4px;
+        cursor: pointer;
+        transition: 0.1s;
+      }
+      .pos-item:hover {
+        background: rgba(255, 0, 255, 0.2);
+      }
+
+      #audit-log {
+        margin: 20px;
+        padding: 15px;
+        width: 500px;
+        max-height: 150px;
+        overflow-y: auto;
+        align-self: flex-end;
+        font-size: 0.85rem;
+      }
+      .log-entry {
+        margin-bottom: 5px;
+        opacity: 0.8;
+      }
+      .log-sys {
+        color: var(--text-accent);
+      }
+      .log-crit {
+        color: var(--orbit-color);
+      }
+
+      ::-webkit-scrollbar {
+        width: 5px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--node-border);
+      }
     </style>
-</head>
-<body>
-
+  </head>
+  <body>
     <div id="canvas-container">
-        <canvas id="mandelCanvas"></canvas>
+      <canvas id="mandelCanvas"></canvas>
     </div>
 
     <!-- UI Overlay -->
     <div id="ui-layer">
-        <div id="input-panel" class="panel">
-            <div class="text-xs mb-2 text-[#00ffff] font-bold">01⟨Initiate⟩[Strict_Forward_Vector]</div>
-            <textarea id="mandelInput" spellcheck="false">00[Nova] >>> 08+[System_Architecture] >> 04⟨Transform⟩[Execute_Logic] > 09{Log}[Result]</textarea>
-            <button id="pulseBtn">25[Pulse] (Execute Flow)</button>
-            <div class="mt-2 text-[10px] text-gray-500 uppercase tracking-widest text-center">
-                Click any node to view algorithmic possibilities
-            </div>
+      <div id="input-panel" class="panel">
+        <div class="text-xs mb-2 text-[#00ffff] font-bold">01⟨Initiate⟩[Strict_Forward_Vector]</div>
+        <textarea id="mandelInput" spellcheck="false">
+00[Nova] >>> 08+[System_Architecture] >> 04⟨Transform⟩[Execute_Logic] > 09{Log}[Result]</textarea
+        >
+        <button id="pulseBtn">25[Pulse] (Execute Flow)</button>
+        <div class="mt-2 text-[10px] text-gray-500 uppercase tracking-widest text-center">
+          Click any node to view algorithmic possibilities
         </div>
+      </div>
 
-        <div id="audit-log" class="panel">
-            <div class="text-xs mb-2 text-[#ff00ff] font-bold">16⟨Decay⟩[Action_Log]</div>
-            <div id="logContent"></div>
-        </div>
+      <div id="audit-log" class="panel">
+        <div class="text-xs mb-2 text-[#ff00ff] font-bold">16⟨Decay⟩[Action_Log]</div>
+        <div id="logContent"></div>
+      </div>
     </div>
 
     <!-- Possibility Popup -->
     <div id="possibility-panel">
-        <div class="pos-title">Node Possibilities</div>
-        <div id="pos-list"></div>
+      <div class="pos-title">Node Possibilities</div>
+      <div id="pos-list"></div>
     </div>
 
-<script>
-/**
- * MANDEL ENGINE: Strict Forward Vector Runtime
- * Author: KODEX_PRIME
- * Logic: One direction. Zero floating. Alpha/Omega Orbits.
- */
+    <script>
+      /**
+       * MANDEL ENGINE: Strict Forward Vector Runtime
+       * Author: KODEX_PRIME
+       * Logic: One direction. Zero floating. Alpha/Omega Orbits.
+       */
 
-const canvas = document.getElementById('mandelCanvas');
-const ctx = canvas.getContext('2d');
-const pulseBtn = document.getElementById('pulseBtn');
-const mandelInput = document.getElementById('mandelInput');
-const logContent = document.getElementById('logContent');
-const posPanel = document.getElementById('possibility-panel');
-const posList = document.getElementById('pos-list');
+      const canvas = document.getElementById('mandelCanvas');
+      const ctx = canvas.getContext('2d');
+      const pulseBtn = document.getElementById('pulseBtn');
+      const mandelInput = document.getElementById('mandelInput');
+      const logContent = document.getElementById('logContent');
+      const posPanel = document.getElementById('possibility-panel');
+      const posList = document.getElementById('pos-list');
 
-let width, height;
-let camera = { x: 0, y: 0, zoom: 1 };
-let isDragging = false;
-let hasDragged = false;
-let lastMouse = { x: 0, y: 0 };
+      let width, height;
+      let camera = { x: 0, y: 0, zoom: 1 };
+      let isDragging = false;
+      let hasDragged = false;
+      let lastMouse = { x: 0, y: 0 };
 
-let nodes = [];
-let edges = [];
-let selectedNode = null;
-let time = 0;
+      let nodes = [];
+      let edges = [];
+      let selectedNode = null;
+      let time = 0;
 
-// Physics
-const H = 0.35; // Harmonic pulse
+      // Physics
+      const H = 0.35; // Harmonic pulse
 
-function resize() {
-    width = window.innerWidth;
-    height = window.innerHeight;
-    canvas.width = width;
-    canvas.height = height;
-    if(nodes.length === 0) {
-        camera.x = width / 4; 
-        camera.y = height / 2;
-    }
-}
-window.addEventListener('resize', resize);
+      function resize() {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = width;
+        canvas.height = height;
+        if (nodes.length === 0) {
+          camera.x = width / 4;
+          camera.y = height / 2;
+        }
+      }
+      window.addEventListener('resize', resize);
 
-function log(msg, type = 'sys') {
-    const el = document.createElement('div');
-    el.className = `log-entry log-${type}`;
-    const ts = new Date().toISOString().split('T')[1].slice(0,-1);
-    el.innerText = `[${ts}] ${msg}`;
-    logContent.appendChild(el);
-    logContent.scrollTop = logContent.scrollHeight;
-}
+      function log(msg, type = 'sys') {
+        const el = document.createElement('div');
+        el.className = `log-entry log-${type}`;
+        const ts = new Date().toISOString().split('T')[1].slice(0, -1);
+        el.innerText = `[${ts}] ${msg}`;
+        logContent.appendChild(el);
+        logContent.scrollTop = logContent.scrollHeight;
+      }
 
-// ----------------------------------------------------
-// INTERACTIVITY & CAMERA
-// ----------------------------------------------------
-canvas.addEventListener('mousedown', e => {
-    isDragging = true;
-    hasDragged = false;
-    lastMouse = { x: e.clientX, y: e.clientY };
-});
-
-window.addEventListener('mouseup', e => {
-    isDragging = false;
-});
-
-window.addEventListener('mousemove', e => {
-    if (isDragging) {
-        hasDragged = true;
-        camera.x += e.clientX - lastMouse.x;
-        camera.y += e.clientY - lastMouse.y;
+      // ----------------------------------------------------
+      // INTERACTIVITY & CAMERA
+      // ----------------------------------------------------
+      canvas.addEventListener('mousedown', e => {
+        isDragging = true;
+        hasDragged = false;
         lastMouse = { x: e.clientX, y: e.clientY };
-        posPanel.style.display = 'none'; // hide on drag
-    }
-});
+      });
 
-canvas.addEventListener('wheel', e => {
-    const zoomIntensity = 0.1;
-    const wheel = e.deltaY < 0 ? 1 : -1;
-    const zoomFactor = Math.exp(wheel * zoomIntensity);
-    
-    camera.x -= (e.clientX - camera.x) * (zoomFactor - 1);
-    camera.y -= (e.clientY - camera.y) * (zoomFactor - 1);
-    camera.zoom *= zoomFactor;
-    posPanel.style.display = 'none';
-});
+      window.addEventListener('mouseup', e => {
+        isDragging = false;
+      });
 
-canvas.addEventListener('click', e => {
-    if (hasDragged) return; // Don't trigger click if we were panning
+      window.addEventListener('mousemove', e => {
+        if (isDragging) {
+          hasDragged = true;
+          camera.x += e.clientX - lastMouse.x;
+          camera.y += e.clientY - lastMouse.y;
+          lastMouse = { x: e.clientX, y: e.clientY };
+          posPanel.style.display = 'none'; // hide on drag
+        }
+      });
 
-    const mouseX = (e.clientX - camera.x) / camera.zoom;
-    const mouseY = (e.clientY - camera.y) / camera.zoom;
-    
-    let clickedNode = null;
-    
-    // Check intersection
-    for (let n of nodes) {
-        const textWidth = ctx.measureText(`[${n.dell}] ${n.manner ? '⟨'+n.manner+'⟩' : ''} ${n.content}`).width;
-        const w = Math.max(120, textWidth + 30);
-        const h = 40;
-        
-        // Node's true Y fluctuates with harmonic pulse, but collision checks base Y for stability
-        if (Math.abs(n.x - mouseX) < w/2 && Math.abs(n.y - mouseY) < h/2) {
+      canvas.addEventListener('wheel', e => {
+        const zoomIntensity = 0.1;
+        const wheel = e.deltaY < 0 ? 1 : -1;
+        const zoomFactor = Math.exp(wheel * zoomIntensity);
+
+        camera.x -= (e.clientX - camera.x) * (zoomFactor - 1);
+        camera.y -= (e.clientY - camera.y) * (zoomFactor - 1);
+        camera.zoom *= zoomFactor;
+        posPanel.style.display = 'none';
+      });
+
+      canvas.addEventListener('click', e => {
+        if (hasDragged) return; // Don't trigger click if we were panning
+
+        const mouseX = (e.clientX - camera.x) / camera.zoom;
+        const mouseY = (e.clientY - camera.y) / camera.zoom;
+
+        let clickedNode = null;
+
+        // Check intersection
+        for (let n of nodes) {
+          const textWidth = ctx.measureText(
+            `[${n.dell}] ${n.manner ? '⟨' + n.manner + '⟩' : ''} ${n.content}`
+          ).width;
+          const w = Math.max(120, textWidth + 30);
+          const h = 40;
+
+          // Node's true Y fluctuates with harmonic pulse, but collision checks base Y for stability
+          if (Math.abs(n.x - mouseX) < w / 2 && Math.abs(n.y - mouseY) < h / 2) {
             clickedNode = n;
             break;
+          }
         }
-    }
 
-    if (clickedNode) {
-        selectedNode = clickedNode;
-        showPossibilities(e.clientX, e.clientY, clickedNode);
-        log(`12⟨Test⟩[[Node_Selected: ${clickedNode.dell}]]`, 'crit');
-    } else {
-        selectedNode = null;
-        posPanel.style.display = 'none';
-    }
-});
+        if (clickedNode) {
+          selectedNode = clickedNode;
+          showPossibilities(e.clientX, e.clientY, clickedNode);
+          log(`12⟨Test⟩[[Node_Selected: ${clickedNode.dell}]]`, 'crit');
+        } else {
+          selectedNode = null;
+          posPanel.style.display = 'none';
+        }
+      });
 
-function showPossibilities(x, y, node) {
-    posPanel.style.left = (x + 20) + 'px';
-    posPanel.style.top = (y - 20) + 'px';
-    posPanel.style.display = 'block';
-    
-    let options = [];
-    if (node.dell === '00' || node.dell === 'Nova') {
-        options = [">>> 08[Create_Core]", ">> 01[Initiate_Solo]", ">> 14⟨Bind⟩[Context]"];
-    } else if (node.dell === '08') {
-        options = ["> 04⟨Transform⟩[State]", ">> 10[Keep_Memory]", ">>> 09{Show}[Result]"];
-    } else {
-        options = [
-            ">> 04⟨Transform⟩[Mutate]", 
-            ">> 12⟨Test⟩[Validate]", 
-            ">>> 14⟨Bind⟩[Link_Nodes]", 
-            "↘ 08[Sub_Routine]"
-        ];
-    }
+      function showPossibilities(x, y, node) {
+        posPanel.style.left = x + 20 + 'px';
+        posPanel.style.top = y - 20 + 'px';
+        posPanel.style.display = 'block';
 
-    posList.innerHTML = '';
-    options.forEach(opt => {
-        const div = document.createElement('div');
-        div.className = 'pos-item';
-        div.innerText = opt;
-        div.onclick = () => {
+        let options = [];
+        if (node.dell === '00' || node.dell === 'Nova') {
+          options = ['>>> 08[Create_Core]', '>> 01[Initiate_Solo]', '>> 14⟨Bind⟩[Context]'];
+        } else if (node.dell === '08') {
+          options = ['> 04⟨Transform⟩[State]', '>> 10[Keep_Memory]', '>>> 09{Show}[Result]'];
+        } else {
+          options = [
+            '>> 04⟨Transform⟩[Mutate]',
+            '>> 12⟨Test⟩[Validate]',
+            '>>> 14⟨Bind⟩[Link_Nodes]',
+            '↘ 08[Sub_Routine]',
+          ];
+        }
+
+        posList.innerHTML = '';
+        options.forEach(opt => {
+          const div = document.createElement('div');
+          div.className = 'pos-item';
+          div.innerText = opt;
+          div.onclick = () => {
             mandelInput.value += ` ${opt}`;
             posPanel.style.display = 'none';
             parseMandel(mandelInput.value);
-        };
-        posList.appendChild(div);
-    });
-}
+          };
+          posList.appendChild(div);
+        });
+      }
 
+      // ----------------------------------------------------
+      // PARSER (STRICT FORWARD LOGIC)
+      // ----------------------------------------------------
+      function parseMandel(text) {
+        nodes = [];
+        edges = [];
 
-// ----------------------------------------------------
-// PARSER (STRICT FORWARD LOGIC)
-// ----------------------------------------------------
-function parseMandel(text) {
-    nodes = []; edges = [];
-    
-    // Split purely by whitespace to get tokens
-    const tokens = text.split(/\s+/).filter(s => s.trim());
-    
-    let currentX = 0; 
-    let currentY = 0;
-    let lastNodeId = null;
-    let currentArrow = '>'; // Default implicit flow
+        // Split purely by whitespace to get tokens
+        const tokens = text.split(/\s+/).filter(s => s.trim());
 
-    log("12⟨Test⟩[[Parsing_Strict_Forward]]", "sys");
+        let currentX = 0;
+        let currentY = 0;
+        let lastNodeId = null;
+        let currentArrow = '>'; // Default implicit flow
 
-    tokens.forEach((token, index) => {
-        // Is it a flow arrow?
-        if (['>>>', '>>', '>', '<<', '<:', ':>', '<:>', '↘', '↗', '↙', '↖', '⇕'].includes(token)) {
+        log('12⟨Test⟩[[Parsing_Strict_Forward]]', 'sys');
+
+        tokens.forEach((token, index) => {
+          // Is it a flow arrow?
+          if (
+            ['>>>', '>>', '>', '<<', '<:', ':>', '<:>', '↘', '↗', '↙', '↖', '⇕'].includes(token)
+          ) {
             currentArrow = token;
             return;
-        }
-        
-        // It's a node/cell
-        let dell = 'XX', manner = '', content = token;
-        
-        // Match standard format: 00[Nova] or 04⟨Change⟩[State]
-        // Including -01, -00, 010
-        const match = token.match(/^([\-\w\d]+)?(?:⟨(.*?)⟩)?(?:\[(.*?)\]|\{(.*?)\})/);
-        if (match) {
+          }
+
+          // It's a node/cell
+          let dell = 'XX',
+            manner = '',
+            content = token;
+
+          // Match standard format: 00[Nova] or 04⟨Change⟩[State]
+          // Including -01, -00, 010
+          const match = token.match(/^([\-\w\d]+)?(?:⟨(.*?)⟩)?(?:\[(.*?)\]|\{(.*?)\})/);
+          if (match) {
             dell = match[1] || 'XX';
             manner = match[2] || '';
             content = match[3] || match[4] || token;
-        }
+          }
 
-        // --- THE STRICT FORWARD CALCULATOR ---
-        let dx = 250; // Base forward distance
-        let dy = 0;   // NO RANDOM DROPPING. Y stays 0 for primary timeline.
+          // --- THE STRICT FORWARD CALCULATOR ---
+          let dx = 250; // Base forward distance
+          let dy = 0; // NO RANDOM DROPPING. Y stays 0 for primary timeline.
 
-        if (currentArrow === '>>>') { dx = 350; dy = 0; } // Major jump
-        else if (currentArrow === '>>') { dx = 250; dy = 0; } // Thru
-        else if (currentArrow === '<<') { dx = -150; dy = 120; } // Delta backward drops down to separate timeline
-        else if (currentArrow === '↘') { dx = 150; dy = 150; } // Explicit sub-routine
-        else if (currentArrow === '↗') { dx = 150; dy = -150; } // Explicit meta-routine
-        
-        if (nodes.length > 0) {
+          if (currentArrow === '>>>') {
+            dx = 350;
+            dy = 0;
+          } // Major jump
+          else if (currentArrow === '>>') {
+            dx = 250;
+            dy = 0;
+          } // Thru
+          else if (currentArrow === '<<') {
+            dx = -150;
+            dy = 120;
+          } // Delta backward drops down to separate timeline
+          else if (currentArrow === '↘') {
+            dx = 150;
+            dy = 150;
+          } // Explicit sub-routine
+          else if (currentArrow === '↗') {
+            dx = 150;
+            dy = -150;
+          } // Explicit meta-routine
+
+          if (nodes.length > 0) {
             currentX += dx;
             currentY += dy;
-        } else {
+          } else {
             currentX = 0; // Absolute start
             currentY = 0;
-        }
+          }
 
-        const nodeId = `N_${index}`;
-        
-        nodes.push({
+          const nodeId = `N_${index}`;
+
+          nodes.push({
             id: nodeId,
             dell: dell,
             manner: manner,
             content: content,
             x: currentX,
             y: currentY,
-            seedOffset: index * 0.5 // staggered harmonic breathing
+            seedOffset: index * 0.5, // staggered harmonic breathing
+          });
+
+          if (lastNodeId) {
+            edges.push({
+              from: lastNodeId,
+              to: nodeId,
+              type: currentArrow,
+            });
+          }
+
+          lastNodeId = nodeId;
+          currentArrow = '>'; // Reset default for next token if arrow omitted
         });
 
-        if (lastNodeId) {
-            edges.push({
-                from: lastNodeId,
-                to: nodeId,
-                type: currentArrow
-            });
+        // Reset Camera to view the sequence
+        if (nodes.length > 0) {
+          camera.x = width / 2 - nodes[0].x * camera.zoom - 100;
+          camera.y = height / 2;
         }
+      }
 
-        lastNodeId = nodeId;
-        currentArrow = '>'; // Reset default for next token if arrow omitted
-    });
+      // ----------------------------------------------------
+      // RENDER ENGINE
+      // ----------------------------------------------------
+      function drawOrbitingPrimitive(centerX, centerY, radius, angle, label, subLabel) {
+        const x = centerX + Math.cos(angle) * radius;
+        const y = centerY + Math.sin(angle) * radius;
 
-    // Reset Camera to view the sequence
-    if (nodes.length > 0) {
-        camera.x = (width / 2) - (nodes[0].x * camera.zoom) - 100;
-        camera.y = height / 2;
-    }
-}
-
-
-// ----------------------------------------------------
-// RENDER ENGINE
-// ----------------------------------------------------
-function drawOrbitingPrimitive(centerX, centerY, radius, angle, label, subLabel) {
-    const x = centerX + Math.cos(angle) * radius;
-    const y = centerY + Math.sin(angle) * radius;
-    
-    // Draw connection line
-    ctx.beginPath();
-    ctx.moveTo(centerX, centerY);
-    ctx.lineTo(x, y);
-    ctx.strokeStyle = 'rgba(255, 0, 255, 0.3)';
-    ctx.setLineDash([2, 4]);
-    ctx.stroke();
-    ctx.setLineDash([]);
-
-    // Draw orb
-    ctx.beginPath();
-    ctx.arc(x, y, 6, 0, Math.PI * 2);
-    ctx.fillStyle = '#ff00ff';
-    ctx.fill();
-    ctx.shadowBlur = 10;
-    ctx.shadowColor = '#ff00ff';
-
-    // Label
-    ctx.shadowBlur = 0;
-    ctx.fillStyle = '#fff';
-    ctx.font = '10px Courier New';
-    ctx.fillText(label, x, y - 15);
-    ctx.fillStyle = 'rgba(255,0,255,0.8)';
-    ctx.fillText(subLabel, x, y + 15);
-}
-
-function draw() {
-    ctx.clearRect(0, 0, width, height);
-    time += 0.015; // Global harmonic time
-
-    ctx.save();
-    ctx.translate(camera.x, camera.y);
-    ctx.scale(camera.zoom, camera.zoom);
-
-    // Draw Subtle X/Y Axis Grid
-    ctx.strokeStyle = 'rgba(0, 255, 255, 0.05)';
-    ctx.lineWidth = 1;
-    ctx.beginPath();
-    ctx.moveTo(-10000, 0); ctx.lineTo(10000, 0); // X Axis
-    ctx.stroke();
-
-    // Draw Edges (Strict Flow Lines)
-    edges.forEach(edge => {
-        const fromNode = nodes.find(n => n.id === edge.from);
-        const toNode = nodes.find(n => n.id === edge.to);
-        if(!fromNode || !toNode) return;
-
-        // Harmonic sway on Y axis only
-        const fromY = fromNode.y + Math.sin(time + fromNode.seedOffset) * 6;
-        const toY = toNode.y + Math.sin(time + toNode.seedOffset) * 6;
-
+        // Draw connection line
         ctx.beginPath();
-        ctx.moveTo(fromNode.x, fromY);
-        
-        // Clean bezier for forward flow
-        const cp1X = fromNode.x + (toNode.x - fromNode.x) / 2;
-        ctx.bezierCurveTo(cp1X, fromY, cp1X, toY, toNode.x, toY);
-        
-        if (edge.type === '>>>') {
-            ctx.strokeStyle = 'rgba(0, 255, 255, 0.9)';
-            ctx.lineWidth = 2.5;
-        } else if (edge.type === '<<') {
-            ctx.strokeStyle = 'rgba(255, 0, 100, 0.8)';
-            ctx.setLineDash([5, 5]);
-            ctx.lineWidth = 1.5;
-        } else {
-            ctx.strokeStyle = 'rgba(0, 255, 255, 0.4)';
-            ctx.lineWidth = 1.5;
-            ctx.setLineDash([]);
-        }
+        ctx.moveTo(centerX, centerY);
+        ctx.lineTo(x, y);
+        ctx.strokeStyle = 'rgba(255, 0, 255, 0.3)';
+        ctx.setLineDash([2, 4]);
         ctx.stroke();
         ctx.setLineDash([]);
 
-        // Arrow head logic
-        const midX = (fromNode.x + toNode.x) / 2;
-        const midY = (fromY + toY) / 2;
-        ctx.fillStyle = ctx.strokeStyle;
-        
-        // Draw the text of the arrow
-        ctx.font = '12px Courier New';
-        ctx.textAlign = 'center';
-        ctx.fillText(edge.type, midX, midY - 10);
-    });
-
-    // Draw Nodes
-    ctx.font = '14px Courier New';
-    nodes.forEach(node => {
-        const pulseY = node.y + Math.sin(time + node.seedOffset) * 6;
-        
-        // IF NOVA (00) -> Draw Orbiting Alpha, Omega, Omni
-        if (node.dell === '00' || node.content.toLowerCase() === 'nova') {
-            const radius = 65 + Math.sin(time * 2) * 5; // breathing radius
-            drawOrbitingPrimitive(node.x, pulseY, radius, time, 'Alpha', '(-01)');
-            drawOrbitingPrimitive(node.x, pulseY, radius, time + (Math.PI*2/3), 'Omega', '(-00)');
-            drawOrbitingPrimitive(node.x, pulseY, radius, time + (Math.PI*4/3), 'Omni', '(010)');
-        }
-
-        const text = `[${node.dell}] ${node.manner ? '⟨'+node.manner+'⟩' : ''} ${node.content}`;
-        const textWidth = ctx.measureText(text).width;
-        const boxWidth = Math.max(140, textWidth + 30);
-        const boxHeight = 40;
-
-        const startX = node.x - boxWidth / 2;
-        const startY = pulseY - boxHeight / 2;
-
-        // Bounding Box
-        ctx.fillStyle = selectedNode === node ? 'rgba(0, 40, 40, 0.9)' : 'rgba(0, 10, 10, 0.9)';
-        ctx.strokeStyle = selectedNode === node ? '#ff00ff' : '#00ffff';
-        ctx.lineWidth = selectedNode === node ? 2 : 1;
-        
-        if (node.dell === '00') ctx.strokeStyle = '#ffffff';
-
+        // Draw orb
         ctx.beginPath();
-        ctx.rect(startX, startY, boxWidth, boxHeight);
+        ctx.arc(x, y, 6, 0, Math.PI * 2);
+        ctx.fillStyle = '#ff00ff';
         ctx.fill();
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = '#ff00ff';
+
+        // Label
+        ctx.shadowBlur = 0;
+        ctx.fillStyle = '#fff';
+        ctx.font = '10px Courier New';
+        ctx.fillText(label, x, y - 15);
+        ctx.fillStyle = 'rgba(255,0,255,0.8)';
+        ctx.fillText(subLabel, x, y + 15);
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, width, height);
+        time += 0.015; // Global harmonic time
+
+        ctx.save();
+        ctx.translate(camera.x, camera.y);
+        ctx.scale(camera.zoom, camera.zoom);
+
+        // Draw Subtle X/Y Axis Grid
+        ctx.strokeStyle = 'rgba(0, 255, 255, 0.05)';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(-10000, 0);
+        ctx.lineTo(10000, 0); // X Axis
         ctx.stroke();
 
-        // Left-side accent bar (Replaces domino block visual)
-        ctx.fillStyle = node.dell === '00' ? '#ffffff' : (selectedNode === node ? '#ff00ff' : '#00ffff');
-        ctx.fillRect(startX, startY, 4, boxHeight);
+        // Draw Edges (Strict Flow Lines)
+        edges.forEach(edge => {
+          const fromNode = nodes.find(n => n.id === edge.from);
+          const toNode = nodes.find(n => n.id === edge.to);
+          if (!fromNode || !toNode) return;
 
-        // Text
-        ctx.fillStyle = node.dell === '00' ? '#ffffff' : '#00ffff';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.fillText(text, node.x, pulseY);
-    });
+          // Harmonic sway on Y axis only
+          const fromY = fromNode.y + Math.sin(time + fromNode.seedOffset) * 6;
+          const toY = toNode.y + Math.sin(time + toNode.seedOffset) * 6;
 
-    ctx.restore();
-    requestAnimationFrame(draw);
-}
+          ctx.beginPath();
+          ctx.moveTo(fromNode.x, fromY);
 
-// ----------------------------------------------------
-// INITIALIZATION
-// ----------------------------------------------------
-window.onload = () => {
-    resize();
-    log("00[Nova] >>> 11[Engine_Boot] :: Strict_Forward_Matrix_Active", "sys");
-    parseMandel(mandelInput.value);
-    draw();
-};
+          // Clean bezier for forward flow
+          const cp1X = fromNode.x + (toNode.x - fromNode.x) / 2;
+          ctx.bezierCurveTo(cp1X, fromY, cp1X, toY, toNode.x, toY);
 
-pulseBtn.addEventListener('click', () => {
-    log("25[Pulse] >>> Injecting_New_Sequence", "crit");
-    posPanel.style.display = 'none';
-    parseMandel(mandelInput.value);
-});
+          if (edge.type === '>>>') {
+            ctx.strokeStyle = 'rgba(0, 255, 255, 0.9)';
+            ctx.lineWidth = 2.5;
+          } else if (edge.type === '<<') {
+            ctx.strokeStyle = 'rgba(255, 0, 100, 0.8)';
+            ctx.setLineDash([5, 5]);
+            ctx.lineWidth = 1.5;
+          } else {
+            ctx.strokeStyle = 'rgba(0, 255, 255, 0.4)';
+            ctx.lineWidth = 1.5;
+            ctx.setLineDash([]);
+          }
+          ctx.stroke();
+          ctx.setLineDash([]);
 
-</script>
-</body>
+          // Arrow head logic
+          const midX = (fromNode.x + toNode.x) / 2;
+          const midY = (fromY + toY) / 2;
+          ctx.fillStyle = ctx.strokeStyle;
+
+          // Draw the text of the arrow
+          ctx.font = '12px Courier New';
+          ctx.textAlign = 'center';
+          ctx.fillText(edge.type, midX, midY - 10);
+        });
+
+        // Draw Nodes
+        ctx.font = '14px Courier New';
+        nodes.forEach(node => {
+          const pulseY = node.y + Math.sin(time + node.seedOffset) * 6;
+
+          // IF NOVA (00) -> Draw Orbiting Alpha, Omega, Omni
+          if (node.dell === '00' || node.content.toLowerCase() === 'nova') {
+            const radius = 65 + Math.sin(time * 2) * 5; // breathing radius
+            drawOrbitingPrimitive(node.x, pulseY, radius, time, 'Alpha', '(-01)');
+            drawOrbitingPrimitive(
+              node.x,
+              pulseY,
+              radius,
+              time + (Math.PI * 2) / 3,
+              'Omega',
+              '(-00)'
+            );
+            drawOrbitingPrimitive(
+              node.x,
+              pulseY,
+              radius,
+              time + (Math.PI * 4) / 3,
+              'Omni',
+              '(010)'
+            );
+          }
+
+          const text = `[${node.dell}] ${node.manner ? '⟨' + node.manner + '⟩' : ''} ${node.content}`;
+          const textWidth = ctx.measureText(text).width;
+          const boxWidth = Math.max(140, textWidth + 30);
+          const boxHeight = 40;
+
+          const startX = node.x - boxWidth / 2;
+          const startY = pulseY - boxHeight / 2;
+
+          // Bounding Box
+          ctx.fillStyle = selectedNode === node ? 'rgba(0, 40, 40, 0.9)' : 'rgba(0, 10, 10, 0.9)';
+          ctx.strokeStyle = selectedNode === node ? '#ff00ff' : '#00ffff';
+          ctx.lineWidth = selectedNode === node ? 2 : 1;
+
+          if (node.dell === '00') ctx.strokeStyle = '#ffffff';
+
+          ctx.beginPath();
+          ctx.rect(startX, startY, boxWidth, boxHeight);
+          ctx.fill();
+          ctx.stroke();
+
+          // Left-side accent bar (Replaces domino block visual)
+          ctx.fillStyle =
+            node.dell === '00' ? '#ffffff' : selectedNode === node ? '#ff00ff' : '#00ffff';
+          ctx.fillRect(startX, startY, 4, boxHeight);
+
+          // Text
+          ctx.fillStyle = node.dell === '00' ? '#ffffff' : '#00ffff';
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillText(text, node.x, pulseY);
+        });
+
+        ctx.restore();
+        requestAnimationFrame(draw);
+      }
+
+      // ----------------------------------------------------
+      // INITIALIZATION
+      // ----------------------------------------------------
+      window.onload = () => {
+        resize();
+        log('00[Nova] >>> 11[Engine_Boot] :: Strict_Forward_Matrix_Active', 'sys');
+        parseMandel(mandelInput.value);
+        draw();
+      };
+
+      pulseBtn.addEventListener('click', () => {
+        log('25[Pulse] >>> Injecting_New_Sequence', 'crit');
+        posPanel.style.display = 'none';
+        parseMandel(mandelInput.value);
+      });
+    </script>
+  </body>
 </html>

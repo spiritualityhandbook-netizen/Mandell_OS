@@ -8,7 +8,9 @@
     "start": "node run.js",
     "test": "node test/test_runner.js",
     "audit": "node run.js --audit",
-    "dev": "node run.js"
+    "dev": "node run.js",
+    "lint": "eslint . --ext .js",
+    "format": "prettier --write ."
   },
   "keywords": [
     "Mandell",
@@ -22,5 +24,11 @@
   "dependencies": {
     "@google/generative-ai": "^0.16.0",
     "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "eslint": "^10.5.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.6",
+    "prettier": "^3.8.4"
   }
 }

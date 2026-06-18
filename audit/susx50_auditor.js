@@ -26,9 +26,9 @@ class SUSX50Auditor {
           status: 'DISPLAYED',
           payload: {
             status: 'CREATED_FILE',
-            path: path.join(this.tempRoot, 'test_output.txt')
-          }
-        }
+            path: path.join(this.tempRoot, 'test_output.txt'),
+          },
+        },
       },
       {
         name: 'English flow seed',
@@ -37,9 +37,9 @@ class SUSX50Auditor {
           status: 'DISPLAYED',
           payload: {
             status: 'CREATED_FILE',
-            path: path.join(this.tempRoot, 'english_file.txt')
-          }
-        }
+            path: path.join(this.tempRoot, 'english_file.txt'),
+          },
+        },
       },
       {
         name: 'Natural sentence seed',
@@ -48,10 +48,10 @@ class SUSX50Auditor {
           status: 'DISPLAYED',
           payload: {
             status: 'CREATED_FILE',
-            path: path.join(this.tempRoot, 'sentence_file.txt')
-          }
-        }
-      }
+            path: path.join(this.tempRoot, 'sentence_file.txt'),
+          },
+        },
+      },
     ];
   }
 
@@ -103,9 +103,9 @@ class SUSX50Auditor {
         flowPass,
         coherencePass,
         memoryPass,
-        resultPass
+        resultPass,
       },
-      passed: tokenPass && astPass && flowPass && coherencePass && memoryPass && resultPass
+      passed: tokenPass && astPass && flowPass && coherencePass && memoryPass && resultPass,
     };
   }
 
@@ -123,7 +123,7 @@ class SUSX50Auditor {
       'SUSX50 Audit Report',
       '===================',
       ...lines,
-      `\nOverall result: ${passed ? 'PASS' : 'FAIL'}`
+      `\nOverall result: ${passed ? 'PASS' : 'FAIL'}`,
     ].join('\n');
 
     return { passed, results, summaryText };

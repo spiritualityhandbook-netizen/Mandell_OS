@@ -10,9 +10,9 @@ const DellExecutor = require('./core_dells.js');
 class RupaTRouter {
   constructor() {
     this.dellExecutor = new DellExecutor();
-    this.voidMode = false;       // Void Isolator state
-    this.outputBuffer = [];      // Accumulated outputs (cleared by 09[Show])
-    this.flowHistory = [];       // Tracks all executed flows
+    this.voidMode = false; // Void Isolator state
+    this.outputBuffer = []; // Accumulated outputs (cleared by 09[Show])
+    this.flowHistory = []; // Tracks all executed flows
   }
 
   // Main router: pipes AST through sequence
@@ -48,7 +48,12 @@ class RupaTRouter {
       }
 
       // Handle actual Dell execution
-      if (node.type === 'OpBox' || node.type === 'MultiBlockNode' || node.type === 'ManorBlock' || node.type === 'ContextBlock') {
+      if (
+        node.type === 'OpBox' ||
+        node.type === 'MultiBlockNode' ||
+        node.type === 'ManorBlock' ||
+        node.type === 'ContextBlock'
+      ) {
         const dellCode = node.dell;
         const dellPayload = this.normalizePayload(node, payload, lastResult);
 
@@ -71,7 +76,7 @@ class RupaTRouter {
           flow: currentFlowType || 'FLOW_FORWARD',
           input: dellPayload,
           output: lastResult,
-          timestamp: Date.now()
+          timestamp: Date.now(),
         });
 
         if (dellCode === '20') {
@@ -106,7 +111,8 @@ class RupaTRouter {
 
   normalizePayload(node, payload, lastResult) {
     const dellCode = node.dell;
-    let candidate = node.args && node.args.length > 0 ? node.args : node.container || node.value || payload;
+    let candidate =
+      node.args && node.args.length > 0 ? node.args : node.container || node.value || payload;
 
     if (dellCode === '09') {
       const target = typeof candidate === 'string' ? candidate.trim().toLowerCase() : null;

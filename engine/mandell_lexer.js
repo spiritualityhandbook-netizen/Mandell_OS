@@ -43,11 +43,15 @@ class MandellLexer {
       { type: 'SCOPE_CLOSE', regex: /^\}/ },
       { type: 'QUOTED_STRING', regex: /^"([^"\\]*(?:\\.[^"\\]*)*)"/ },
       // Capture English commands before general identifiers
-      { type: 'ENGLISH_COMMAND', regex: /^(Nova|Origin|Start|Solo|Create|Make|Write|Show|Display|Output|Change|Edit|Update|Test|Check|Bind|Keep|Remember|Void|Clear|Reset|Merge|Split|Filter|Map|Reduce|Sample|Rank|Encrypt|Decrypt|Compress|Expand|Annotate|Validate|Normalize|Profile|Simulate|Project|Route|Stage|Cache|Refresh|Alert|Calculate|Transform|Manifest)\b/i },
+      {
+        type: 'ENGLISH_COMMAND',
+        regex:
+          /^(Nova|Origin|Start|Solo|Create|Make|Write|Show|Display|Output|Change|Edit|Update|Test|Check|Bind|Keep|Remember|Void|Clear|Reset|Merge|Split|Filter|Map|Reduce|Sample|Rank|Encrypt|Decrypt|Compress|Expand|Annotate|Validate|Normalize|Profile|Simulate|Project|Route|Stage|Cache|Refresh|Alert|Calculate|Transform|Manifest)\b/i,
+      },
       // Captures known visual MandellMojis directly
       { type: 'MOJI', regex: /^(⟐M|⟐|➿|△|❀|♔|♟|❤️|🌱|⬛|∞b|📐|🔄)/ },
       { type: 'WORD', regex: /^[A-Za-z0-9_\-\.\/\\]+/ },
-      { type: 'SPACE', regex: /^\s+/ }
+      { type: 'SPACE', regex: /^\s+/ },
     ];
   }
 
@@ -66,7 +70,7 @@ class MandellLexer {
         result.prefix = {
           morpheme: prefix,
           def: this.lexicon.prefixes[prefix].d,
-          vectors: this.lexicon.prefixes[prefix].v
+          vectors: this.lexicon.prefixes[prefix].v,
         };
         remaining = remaining.slice(prefix.length);
         break;
@@ -79,7 +83,7 @@ class MandellLexer {
         result.suffix = {
           morpheme: suffix,
           def: this.lexicon.suffixes[suffix].d,
-          vectors: this.lexicon.suffixes[suffix].v
+          vectors: this.lexicon.suffixes[suffix].v,
         };
         remaining = remaining.slice(0, -suffix.length);
         break;
@@ -98,7 +102,7 @@ class MandellLexer {
           result.roots.push({
             morpheme: root,
             def: source.d,
-            vectors: source.v
+            vectors: source.v,
           });
           remaining = remaining.replace(root, '');
           progress = true;
@@ -114,16 +118,21 @@ class MandellLexer {
         result.unknownRoots.push(fallback);
         this.lexicon.dynamicRoots[fallback] = this.lexicon.dynamicRoots[fallback] || {
           d: 'NEW_LEIGHT_ROOT',
-          v: ['dynamic_root', 'leight', 'unknown']
+          v: ['dynamic_root', 'leight', 'unknown'],
         };
       }
     }
 
-    if (result.prefix || result.roots.length > 0 || result.suffix || result.unknownRoots.length > 0) {
+    if (
+      result.prefix ||
+      result.roots.length > 0 ||
+      result.suffix ||
+      result.unknownRoots.length > 0
+    ) {
       return {
         type: 'LATIN_MANDELL',
         value: word,
-        decoded: result
+        decoded: result,
       };
     }
 
@@ -140,8 +149,8 @@ class MandellLexer {
 
         if (match) {
           const matchedValue = match[0];
-          
-              if (rule.type === 'WORD') {
+
+          if (rule.type === 'WORD') {
             const wordToken = this.dissectWord(matchedValue);
             wordToken.position = this.cursor;
             this.tokens.push(wordToken);
@@ -156,21 +165,21 @@ class MandellLexer {
               value: matchedValue,
               mappedDell: commandData ? commandData.code : null,
               commandName: commandData ? commandData.name : null,
-              position: this.cursor
+              position: this.cursor,
             });
           } else if (rule.type === 'MOJI') {
-            const mojiData = this.lexicon.mojis[matchedValue] || { d: "Undefined visual token" };
+            const mojiData = this.lexicon.mojis[matchedValue] || { d: 'Undefined visual token' };
             this.tokens.push({
               type: 'MANDELL_MOJI',
               value: matchedValue,
               definition: mojiData.d || null,
-              position: this.cursor
+              position: this.cursor,
             });
           } else if (rule.type !== 'SPACE') {
             this.tokens.push({
               type: rule.type,
               value: matchedValue,
-              position: this.cursor
+              position: this.cursor,
             });
           }
 
@@ -181,7 +190,9 @@ class MandellLexer {
       }
 
       if (!matchFound) {
-        throw new Error(`CompileError: Unrecognized character sequence at position ${this.cursor}: "${this.input[this.cursor]}"`);
+        throw new Error(
+          `CompileError: Unrecognized character sequence at position ${this.cursor}: "${this.input[this.cursor]}"`
+        );
       }
     }
     return this.tokens;

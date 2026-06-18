@@ -30,7 +30,7 @@ class MandellOS {
 
   // Bounded Orbit Coherence Equation: C(n+1) = C(n)^2 + Δc
   calculateCoherence(previousCoherence, deltaC = 0.125) {
-    return (previousCoherence * previousCoherence) + deltaC;
+    return previousCoherence * previousCoherence + deltaC;
   }
 
   // Validate bounded orbit (prevents semantic drift)
@@ -125,7 +125,7 @@ class MandellOS {
   async startCLI() {
     const rl = readline.createInterface({
       input: process.stdin,
-      output: process.stdout
+      output: process.stdout,
     });
 
     console.log('\n╔════════════════════════════════════════╗');
@@ -135,7 +135,7 @@ class MandellOS {
     console.log('╚════════════════════════════════════════╝\n');
 
     const prompt = () => {
-      rl.question('🎯 Mandell Input > ', async (input) => {
+      rl.question('🎯 Mandell Input > ', async input => {
         if (input.toLowerCase() === 'exit') {
           console.log('\n👋 Shutting down Mandell OS.');
           rl.close();
@@ -207,10 +207,10 @@ const testSeed = '00[Nova] >>> 08[test_output.txt] >>> 09[Show]';
 
 async function main() {
   const os = new MandellOS();
-  
+
   // Check for CLI arguments
   const args = process.argv.slice(2);
-  
+
   if (args.includes('--interactive') || args.includes('-i')) {
     // Interactive mode
     await os.startCLI();

@@ -2,7 +2,7 @@
 // =====================================================================
 // MANDELL MEMORY MANAGEMENT: HYPO-THERMIA EXECUTION GRID
 // Hot Memory: Current active context
-// Warm Memory: Recent session history  
+// Warm Memory: Recent session history
 // Cold Memory: Vector search RAG archive
 // =====================================================================
 
@@ -12,12 +12,12 @@ const path = require('path');
 class HeapManager {
   constructor(workspaceRoot = './') {
     this.workspaceRoot = workspaceRoot;
-    
+
     // Hot Memory: Active RAM variables
     this.hotMemory = {
-      focus: null,        // Current focus node
-      context: [],        // Active context stack
-      temperature: 26     // Ambient heat level
+      focus: null, // Current focus node
+      context: [], // Active context stack
+      temperature: 26, // Ambient heat level
     };
 
     // Warm Memory: Recent history log
@@ -30,9 +30,9 @@ class HeapManager {
 
     // Temperature layers for hypo-thermia
     this.tempLayers = {
-      hot: 26,   // Immediate next (Temp[C])
-      warm: 50,  // Two ahead (Temp[W])
-      hypo: 100  // Highest probability path (Temp[H])
+      hot: 26, // Immediate next (Temp[C])
+      warm: 50, // Two ahead (Temp[W])
+      hypo: 100, // Highest probability path (Temp[H])
     };
   }
 
@@ -88,7 +88,7 @@ class HeapManager {
       timestamp: Date.now(),
       dell: dellCode,
       input,
-      output
+      output,
     };
     this.warmMemory.rupats.push(rupat);
     this.saveWarmMemory();
@@ -136,7 +136,7 @@ class HeapManager {
       label,
       content,
       vectors: vectors || this.vectorizeContent(content),
-      timestamp: Date.now()
+      timestamp: Date.now(),
     };
     this.coldMemory.archive.push(entry);
     this.saveColdMemory();
@@ -159,7 +159,7 @@ class HeapManager {
   // Vector search: find similar entries by cosine similarity
   searchCold(query, topK = 5) {
     const queryVectors = this.vectorizeContent(query);
-    
+
     const scored = this.coldMemory.archive.map(entry => {
       const similarity = this.cosineSimilarity(queryVectors, entry.vectors);
       return { ...entry, score: similarity };
@@ -179,17 +179,17 @@ class HeapManager {
   predictNextDell(currentContext) {
     // Immediate next: Hot layer
     const hotPrediction = this.predictAtLayer(currentContext, this.tempLayers.hot);
-    
+
     // Two steps ahead: Warm layer
     const warmPrediction = this.predictAtLayer(currentContext, this.tempLayers.warm);
-    
+
     // Highest probability: Hypo layer
     const hypoPrediction = this.predictAtLayer(currentContext, this.tempLayers.hypo);
 
     return {
       immediate: hotPrediction,
       twoAhead: warmPrediction,
-      highest: hypoPrediction
+      highest: hypoPrediction,
     };
   }
 
@@ -197,11 +197,11 @@ class HeapManager {
     // Simple prediction: based on recent rupat history
     const recent = this.warmMemory.rupats.slice(-5);
     if (recent.length === 0) return null;
-    
+
     return {
       probable: recent[recent.length - 1].dell,
       confidence: temp / 100,
-      temperature: temp
+      temperature: temp,
     };
   }
 
@@ -209,8 +209,11 @@ class HeapManager {
   getMemoryState() {
     return {
       hot: this.hotMemory,
-      warm: { sessionCount: this.warmMemory.sessions.length, rupatCount: this.warmMemory.rupats.length },
-      cold: { archiveCount: this.coldMemory.archive.length }
+      warm: {
+        sessionCount: this.warmMemory.sessions.length,
+        rupatCount: this.warmMemory.rupats.length,
+      },
+      cold: { archiveCount: this.coldMemory.archive.length },
     };
   }
 }

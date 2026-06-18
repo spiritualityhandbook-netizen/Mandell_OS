@@ -12,9 +12,18 @@ function testLexerSentenceFlow() {
   const lexer = new MandellLexer(seed);
   const tokens = lexer.tokenize();
 
-  assert(tokens.some(t => t.type === 'FLOW_FORWARD'), 'Expected a flow token for "and then"');
-  assert(tokens.some(t => t.type === 'QUOTED_STRING' && t.value === 'My File.txt'), 'Expected quoted string target token');
-  assert(tokens.some(t => t.type === 'ENGLISH_COMMAND' && t.value.toLowerCase() === 'start'), 'Expected "Start" to be recognized as an English command');
+  assert(
+    tokens.some(t => t.type === 'FLOW_FORWARD'),
+    'Expected a flow token for "and then"'
+  );
+  assert(
+    tokens.some(t => t.type === 'QUOTED_STRING' && t.value === 'My File.txt'),
+    'Expected quoted string target token'
+  );
+  assert(
+    tokens.some(t => t.type === 'ENGLISH_COMMAND' && t.value.toLowerCase() === 'start'),
+    'Expected "Start" to be recognized as an English command'
+  );
 }
 
 function testParserSentenceFlow() {
@@ -40,7 +49,10 @@ function testRouterExecution() {
   const result = router.route(ast);
 
   assert(result && result.status === 'DISPLAYED', 'Expected router to return a displayed result');
-  assert(result.payload && result.payload.status === 'CREATED_FILE', 'Expected create flow to produce a created file payload');
+  assert(
+    result.payload && result.payload.status === 'CREATED_FILE',
+    'Expected create flow to produce a created file payload'
+  );
   assert(result.payload.path === tempPath, 'Expected created file path to match target path');
 }
 
@@ -58,8 +70,14 @@ function testNaturalSentenceCreateAndShow() {
   const result = router.route(ast);
 
   assert(result && result.status === 'DISPLAYED', 'Expected routed sentence to display');
-  assert(result.payload && result.payload.status === 'CREATED_FILE', 'Expected create sentence to make a file');
-  assert(result.payload.path === targetPath, 'Expected natural sentence create path to match target');
+  assert(
+    result.payload && result.payload.status === 'CREATED_FILE',
+    'Expected create sentence to make a file'
+  );
+  assert(
+    result.payload.path === targetPath,
+    'Expected natural sentence create path to match target'
+  );
 }
 
 function testFlowOperatorParsing() {
@@ -70,7 +88,10 @@ function testFlowOperatorParsing() {
   const ast = parser.parse();
 
   assert(ast.flowGraph.length >= 1, 'Flow graph should include at least one edge');
-  assert(ast.flowGraph.every(edge => edge.flow === '⇶'), 'All forward sentence connectors should normalize to ⇶');
+  assert(
+    ast.flowGraph.every(edge => edge.flow === '⇶'),
+    'All forward sentence connectors should normalize to ⇶'
+  );
 }
 
 function testMemoryRagSearch() {
@@ -103,7 +124,7 @@ async function runTests() {
     { name: 'Natural sentence create and show', fn: testNaturalSentenceCreateAndShow },
     { name: 'Flow operator parsing', fn: testFlowOperatorParsing },
     { name: 'Memory RAG search', fn: testMemoryRagSearch },
-    { name: 'Audit harness pass', fn: testAuditHarness }
+    { name: 'Audit harness pass', fn: testAuditHarness },
   ];
 
   let passedTests = 0;

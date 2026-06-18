@@ -1,0 +1,6 @@
+.git
+node_modules
+.audit_temp
+.audit_temp_test
+.test_temp
+.test_memory_temp

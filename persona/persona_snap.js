@@ -19,7 +19,7 @@ class PersonaSnap {
   // Load all available tone matrices
   loadPersonaRegistry() {
     const registry = {};
-    
+
     try {
       if (fs.existsSync(this.personaDir)) {
         const files = fs.readdirSync(this.personaDir);
@@ -62,9 +62,9 @@ class PersonaSnap {
           'No spaces in brackets: CamelCase only',
           'Every node must have active flow arrow',
           'Start with 00[Nova] or 01[Solo]',
-          'End with 09[Show] or 10[Keep]'
-        ]
-      }
+          'End with 09[Show] or 10[Keep]',
+        ],
+      },
     };
   }
 
@@ -84,9 +84,9 @@ class PersonaSnap {
           'Allow space for interpretation',
           'Consider multiple perspectives',
           'Flow naturally like conversation',
-          'End with validation or affirmation'
-        ]
-      }
+          'End with validation or affirmation',
+        ],
+      },
     };
   }
 
@@ -96,14 +96,14 @@ class PersonaSnap {
     if (!persona) {
       return { error: `Persona '${personaName}' not found` };
     }
-    
+
     this.currentPersona = persona;
     this.toneMatrix = persona.matrix;
-    
+
     return {
       status: 'PERSONA_SNAPPED',
       persona: personaName,
-      matrix: this.toneMatrix
+      matrix: this.toneMatrix,
     };
   }
 
@@ -123,7 +123,7 @@ class PersonaSnap {
       hotContext: [],
       focus: null,
       previousPersona: this.currentPersona?.name || 'None',
-      timestamp: Date.now()
+      timestamp: Date.now(),
     };
 
     // Clear current persona and context
@@ -145,7 +145,7 @@ class PersonaSnap {
       name,
       description,
       matrix: matrixConfig,
-      createdAt: Date.now()
+      createdAt: Date.now(),
     };
 
     this.personaRegistry[name] = customTone;
@@ -175,7 +175,7 @@ class PersonaSnap {
   listPersonas() {
     return Object.keys(this.personaRegistry).map(name => ({
       name,
-      description: this.personaRegistry[name].description
+      description: this.personaRegistry[name].description,
     }));
   }
 
@@ -195,7 +195,7 @@ class PersonaSnap {
 
     return {
       valid: violations.length === 0,
-      violations
+      violations,
     };
   }
 }
