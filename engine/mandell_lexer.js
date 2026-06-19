@@ -25,6 +25,7 @@ class MandellLexer {
       { type: 'FLOW_BACK', regex: /^<</ },
       { type: 'FLOW_TO', regex: /^->/ },
       { type: 'FLOW_TO', regex: /^>/ },
+      { type: 'BIND_OPERATOR', regex: /^&/ },
       { type: 'FLOW_BY', regex: /^:/ },
       { type: 'FLOW_FORWARD', regex: /^(and then|then|finally)\b/i },
       { type: 'FLOW_FORWARD', regex: /^⇶/ },

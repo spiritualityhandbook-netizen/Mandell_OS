@@ -163,7 +163,7 @@ class PersonaSnap {
 
       const fileName = `${personaData.name || personaName}.json`;
       const filePath = path.join(this.personaDir, fileName);
-      fs.writeFileSync(filePath, JSON.stringify(personaData, null, 2));
+      fs.writeFileSync(filePath, JSON.stringify(personaData, null, 2), 'utf8');
 
       return { status: 'PERSONA_SAVED', path: filePath };
     } catch (err) {

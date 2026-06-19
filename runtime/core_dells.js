@@ -1173,7 +1173,7 @@ class DellExecutor {
         fs.mkdirSync(normalized, { recursive: true });
         return { status: 'CREATED_DIR', path: normalized };
       }
-      fs.writeFileSync(normalized, String(content || ''));
+      fs.writeFileSync(normalized, String(content || ''), 'utf8');
       return { status: 'CREATED_FILE', path: normalized };
     } catch (err) {
       return { status: 'ERROR_CREATE', error: err.message };

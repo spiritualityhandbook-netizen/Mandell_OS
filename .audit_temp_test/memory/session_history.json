@@ -420,6 +420,111 @@
           "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
         }
       }
+    },
+    {
+      "timestamp": 1781833355719,
+      "dell": "00",
+      "input": null,
+      "output": {
+        "status": "CLEARED",
+        "origin": true
+      }
+    },
+    {
+      "timestamp": 1781833355721,
+      "dell": "08",
+      "input": [
+        "/home/acetoocold24/Mandell_OS/.audit_temp_test/test_output.txt"
+      ],
+      "output": {
+        "status": "CREATED_FILE",
+        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/test_output.txt"
+      }
+    },
+    {
+      "timestamp": 1781833355722,
+      "dell": "09",
+      "input": {
+        "status": "CREATED_FILE",
+        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/test_output.txt"
+      },
+      "output": {
+        "status": "DISPLAYED",
+        "payload": {
+          "status": "CREATED_FILE",
+          "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/test_output.txt"
+        }
+      }
+    },
+    {
+      "timestamp": 1781833355728,
+      "dell": "00",
+      "input": null,
+      "output": {
+        "status": "CLEARED",
+        "origin": true
+      }
+    },
+    {
+      "timestamp": 1781833355729,
+      "dell": "08",
+      "input": [
+        "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
+      ],
+      "output": {
+        "status": "CREATED_FILE",
+        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
+      }
+    },
+    {
+      "timestamp": 1781833355735,
+      "dell": "09",
+      "input": {
+        "status": "CREATED_FILE",
+        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
+      },
+      "output": {
+        "status": "DISPLAYED",
+        "payload": {
+          "status": "CREATED_FILE",
+          "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
+        }
+      }
+    },
+    {
+      "timestamp": 1781833355750,
+      "dell": "00",
+      "input": null,
+      "output": {
+        "status": "CLEARED",
+        "origin": true
+      }
+    },
+    {
+      "timestamp": 1781833355786,
+      "dell": "08",
+      "input": [
+        "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
+      ],
+      "output": {
+        "status": "CREATED_FILE",
+        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
+      }
+    },
+    {
+      "timestamp": 1781833355789,
+      "dell": "09",
+      "input": {
+        "status": "CREATED_FILE",
+        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
+      },
+      "output": {
+        "status": "DISPLAYED",
+        "payload": {
+          "status": "CREATED_FILE",
+          "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
+        }
+      }
     }
   ]
 }

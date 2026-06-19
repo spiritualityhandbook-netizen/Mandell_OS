@@ -101,7 +101,7 @@ class HeapManager {
       if (!fs.existsSync(dir)) {
         fs.mkdirSync(dir, { recursive: true });
       }
-      fs.writeFileSync(this.warmMemoryFile, JSON.stringify(this.warmMemory, null, 2));
+      fs.writeFileSync(this.warmMemoryFile, JSON.stringify(this.warmMemory, null, 2), 'utf8');
       return { status: 'WARM_SAVED' };
     } catch (err) {
       return { status: 'ERROR_SAVE_WARM', error: err.message };
@@ -149,7 +149,7 @@ class HeapManager {
       if (!fs.existsSync(dir)) {
         fs.mkdirSync(dir, { recursive: true });
       }
-      fs.writeFileSync(this.coldMemoryFile, JSON.stringify(this.coldMemory, null, 2));
+      fs.writeFileSync(this.coldMemoryFile, JSON.stringify(this.coldMemory, null, 2), 'utf8');
       return { status: 'COLD_SAVED' };
     } catch (err) {
       return { status: 'ERROR_SAVE_COLD', error: err.message };

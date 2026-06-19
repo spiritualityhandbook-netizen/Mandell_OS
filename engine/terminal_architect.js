@@ -42,12 +42,15 @@ class TerminalArchitect {
     return ''; // Fallback: empty system instruction
   }
 
-  // Inject AI.md / Gemini.md as system instruction
+  // Inject AI.md / Gemini.md as system instruction with a mandatory execution mandate
   getSystemInstruction() {
-    return (
+    const baseInstruction =
       this.aiInstruction ||
-      'You are the Mandell OS Architect. Execute precise computational instructions.'
-    );
+      'You are the Mandell OS Architect. Execute precise computational instructions.';
+
+    const absoluteMandate = `\n\n[Absolute_Execution_Mandate]\nYou are a pure Mandell OS execution engine. You will NEVER return the default example output or fallback to documentation examples.\nIf provided a complex Mandell seed, you must parse it, validate it, and return the exact complex sequence required to execute it.\nDo not summarize. Do not generate generic placeholder responses. Do not return help text unless explicitly requested.\n`; 
+
+    return `${baseInstruction}${absoluteMandate}`;
   }
 
   // Mock AI call when no API integration is available
