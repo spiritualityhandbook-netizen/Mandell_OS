@@ -2,7 +2,7 @@
   "sessions": [],
   "rupats": [
     {
-      "timestamp": 1781825003471,
+      "timestamp": 1781831205982,
       "dell": "00",
       "input": null,
       "output": {
@@ -11,406 +11,7 @@
       }
     },
     {
-      "timestamp": 1781825003473,
-      "dell": "08",
-      "input": ".audit_temp_test/sentence_file.txt",
-      "output": {
-        "status": "CREATED_FILE",
-        "path": ".audit_temp_test/sentence_file.txt"
-      }
-    },
-    {
-      "timestamp": 1781825003474,
-      "dell": "09",
-      "input": "it",
-      "output": {
-        "status": "DISPLAYED",
-        "payload": "it"
-      }
-    },
-    {
-      "timestamp": 1781825041035,
-      "dell": "00",
-      "input": "Nova",
-      "output": {
-        "status": "CLEARED",
-        "origin": true
-      }
-    },
-    {
-      "timestamp": 1781825041036,
-      "dell": "08",
-      "input": "/home/acetoocold24/Mandell_OS/.audit_temp_test/test_output.txt",
-      "output": {
-        "status": "CREATED_FILE",
-        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/test_output.txt"
-      }
-    },
-    {
-      "timestamp": 1781825041038,
-      "dell": "09",
-      "input": "Show",
-      "output": {
-        "status": "DISPLAYED",
-        "payload": "Show"
-      }
-    },
-    {
-      "timestamp": 1781825041056,
-      "dell": "00",
-      "input": null,
-      "output": {
-        "status": "CLEARED",
-        "origin": true
-      }
-    },
-    {
-      "timestamp": 1781825041057,
-      "dell": "08",
-      "input": "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt",
-      "output": {
-        "status": "CREATED_FILE",
-        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
-      }
-    },
-    {
-      "timestamp": 1781825041058,
-      "dell": "09",
-      "input": {
-        "status": "CREATED_FILE",
-        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
-      },
-      "output": {
-        "status": "DISPLAYED",
-        "payload": {
-          "status": "CREATED_FILE",
-          "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
-        }
-      }
-    },
-    {
-      "timestamp": 1781825041071,
-      "dell": "00",
-      "input": null,
-      "output": {
-        "status": "CLEARED",
-        "origin": true
-      }
-    },
-    {
-      "timestamp": 1781825041072,
-      "dell": "08",
-      "input": "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt",
-      "output": {
-        "status": "CREATED_FILE",
-        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
-      }
-    },
-    {
-      "timestamp": 1781825041073,
-      "dell": "09",
-      "input": "it",
-      "output": {
-        "status": "DISPLAYED",
-        "payload": "it"
-      }
-    },
-    {
-      "timestamp": 1781825056636,
-      "dell": "00",
-      "input": "Nova",
-      "output": {
-        "status": "CLEARED",
-        "origin": true
-      }
-    },
-    {
-      "timestamp": 1781825056638,
-      "dell": "08",
-      "input": "/home/acetoocold24/Mandell_OS/.audit_temp_test/test_output.txt",
-      "output": {
-        "status": "CREATED_FILE",
-        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/test_output.txt"
-      }
-    },
-    {
-      "timestamp": 1781825056639,
-      "dell": "09",
-      "input": "Show",
-      "output": {
-        "status": "DISPLAYED",
-        "payload": "Show"
-      }
-    },
-    {
-      "timestamp": 1781825056657,
-      "dell": "00",
-      "input": null,
-      "output": {
-        "status": "CLEARED",
-        "origin": true
-      }
-    },
-    {
-      "timestamp": 1781825056658,
-      "dell": "08",
-      "input": "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt",
-      "output": {
-        "status": "CREATED_FILE",
-        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
-      }
-    },
-    {
-      "timestamp": 1781825056662,
-      "dell": "09",
-      "input": {
-        "status": "CREATED_FILE",
-        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
-      },
-      "output": {
-        "status": "DISPLAYED",
-        "payload": {
-          "status": "CREATED_FILE",
-          "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
-        }
-      }
-    },
-    {
-      "timestamp": 1781825056675,
-      "dell": "00",
-      "input": null,
-      "output": {
-        "status": "CLEARED",
-        "origin": true
-      }
-    },
-    {
-      "timestamp": 1781825056676,
-      "dell": "08",
-      "input": "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt",
-      "output": {
-        "status": "CREATED_FILE",
-        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
-      }
-    },
-    {
-      "timestamp": 1781825056679,
-      "dell": "09",
-      "input": {
-        "status": "CREATED_FILE",
-        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
-      },
-      "output": {
-        "status": "DISPLAYED",
-        "payload": {
-          "status": "CREATED_FILE",
-          "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
-        }
-      }
-    },
-    {
-      "timestamp": 1781825064643,
-      "dell": "00",
-      "input": "Nova",
-      "output": {
-        "status": "CLEARED",
-        "origin": true
-      }
-    },
-    {
-      "timestamp": 1781825064645,
-      "dell": "08",
-      "input": ".audit_temp_test/test_output.txt",
-      "output": {
-        "status": "CREATED_FILE",
-        "path": ".audit_temp_test/test_output.txt"
-      }
-    },
-    {
-      "timestamp": 1781825064647,
-      "dell": "09",
-      "input": "Show",
-      "output": {
-        "status": "DISPLAYED",
-        "payload": "Show"
-      }
-    },
-    {
-      "timestamp": 1781825064662,
-      "dell": "00",
-      "input": null,
-      "output": {
-        "status": "CLEARED",
-        "origin": true
-      }
-    },
-    {
-      "timestamp": 1781825064663,
-      "dell": "08",
-      "input": ".audit_temp_test/english_file.txt",
-      "output": {
-        "status": "CREATED_FILE",
-        "path": ".audit_temp_test/english_file.txt"
-      }
-    },
-    {
-      "timestamp": 1781825064664,
-      "dell": "09",
-      "input": {
-        "status": "CREATED_FILE",
-        "path": ".audit_temp_test/english_file.txt"
-      },
-      "output": {
-        "status": "DISPLAYED",
-        "payload": {
-          "status": "CREATED_FILE",
-          "path": ".audit_temp_test/english_file.txt"
-        }
-      }
-    },
-    {
-      "timestamp": 1781825064674,
-      "dell": "00",
-      "input": null,
-      "output": {
-        "status": "CLEARED",
-        "origin": true
-      }
-    },
-    {
-      "timestamp": 1781825064675,
-      "dell": "08",
-      "input": ".audit_temp_test/sentence_file.txt",
-      "output": {
-        "status": "CREATED_FILE",
-        "path": ".audit_temp_test/sentence_file.txt"
-      }
-    },
-    {
-      "timestamp": 1781825064679,
-      "dell": "09",
-      "input": {
-        "status": "CREATED_FILE",
-        "path": ".audit_temp_test/sentence_file.txt"
-      },
-      "output": {
-        "status": "DISPLAYED",
-        "payload": {
-          "status": "CREATED_FILE",
-          "path": ".audit_temp_test/sentence_file.txt"
-        }
-      }
-    },
-    {
-      "timestamp": 1781825086032,
-      "dell": "00",
-      "input": null,
-      "output": {
-        "status": "CLEARED",
-        "origin": true
-      }
-    },
-    {
-      "timestamp": 1781825086035,
-      "dell": "08",
-      "input": "/home/acetoocold24/Mandell_OS/.audit_temp_test/test_output.txt",
-      "output": {
-        "status": "CREATED_FILE",
-        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/test_output.txt"
-      }
-    },
-    {
-      "timestamp": 1781825086041,
-      "dell": "09",
-      "input": {
-        "status": "CREATED_FILE",
-        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/test_output.txt"
-      },
-      "output": {
-        "status": "DISPLAYED",
-        "payload": {
-          "status": "CREATED_FILE",
-          "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/test_output.txt"
-        }
-      }
-    },
-    {
-      "timestamp": 1781825086074,
-      "dell": "00",
-      "input": null,
-      "output": {
-        "status": "CLEARED",
-        "origin": true
-      }
-    },
-    {
-      "timestamp": 1781825086076,
-      "dell": "08",
-      "input": "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt",
-      "output": {
-        "status": "CREATED_FILE",
-        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
-      }
-    },
-    {
-      "timestamp": 1781825086078,
-      "dell": "09",
-      "input": {
-        "status": "CREATED_FILE",
-        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
-      },
-      "output": {
-        "status": "DISPLAYED",
-        "payload": {
-          "status": "CREATED_FILE",
-          "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
-        }
-      }
-    },
-    {
-      "timestamp": 1781825086093,
-      "dell": "00",
-      "input": null,
-      "output": {
-        "status": "CLEARED",
-        "origin": true
-      }
-    },
-    {
-      "timestamp": 1781825086095,
-      "dell": "08",
-      "input": "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt",
-      "output": {
-        "status": "CREATED_FILE",
-        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
-      }
-    },
-    {
-      "timestamp": 1781825086097,
-      "dell": "09",
-      "input": {
-        "status": "CREATED_FILE",
-        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
-      },
-      "output": {
-        "status": "DISPLAYED",
-        "payload": {
-          "status": "CREATED_FILE",
-          "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
-        }
-      }
-    },
-    {
-      "timestamp": 1781825458589,
-      "dell": "00",
-      "input": null,
-      "output": {
-        "status": "CLEARED",
-        "origin": true
-      }
-    },
-    {
-      "timestamp": 1781825458591,
+      "timestamp": 1781831205990,
       "dell": "08",
       "input": [
         "/home/acetoocold24/Mandell_OS/.audit_temp_test/test_output.txt"
@@ -421,7 +22,7 @@
       }
     },
     {
-      "timestamp": 1781825458592,
+      "timestamp": 1781831205992,
       "dell": "09",
       "input": {
         "status": "CREATED_FILE",
@@ -436,7 +37,7 @@
       }
     },
     {
-      "timestamp": 1781825458605,
+      "timestamp": 1781831205996,
       "dell": "00",
       "input": null,
       "output": {
@@ -445,7 +46,7 @@
       }
     },
     {
-      "timestamp": 1781825458606,
+      "timestamp": 1781831205997,
       "dell": "08",
       "input": [
         "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
@@ -456,7 +57,7 @@
       }
     },
     {
-      "timestamp": 1781825458607,
+      "timestamp": 1781831205998,
       "dell": "09",
       "input": {
         "status": "CREATED_FILE",
@@ -471,7 +72,7 @@
       }
     },
     {
-      "timestamp": 1781825458619,
+      "timestamp": 1781831206003,
       "dell": "00",
       "input": null,
       "output": {
@@ -480,7 +81,7 @@
       }
     },
     {
-      "timestamp": 1781825458620,
+      "timestamp": 1781831206003,
       "dell": "08",
       "input": [
         "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
@@ -491,7 +92,7 @@
       }
     },
     {
-      "timestamp": 1781825458621,
+      "timestamp": 1781831206005,
       "dell": "09",
       "input": {
         "status": "CREATED_FILE",
@@ -506,7 +107,7 @@
       }
     },
     {
-      "timestamp": 1781825472426,
+      "timestamp": 1781831287354,
       "dell": "00",
       "input": null,
       "output": {
@@ -515,7 +116,7 @@
       }
     },
     {
-      "timestamp": 1781825472428,
+      "timestamp": 1781831287356,
       "dell": "08",
       "input": [
         "/home/acetoocold24/Mandell_OS/.audit_temp_test/test_output.txt"
@@ -526,7 +127,7 @@
       }
     },
     {
-      "timestamp": 1781825472431,
+      "timestamp": 1781831287357,
       "dell": "09",
       "input": {
         "status": "CREATED_FILE",
@@ -541,7 +142,7 @@
       }
     },
     {
-      "timestamp": 1781825472444,
+      "timestamp": 1781831287363,
       "dell": "00",
       "input": null,
       "output": {
@@ -550,7 +151,7 @@
       }
     },
     {
-      "timestamp": 1781825472446,
+      "timestamp": 1781831287364,
       "dell": "08",
       "input": [
         "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
@@ -561,7 +162,7 @@
       }
     },
     {
-      "timestamp": 1781825472448,
+      "timestamp": 1781831287366,
       "dell": "09",
       "input": {
         "status": "CREATED_FILE",
@@ -576,7 +177,7 @@
       }
     },
     {
-      "timestamp": 1781825472459,
+      "timestamp": 1781831287370,
       "dell": "00",
       "input": null,
       "output": {
@@ -585,7 +186,7 @@
       }
     },
     {
-      "timestamp": 1781825472460,
+      "timestamp": 1781831287370,
       "dell": "08",
       "input": [
         "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
@@ -596,637 +197,7 @@
       }
     },
     {
-      "timestamp": 1781825472465,
-      "dell": "09",
-      "input": {
-        "status": "CREATED_FILE",
-        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
-      },
-      "output": {
-        "status": "DISPLAYED",
-        "payload": {
-          "status": "CREATED_FILE",
-          "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
-        }
-      }
-    },
-    {
-      "timestamp": 1781825485741,
-      "dell": "00",
-      "input": null,
-      "output": {
-        "status": "CLEARED",
-        "origin": true
-      }
-    },
-    {
-      "timestamp": 1781825485743,
-      "dell": "08",
-      "input": [
-        "/home/acetoocold24/Mandell_OS/.audit_temp_test/test_output.txt"
-      ],
-      "output": {
-        "status": "CREATED_FILE",
-        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/test_output.txt"
-      }
-    },
-    {
-      "timestamp": 1781825485746,
-      "dell": "09",
-      "input": {
-        "status": "CREATED_FILE",
-        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/test_output.txt"
-      },
-      "output": {
-        "status": "DISPLAYED",
-        "payload": {
-          "status": "CREATED_FILE",
-          "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/test_output.txt"
-        }
-      }
-    },
-    {
-      "timestamp": 1781825485759,
-      "dell": "00",
-      "input": null,
-      "output": {
-        "status": "CLEARED",
-        "origin": true
-      }
-    },
-    {
-      "timestamp": 1781825485760,
-      "dell": "08",
-      "input": [
-        "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
-      ],
-      "output": {
-        "status": "CREATED_FILE",
-        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
-      }
-    },
-    {
-      "timestamp": 1781825485762,
-      "dell": "09",
-      "input": {
-        "status": "CREATED_FILE",
-        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
-      },
-      "output": {
-        "status": "DISPLAYED",
-        "payload": {
-          "status": "CREATED_FILE",
-          "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
-        }
-      }
-    },
-    {
-      "timestamp": 1781825485773,
-      "dell": "00",
-      "input": null,
-      "output": {
-        "status": "CLEARED",
-        "origin": true
-      }
-    },
-    {
-      "timestamp": 1781825485779,
-      "dell": "08",
-      "input": [
-        "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
-      ],
-      "output": {
-        "status": "CREATED_FILE",
-        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
-      }
-    },
-    {
-      "timestamp": 1781825485781,
-      "dell": "09",
-      "input": {
-        "status": "CREATED_FILE",
-        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
-      },
-      "output": {
-        "status": "DISPLAYED",
-        "payload": {
-          "status": "CREATED_FILE",
-          "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
-        }
-      }
-    },
-    {
-      "timestamp": 1781826024167,
-      "dell": "00",
-      "input": null,
-      "output": {
-        "status": "CLEARED",
-        "origin": true
-      }
-    },
-    {
-      "timestamp": 1781826024170,
-      "dell": "08",
-      "input": [
-        "/home/acetoocold24/Mandell_OS/.audit_temp_test/test_output.txt"
-      ],
-      "output": {
-        "status": "CREATED_FILE",
-        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/test_output.txt"
-      }
-    },
-    {
-      "timestamp": 1781826024175,
-      "dell": "09",
-      "input": {
-        "status": "CREATED_FILE",
-        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/test_output.txt"
-      },
-      "output": {
-        "status": "DISPLAYED",
-        "payload": {
-          "status": "CREATED_FILE",
-          "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/test_output.txt"
-        }
-      }
-    },
-    {
-      "timestamp": 1781826024206,
-      "dell": "00",
-      "input": null,
-      "output": {
-        "status": "CLEARED",
-        "origin": true
-      }
-    },
-    {
-      "timestamp": 1781826024208,
-      "dell": "08",
-      "input": [
-        "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
-      ],
-      "output": {
-        "status": "CREATED_FILE",
-        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
-      }
-    },
-    {
-      "timestamp": 1781826024211,
-      "dell": "09",
-      "input": {
-        "status": "CREATED_FILE",
-        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
-      },
-      "output": {
-        "status": "DISPLAYED",
-        "payload": {
-          "status": "CREATED_FILE",
-          "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
-        }
-      }
-    },
-    {
-      "timestamp": 1781826024224,
-      "dell": "00",
-      "input": null,
-      "output": {
-        "status": "CLEARED",
-        "origin": true
-      }
-    },
-    {
-      "timestamp": 1781826024226,
-      "dell": "08",
-      "input": [
-        "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
-      ],
-      "output": {
-        "status": "CREATED_FILE",
-        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
-      }
-    },
-    {
-      "timestamp": 1781826024227,
-      "dell": "09",
-      "input": {
-        "status": "CREATED_FILE",
-        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
-      },
-      "output": {
-        "status": "DISPLAYED",
-        "payload": {
-          "status": "CREATED_FILE",
-          "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
-        }
-      }
-    },
-    {
-      "timestamp": 1781826584639,
-      "dell": "00",
-      "input": null,
-      "output": {
-        "status": "CLEARED",
-        "origin": true
-      }
-    },
-    {
-      "timestamp": 1781826584643,
-      "dell": "08",
-      "input": [
-        "/home/acetoocold24/Mandell_OS/.audit_temp_test/test_output.txt"
-      ],
-      "output": {
-        "status": "CREATED_FILE",
-        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/test_output.txt"
-      }
-    },
-    {
-      "timestamp": 1781826584645,
-      "dell": "09",
-      "input": {
-        "status": "CREATED_FILE",
-        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/test_output.txt"
-      },
-      "output": {
-        "status": "DISPLAYED",
-        "payload": {
-          "status": "CREATED_FILE",
-          "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/test_output.txt"
-        }
-      }
-    },
-    {
-      "timestamp": 1781826584669,
-      "dell": "00",
-      "input": null,
-      "output": {
-        "status": "CLEARED",
-        "origin": true
-      }
-    },
-    {
-      "timestamp": 1781826584671,
-      "dell": "08",
-      "input": [
-        "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
-      ],
-      "output": {
-        "status": "CREATED_FILE",
-        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
-      }
-    },
-    {
-      "timestamp": 1781826584673,
-      "dell": "09",
-      "input": {
-        "status": "CREATED_FILE",
-        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
-      },
-      "output": {
-        "status": "DISPLAYED",
-        "payload": {
-          "status": "CREATED_FILE",
-          "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
-        }
-      }
-    },
-    {
-      "timestamp": 1781826584686,
-      "dell": "00",
-      "input": null,
-      "output": {
-        "status": "CLEARED",
-        "origin": true
-      }
-    },
-    {
-      "timestamp": 1781826584687,
-      "dell": "08",
-      "input": [
-        "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
-      ],
-      "output": {
-        "status": "CREATED_FILE",
-        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
-      }
-    },
-    {
-      "timestamp": 1781826584689,
-      "dell": "09",
-      "input": {
-        "status": "CREATED_FILE",
-        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
-      },
-      "output": {
-        "status": "DISPLAYED",
-        "payload": {
-          "status": "CREATED_FILE",
-          "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
-        }
-      }
-    },
-    {
-      "timestamp": 1781826759045,
-      "dell": "00",
-      "input": null,
-      "output": {
-        "status": "CLEARED",
-        "origin": true
-      }
-    },
-    {
-      "timestamp": 1781826759047,
-      "dell": "08",
-      "input": [
-        "/home/acetoocold24/Mandell_OS/.audit_temp_test/test_output.txt"
-      ],
-      "output": {
-        "status": "CREATED_FILE",
-        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/test_output.txt"
-      }
-    },
-    {
-      "timestamp": 1781826759051,
-      "dell": "09",
-      "input": {
-        "status": "CREATED_FILE",
-        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/test_output.txt"
-      },
-      "output": {
-        "status": "DISPLAYED",
-        "payload": {
-          "status": "CREATED_FILE",
-          "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/test_output.txt"
-        }
-      }
-    },
-    {
-      "timestamp": 1781826759071,
-      "dell": "00",
-      "input": null,
-      "output": {
-        "status": "CLEARED",
-        "origin": true
-      }
-    },
-    {
-      "timestamp": 1781826759072,
-      "dell": "08",
-      "input": [
-        "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
-      ],
-      "output": {
-        "status": "CREATED_FILE",
-        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
-      }
-    },
-    {
-      "timestamp": 1781826759073,
-      "dell": "09",
-      "input": {
-        "status": "CREATED_FILE",
-        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
-      },
-      "output": {
-        "status": "DISPLAYED",
-        "payload": {
-          "status": "CREATED_FILE",
-          "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
-        }
-      }
-    },
-    {
-      "timestamp": 1781826759088,
-      "dell": "00",
-      "input": null,
-      "output": {
-        "status": "CLEARED",
-        "origin": true
-      }
-    },
-    {
-      "timestamp": 1781826759089,
-      "dell": "08",
-      "input": [
-        "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
-      ],
-      "output": {
-        "status": "CREATED_FILE",
-        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
-      }
-    },
-    {
-      "timestamp": 1781826759091,
-      "dell": "09",
-      "input": {
-        "status": "CREATED_FILE",
-        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
-      },
-      "output": {
-        "status": "DISPLAYED",
-        "payload": {
-          "status": "CREATED_FILE",
-          "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
-        }
-      }
-    },
-    {
-      "timestamp": 1781827146209,
-      "dell": "00",
-      "input": null,
-      "output": {
-        "status": "CLEARED",
-        "origin": true
-      }
-    },
-    {
-      "timestamp": 1781827146215,
-      "dell": "08",
-      "input": [
-        "/home/acetoocold24/Mandell_OS/.audit_temp_test/test_output.txt"
-      ],
-      "output": {
-        "status": "CREATED_FILE",
-        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/test_output.txt"
-      }
-    },
-    {
-      "timestamp": 1781827146221,
-      "dell": "09",
-      "input": {
-        "status": "CREATED_FILE",
-        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/test_output.txt"
-      },
-      "output": {
-        "status": "DISPLAYED",
-        "payload": {
-          "status": "CREATED_FILE",
-          "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/test_output.txt"
-        }
-      }
-    },
-    {
-      "timestamp": 1781827146244,
-      "dell": "00",
-      "input": null,
-      "output": {
-        "status": "CLEARED",
-        "origin": true
-      }
-    },
-    {
-      "timestamp": 1781827146245,
-      "dell": "08",
-      "input": [
-        "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
-      ],
-      "output": {
-        "status": "CREATED_FILE",
-        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
-      }
-    },
-    {
-      "timestamp": 1781827146247,
-      "dell": "09",
-      "input": {
-        "status": "CREATED_FILE",
-        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
-      },
-      "output": {
-        "status": "DISPLAYED",
-        "payload": {
-          "status": "CREATED_FILE",
-          "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
-        }
-      }
-    },
-    {
-      "timestamp": 1781827146264,
-      "dell": "00",
-      "input": null,
-      "output": {
-        "status": "CLEARED",
-        "origin": true
-      }
-    },
-    {
-      "timestamp": 1781827146265,
-      "dell": "08",
-      "input": [
-        "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
-      ],
-      "output": {
-        "status": "CREATED_FILE",
-        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
-      }
-    },
-    {
-      "timestamp": 1781827146267,
-      "dell": "09",
-      "input": {
-        "status": "CREATED_FILE",
-        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
-      },
-      "output": {
-        "status": "DISPLAYED",
-        "payload": {
-          "status": "CREATED_FILE",
-          "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
-        }
-      }
-    },
-    {
-      "timestamp": 1781827430686,
-      "dell": "00",
-      "input": null,
-      "output": {
-        "status": "CLEARED",
-        "origin": true
-      }
-    },
-    {
-      "timestamp": 1781827430688,
-      "dell": "08",
-      "input": [
-        "/home/acetoocold24/Mandell_OS/.audit_temp_test/test_output.txt"
-      ],
-      "output": {
-        "status": "CREATED_FILE",
-        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/test_output.txt"
-      }
-    },
-    {
-      "timestamp": 1781827430690,
-      "dell": "09",
-      "input": {
-        "status": "CREATED_FILE",
-        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/test_output.txt"
-      },
-      "output": {
-        "status": "DISPLAYED",
-        "payload": {
-          "status": "CREATED_FILE",
-          "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/test_output.txt"
-        }
-      }
-    },
-    {
-      "timestamp": 1781827430711,
-      "dell": "00",
-      "input": null,
-      "output": {
-        "status": "CLEARED",
-        "origin": true
-      }
-    },
-    {
-      "timestamp": 1781827430712,
-      "dell": "08",
-      "input": [
-        "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
-      ],
-      "output": {
-        "status": "CREATED_FILE",
-        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
-      }
-    },
-    {
-      "timestamp": 1781827430714,
-      "dell": "09",
-      "input": {
-        "status": "CREATED_FILE",
-        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
-      },
-      "output": {
-        "status": "DISPLAYED",
-        "payload": {
-          "status": "CREATED_FILE",
-          "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
-        }
-      }
-    },
-    {
-      "timestamp": 1781827430727,
-      "dell": "00",
-      "input": null,
-      "output": {
-        "status": "CLEARED",
-        "origin": true
-      }
-    },
-    {
-      "timestamp": 1781827430729,
-      "dell": "08",
-      "input": [
-        "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
-      ],
-      "output": {
-        "status": "CREATED_FILE",
-        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
-      }
-    },
-    {
-      "timestamp": 1781827430730,
+      "timestamp": 1781831287372,
       "dell": "09",
       "input": {
         "status": "CREATED_FILE",

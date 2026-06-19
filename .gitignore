@@ -1,0 +1,10 @@
+node_modules/
+.env
+.DS_Store
+*.log
+Test_Run_File.txt
+test_output.txt
+.audit_temp*
+.test_temp*
+.test_memory_temp*
+00Mandell/archives/temp/

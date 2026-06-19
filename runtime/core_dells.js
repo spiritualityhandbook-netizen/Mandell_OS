@@ -68,6 +68,8 @@ class DellExecutor {
       48: this.calculate.bind(this),
       49: this.transform.bind(this),
       50: this.manifest.bind(this),
+      51: this.self_mod.bind(this),
+
     };
   }
 
@@ -1777,6 +1779,14 @@ class DellExecutor {
   // DELL 25: Catch - Error handler / Bailout
   catch_dell(error) {
     return { status: 'CAUGHT', error: error.message || error };
+  }
+
+    // DELL 51: Self Mod - Runtime self-modification hook
+  self_mod(payload) {
+    if (payload && payload.command === 'patch') {
+      return { status: 'SELF_MODIFIED', applied: true, patch: payload.patch };
+    }
+    return { status: 'SELF_MODIFIED', payload };
   }
 
   // Execute a Dell by code

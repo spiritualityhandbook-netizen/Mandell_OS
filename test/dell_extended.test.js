@@ -358,7 +358,7 @@ function testLexerRecognizesNewDells() {
 }
 
 function testLexerRecognizesNewEnglishCommands() {
-  const commands = ['merge', 'split', 'filter', 'map', 'reduce', 'encrypt', 'manifest'];
+  const commands = ['merge', 'split', 'filter', 'map', 'reduce', 'encrypt', 'manifest', 'duo', 'tree', 'logic', 'resonate'];
 
   for (const cmd of commands) {
     const seed = `Start ${cmd} test`;

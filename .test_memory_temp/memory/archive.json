@@ -10,7 +10,7 @@
         102,
         109
       ],
-      "timestamp": 1781825458567
+      "timestamp": 1781831165725
     },
     {
       "label": "search_test",
@@ -21,7 +21,7 @@
         102,
         109
       ],
-      "timestamp": 1781825472403
+      "timestamp": 1781831205939
     },
     {
       "label": "search_test",
@@ -32,62 +32,7 @@
         102,
         109
       ],
-      "timestamp": 1781825485720
-    },
-    {
-      "label": "search_test",
-      "content": "hello world from mandell",
-      "vectors": [
-        104,
-        119,
-        102,
-        109
-      ],
-      "timestamp": 1781826024140
-    },
-    {
-      "label": "search_test",
-      "content": "hello world from mandell",
-      "vectors": [
-        104,
-        119,
-        102,
-        109
-      ],
-      "timestamp": 1781826584609
-    },
-    {
-      "label": "search_test",
-      "content": "hello world from mandell",
-      "vectors": [
-        104,
-        119,
-        102,
-        109
-      ],
-      "timestamp": 1781826759016
-    },
-    {
-      "label": "search_test",
-      "content": "hello world from mandell",
-      "vectors": [
-        104,
-        119,
-        102,
-        109
-      ],
-      "timestamp": 1781827146162
-    },
-    {
-      "label": "search_test",
-      "content": "hello world from mandell",
-      "vectors": [
-        104,
-        119,
-        102,
-        109
-      ],
-      "timestamp": 1781827430660
+      "timestamp": 1781831287311
     }
   ]
 }

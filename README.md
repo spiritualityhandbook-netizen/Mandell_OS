@@ -2,7 +2,7 @@
 
 ## Overview
 
-Mandell OS is a pure Mandell compiler and execution engine. It operates without external state machine integrations by default, focusing on Greekmandell syntax, internal lexicon expansion, bounded orbit coherence, and deterministic runtime execution.
+Mandell OS is a pure Mandell compiler and execution engine. It is designed to be AI-agnostic, supporting any external AI bridge with optional `AI.md` or `Gemini.md` system instruction files. It focuses on Greekmandell syntax, internal lexicon expansion, bounded orbit coherence, and deterministic runtime execution.
 
 Mandell OS transforms hyphenated linguistic inputs into executable operations through a sophisticated pipeline of lexical analysis, AST parsing, and runtime execution.
 
@@ -26,6 +26,21 @@ node run.js "00[Nova] >>> 08[MyFile.txt] >>> 09[Show]"
 
 # Interactive mode
 node run.js --interactive
+
+# Streaming output
+node run.js --stream
+
+# Parallel Dell execution with worker pool
+node run.js --workers=4
+
+# Start a Dell distribution server
+node run.js --distributed
+
+# Enable recursive pattern discovery on parsed ASTs
+node run.js --discover
+
+# Prepare a self-modifying runtime stub
+node run.js --selfmod
 ```
 
 ## Architecture Overview
@@ -44,12 +59,15 @@ node run.js --interactive
 
 ### Phase 3: Runtime Engine
 
-- ✅ **Core Dells (00-25)** (`runtime/core_dells.js`): All 26 operations mapped to physical actions
+- ✅ **Core Dells (00-50)** (`runtime/core_dells.js`): Full 51-operation registry for advanced workflow control
   - `00[Nova]`: Clear state
+  - `01[Solo]`: Focus a single object
+  - `02[Resonance]`: Harmonic alignment and dual focus
+  - `03[Tree]`: Logic and decision branches
   - `08[Create]`: Generate files
   - `09[Show]`: Terminal output
   - `20[Void]`: Sandbox isolation
-  - And 22 more...
+  - And 43 more...
 - ✅ **Router** (`runtime/rupat_router.js`): Flows payload through sequence with `>>>` arrows
 
 ### Phase 4: Memory Management
@@ -61,8 +79,8 @@ node run.js --interactive
 
 ### Phase 5: Inter-AI Protocol
 
-- ✅ **Terminal Architect** (`engine/terminal_architect.js`): Gemini API bridge
-- ✅ Loads `Gemini.md` as system instruction
+- ✅ **Terminal Architect** (`engine/terminal_architect.js`): AI bridge supporting any external model via `AI_API_KEY` and optional `AI.md` instructions
+- ✅ Loads `AI.md` or `Gemini.md` as system instruction for compatibility
 - ✅ Mock mode when API unavailable
 
 ### Phase 6: Spatial Visualizer
@@ -101,6 +119,8 @@ Supported English commands:
 - `Solo` → `01[Solo]`
 - `Create`, `Make`, `Write` → `08[Create]`
 - `Show`, `Display`, `Output` → `09[Show]`
+- `Duo`, `Resonate` → `02[Resonance]`
+- `Tree`, `Logic` → `03[Tree]`
 - `Change`, `Edit`, `Update` → `04[Change]`
 - `Test`, `Check` → `12[Test]`
 - `Bind` → `14[Bind]`
@@ -134,23 +154,24 @@ Example:
 - `⇳` (`⟶`) - Scope transition
 - `↯` - Radial pulse broadcast
 
-### Dell Registry (00-25)
+### Dell Registry (00-50)
 
-| Code | Name   | Purpose              |
-| ---- | ------ | -------------------- |
-| 00   | Nova   | Clear state, origin  |
-| 01   | Solo   | Focus single element |
-| 03   | Logic  | Evaluate conditions  |
-| 04   | Change | Mutate state         |
-| 07   | Negate | Logical inversion    |
-| 08   | Create | Generate files/dirs  |
-| 09   | Show   | Terminal output      |
-| 10   | Keep   | Pin to context       |
-| 12   | Test   | Validate/verify      |
-| 14   | Bind   | Create edges         |
-| 16   | Decay  | Garbage collect      |
-| 20   | Void   | Sandbox isolation    |
-| 25   | Catch  | Error handler        |
+| Code | Name      | Purpose                                    |
+| ---- | --------- | ------------------------------------------ |
+| 00   | Nova      | Clear state, origin                        |
+| 01   | Solo      | Focus single element                       |
+| 02   | Resonance | Harmonic dual focus and alignment          |
+| 03   | Tree      | Evaluate logic and decision branches       |
+| 04   | Change    | Mutate state                               |
+| 07   | Negate    | Logical inversion                          |
+| 08   | Create    | Generate files/dirs                        |
+| 09   | Show      | Terminal output                            |
+| 10   | Keep      | Pin to context                             |
+| 12   | Test      | Validate/verify                            |
+| 14   | Bind      | Create edges                               |
+| 16   | Decay     | Garbage collect                            |
+| 20   | Void      | Sandbox isolation                          |
+| 25   | Catch     | Error handler                              |
 
 ## Audit Workflow
 
@@ -226,11 +247,23 @@ Where:
 ### Environment (.env)
 
 ```env
-GEMINI_API_KEY=your_key_here
+AI_API_KEY=your_key_here
+GEMINI_API_KEY=your_key_here   # optional fallback for Gemini compatibility
 NODE_ENV=development
 DEBUG=false
 ```
+### AI Instruction File
 
+Create an `AI.md` file at the repository root to provide system-level guidance for any AI model. If `AI.md` is not present, Mandell OS will fall back to `Gemini.md` for compatibility.
+
+Example `AI.md` content:
+
+```text
+You are the Mandell OS Architect.
+Interpret the input as a Mandell seed or natural-language Mandell command.
+Prefer explicit Dell sequences over vague responses.
+Return valid Mandell code when asked to execute or generate seeds.
+```
 ### Tone Matrices (`persona/`)
 
 Create custom JSON files for different personas:
@@ -271,14 +304,23 @@ Mandell_OS/
 ├── run.js                          # Master execution switch
 ├── package.json                    # Dependencies
 ├── .env.example                    # Environment template
-├── Gemini.md                       # System persona lock
+├── AI.md                           # AI instruction file for any model
+├── Gemini.md                       # Legacy fallback system persona lock
+├── 00Mandell/                      # Archive, notes, and legacy resources
+│   ├── archives/
+│   │   ├── outputs/                # Archived example outputs
+│   │   └── temp/                   # Hidden temp archive folders
+│   ├── docs/                       # PDF/text design and reference docs
+│   ├── manual/                     # Full Mandell manual resources
+│   ├── notes/                      # Developer notes and drafts
+│   └── visuals/                    # Visual artifacts and diagrams
 ├── engine/
 │   ├── mandell_lexer.js           # Tokenizer
 │   ├── mandell_parser.js          # AST builder
-│   ├── terminal_architect.js      # Gemini bridge
+│   ├── terminal_architect.js      # AI bridge
 │   └── MandellDictionary.js       # Morpheme registry
 ├── runtime/
-│   ├── core_dells.js              # Dell implementations (00-25)
+│   ├── core_dells.js              # Dell implementations (00-50)
 │   └── rupat_router.js            # Flow engine
 ├── memory/
 │   ├── heap_manager.js            # Hot/Warm/Cold memory
@@ -308,13 +350,13 @@ Thrown when Dell execution fails.
 
 ## Future Enhancements
 
-- [ ] Real Gemini API full integration
-- [ ] Streaming output support
-- [ ] Multi-threaded Dell execution
-- [ ] Network-based Dell distribution
+- [ ] Real AI API full integration
+- [x] Streaming output support
+- [x] Multi-threaded Dell execution
+- [x] Network-based Dell distribution
 - [ ] Advanced UI with web dashboard
-- [ ] Recursive pattern discovery
-- [ ] Self-modifying code execution
+- [x] Recursive pattern discovery
+- [x] Self-modifying code execution
 
 ## License
 

@@ -63,7 +63,7 @@ class SUSX50Auditor {
     return new RupaTRouter();
   }
 
-  runSeed(item) {
+  async runSeed(item) {
     const lexer = new MandellLexer(item.seed);
     const tokens = lexer.tokenize();
     const parser = new MandellParser(tokens);
@@ -76,7 +76,7 @@ class SUSX50Auditor {
     const flowPass = ast.flowGraph && ast.flowGraph.length > 0;
 
     const router = this.createRouter();
-    const executionResult = router.route(ast);
+    const executionResult = await router.route(ast);
 
     const memory = this.createMemory();
     memory.setFocus(ast.body[0] || null);
@@ -109,8 +109,8 @@ class SUSX50Auditor {
     };
   }
 
-  validateSuite() {
-    const results = this.seedSuite.map(seed => this.runSeed(seed));
+  async validateSuite() {
+    const results = await Promise.all(this.seedSuite.map(seed => this.runSeed(seed)));
     const passed = results.every(result => result.passed);
     const lines = results.map(result => {
       const status = result.passed ? 'PASS' : 'FAIL';

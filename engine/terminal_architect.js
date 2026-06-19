@@ -1,7 +1,7 @@
 // engine/terminal_architect.js
 // =====================================================================
 // MANDELL INTER-AI PROTOCOL: TERMINAL ARCHITECT BRIDGE
-// Integrates Gemini API with Mandell runtime
+// Integrates external AI models with the Mandell runtime
 // Executes AI-generated Mandell seeds locally
 // =====================================================================
 
@@ -11,40 +11,44 @@ const fs = require('fs');
 const readline = require('readline');
 
 class TerminalArchitect {
-  constructor(geminiApiKey = null) {
-    this.apiKey = geminiApiKey || process.env.GEMINI_API_KEY;
+  constructor(aiApiKey = null) {
+    this.apiKey = aiApiKey || process.env.AI_API_KEY || process.env.GEMINI_API_KEY;
     this.dellExecutor = new DellExecutor();
     this.personaSnap = new PersonaSnap();
-    this.geminiReady = this.apiKey ? true : false;
+    this.aiReady = this.apiKey ? true : false;
 
-    // Load Gemini.md for system instruction
-    this.geminiMd = this.loadGeminiMd();
+    // Load AI system instruction from AI.md or fallback to Gemini.md
+    this.aiInstruction = this.loadAIInstruction();
   }
 
-  // Load Gemini.md configuration file
-  loadGeminiMd() {
+  // Load AI.md configuration file, or fallback to Gemini.md for compatibility
+  loadAIInstruction() {
     try {
+      const aiPath = './AI.md';
       const geminiPath = './Gemini.md';
+      if (fs.existsSync(aiPath)) {
+        return fs.readFileSync(aiPath, 'utf8');
+      }
       if (fs.existsSync(geminiPath)) {
         return fs.readFileSync(geminiPath, 'utf8');
       }
     } catch (err) {
-      console.error('Error loading Gemini.md:', err.message);
+      console.error('Error loading AI system instruction file:', err.message);
     }
     return ''; // Fallback: empty system instruction
   }
 
-  // Inject Gemini.md as system instruction
+  // Inject AI.md / Gemini.md as system instruction
   getSystemInstruction() {
     return (
-      this.geminiMd ||
+      this.aiInstruction ||
       'You are the Mandell OS Architect. Execute precise computational instructions.'
     );
   }
 
-  // Mock Gemini API call (when real API is unavailable)
-  async mockGeminiCall(seed) {
-    console.log('[MOCK_GEMINI] Received seed:', seed);
+  // Mock AI call when no API integration is available
+  async mockAICall(seed) {
+    console.log('[MOCK_AI] Received seed:', seed);
 
     // Echo back a basic Mandell response
     return {
@@ -54,14 +58,15 @@ class TerminalArchitect {
     };
   }
 
-  // Call real Gemini API (requires @google/generative-ai)
-  async callGeminiAPI(seed) {
-    if (!this.geminiReady) {
-      return this.mockGeminiCall(seed);
+  // Call a real AI API if configured; falls back to mock mode
+  async callAIAPI(seed) {
+    if (!this.aiReady) {
+      return this.mockAICall(seed);
     }
 
     try {
-      // Attempt to import Gemini library
+      // Attempt to import Gemini library if configured; otherwise the implementation
+      // can be extended to any AI client by swapping this block.
       const { GoogleGenerativeAI } = require('@google/generative-ai');
       const genAI = new GoogleGenerativeAI(this.apiKey);
       const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
@@ -81,24 +86,24 @@ class TerminalArchitect {
       });
 
       const mandellCode = response.response.text();
-      return { status: 'GEMINI_RESPONSE', mandellCode, seed };
+      return { status: 'AI_RESPONSE', mandellCode, seed };
     } catch (err) {
-      console.warn('Gemini API unavailable, using mock:', err.message);
-      return this.mockGeminiCall(seed);
+      console.warn('AI API unavailable, using mock:', err.message);
+      return this.mockAICall(seed);
     }
   }
 
   // Process terminal input through entire pipeline
   async processInput(seed) {
     try {
-      // Step 1: Get Gemini response
-      const geminiResult = await this.callGeminiAPI(seed);
+      // Step 1: Get AI response
+      const aiResult = await this.callAIAPI(seed);
 
-      if (geminiResult.error) {
-        return { error: geminiResult.error };
+      if (aiResult.error) {
+        return { error: aiResult.error };
       }
 
-      const mandellCode = geminiResult.mandellCode || geminiResult.response;
+      const mandellCode = aiResult.mandellCode || aiResult.response;
 
       // Step 2: Parse and execute via runtime
       // (Parser would go here in full implementation)

@@ -8,25 +8,38 @@
 const DellExecutor = require('./core_dells.js');
 
 class RupaTRouter {
-  constructor() {
+  constructor({ workerPool = null, patternDiscovery = null, selfModEngine = null } = {}) {
     this.dellExecutor = new DellExecutor();
+    this.workerPool = workerPool;
+    this.patternDiscovery = patternDiscovery;
+    this.selfModEngine = selfModEngine;
     this.voidMode = false; // Void Isolator state
     this.outputBuffer = []; // Accumulated outputs (cleared by 09[Show])
     this.flowHistory = []; // Tracks all executed flows
   }
 
   // Main router: pipes AST through sequence
-  route(ast) {
+  async route(ast) {
     try {
       this.clearFlowHistory();
-      return this.executeSequence(ast.body);
+      if (this.patternDiscovery) {
+        this.patternDiscovery.reset();
+        const patterns = this.patternDiscovery.findRecursivePatterns(ast);
+        if (patterns.length > 0) {
+          console.log(`🔎 Recursive patterns detected: ${patterns.length}`);
+          patterns.slice(0, 4).forEach(p => {
+            console.log(`   - ${p.signature} @ ${p.context.join('.')}`);
+          });
+        }
+      }
+      return await this.executeSequence(ast.body);
     } catch (error) {
       return this.dellExecutor.catch_dell(error);
     }
   }
 
   // Execute a sequence of Dell nodes
-  executeSequence(nodes) {
+  async executeSequence(nodes) {
     let payload = null;
     let lastResult = null;
     let currentFlowType = null;
@@ -58,7 +71,7 @@ class RupaTRouter {
         const dellPayload = this.normalizePayload(node, payload, lastResult);
 
         // Execute Dell
-        lastResult = this.dellExecutor.execute(dellCode, dellPayload);
+        lastResult = await this.runDell(dellCode, dellPayload);
 
         // Handle output suppression in Void mode
         if (!this.voidMode) {
@@ -126,6 +139,13 @@ class RupaTRouter {
     }
 
     return candidate;
+  }
+
+  async runDell(dellCode, payload) {
+    if (this.workerPool) {
+      return this.workerPool.run(dellCode, payload);
+    }
+    return this.dellExecutor.execute(dellCode, payload);
   }
 
   cleanCreateTarget(value) {

@@ -38,7 +38,7 @@ function testParserSentenceFlow() {
   assert(ast.flowGraph[0].flow === '⇶', 'Flow edge should normalize to forward flow');
 }
 
-function testRouterExecution() {
+async function testRouterExecution() {
   const tempPath = path.join(__dirname, '..', 'Test_Run_File.txt');
   const seed = `Start -> Create "${tempPath}" -> Show`;
   const lexer = new MandellLexer(seed);
@@ -46,7 +46,7 @@ function testRouterExecution() {
   const parser = new MandellParser(tokens);
   const ast = parser.parse();
   const router = new RupaTRouter();
-  const result = router.route(ast);
+  const result = await router.route(ast);
 
   assert(result && result.status === 'DISPLAYED', 'Expected router to return a displayed result');
   assert(
@@ -56,7 +56,7 @@ function testRouterExecution() {
   assert(result.payload.path === tempPath, 'Expected created file path to match target path');
 }
 
-function testNaturalSentenceCreateAndShow() {
+async function testNaturalSentenceCreateAndShow() {
   const targetPath = path.join(__dirname, '..', '.test_temp', 'pronoun_file.txt');
   if (!fs.existsSync(path.dirname(targetPath))) {
     fs.mkdirSync(path.dirname(targetPath), { recursive: true });
@@ -67,7 +67,7 @@ function testNaturalSentenceCreateAndShow() {
   const parser = new MandellParser(tokens);
   const ast = parser.parse();
   const router = new RupaTRouter();
-  const result = router.route(ast);
+  const result = await router.route(ast);
 
   assert(result && result.status === 'DISPLAYED', 'Expected routed sentence to display');
   assert(
@@ -80,7 +80,7 @@ function testNaturalSentenceCreateAndShow() {
   );
 }
 
-function testFlowOperatorParsing() {
+async function testFlowOperatorParsing() {
   const seed = 'Start -> Create "FlowFile.txt" then Show it';
   const lexer = new MandellLexer(seed);
   const tokens = lexer.tokenize();
@@ -108,9 +108,9 @@ function testMemoryRagSearch() {
   assert(results[0].label === 'search_test', 'Expected top result label to match archived entry');
 }
 
-function testAuditHarness() {
+async function testAuditHarness() {
   const auditor = new SUSX50Auditor({ tempRoot: path.join(__dirname, '..', '.audit_temp_test') });
-  const report = auditor.validateSuite();
+  const report = await auditor.validateSuite();
 
   assert(report.passed, 'Audit harness should pass the default seed suite');
   assert(report.results.length >= 3, 'Audit suite should validate multiple seeds');
@@ -132,7 +132,7 @@ async function runTests() {
 
   for (const test of tests) {
     try {
-      test.fn();
+      await test.fn();
       console.log(`✔ ${test.name}`);
       passedTests += 1;
     } catch (error) {
