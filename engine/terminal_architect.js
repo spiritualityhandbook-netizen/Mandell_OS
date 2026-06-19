@@ -5,20 +5,24 @@
 // Executes AI-generated Mandell seeds locally
 // =====================================================================
 
-const DellExecutor = require('../runtime/core_dells.js');
 const PersonaSnap = require('../persona/persona_snap.js');
 const fs = require('fs');
+const path = require('path');
 const readline = require('readline');
 
 class TerminalArchitect {
   constructor(aiApiKey = null) {
-    this.apiKey = aiApiKey || process.env.AI_API_KEY || process.env.GEMINI_API_KEY;
-    this.dellExecutor = new DellExecutor();
+    this.openAiKey = process.env.OPENAI_API_KEY || null;
+    this.googleApiKey = process.env.AI_API_KEY || process.env.GEMINI_API_KEY || null;
+    this.apiKey = aiApiKey || this.openAiKey || this.googleApiKey;
+    this.provider = (process.env.AI_PROVIDER || (this.openAiKey ? 'openai' : 'google')).toLowerCase();
     this.personaSnap = new PersonaSnap();
-    this.aiReady = this.apiKey ? true : false;
+    this.aiReady = Boolean(this.apiKey);
 
     // Load AI system instruction from AI.md or fallback to Gemini.md
     this.aiInstruction = this.loadAIInstruction();
+    this.model = process.env.AI_MODEL || (this.provider === 'openai' ? 'gpt-4o-mini' : 'models/text-bison-001');
+    this.temperature = parseFloat(process.env.AI_TEMPERATURE || '0.2');
   }
 
   // Load AI.md configuration file, or fallback to Gemini.md for compatibility
@@ -65,32 +69,101 @@ class TerminalArchitect {
     }
 
     try {
-      // Attempt to import Gemini library if configured; otherwise the implementation
-      // can be extended to any AI client by swapping this block.
-      const { GoogleGenerativeAI } = require('@google/generative-ai');
-      const genAI = new GoogleGenerativeAI(this.apiKey);
-      const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
-
-      const systemPrompt = this.getSystemInstruction();
-      const response = await model.generateContent({
-        contents: [
-          {
-            role: 'user',
-            parts: [
-              {
-                text: `${systemPrompt}\n\nExecute this Mandell seed: ${seed}`,
-              },
-            ],
-          },
-        ],
-      });
-
-      const mandellCode = response.response.text();
-      return { status: 'AI_RESPONSE', mandellCode, seed };
+      if (this.provider === 'openai') {
+        return await this.callOpenAI(seed);
+      }
+      if (this.provider === 'google') {
+        try {
+          return await this.callGoogleAI(seed);
+        } catch (err) {
+          if (this.openAiKey) {
+            return await this.callOpenAI(seed);
+          }
+          throw err;
+        }
+      }
+      return await this.callGoogleAI(seed);
     } catch (err) {
       console.warn('AI API unavailable, using mock:', err.message);
       return this.mockAICall(seed);
     }
+  }
+
+  async callOpenAI(seed) {
+    const apiKey = this.openAiKey || this.googleApiKey;
+    const model = this.model;
+    const systemPrompt = this.getSystemInstruction();
+    const payload = {
+      model,
+      messages: [
+        { role: 'system', content: systemPrompt },
+        { role: 'user', content: `Execute this Mandell seed: ${seed}` },
+      ],
+      temperature: this.temperature,
+      max_tokens: 1024,
+    };
+
+    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${apiKey}`,
+      },
+      body: JSON.stringify(payload),
+    });
+
+    const result = await response.json();
+    if (!response.ok) {
+      throw new Error(result.error?.message || JSON.stringify(result));
+    }
+
+    const mandellCode = result.choices?.[0]?.message?.content?.trim() || '';
+    return {
+      status: 'AI_RESPONSE',
+      mandellCode,
+      seed,
+      provider: 'openai',
+      model,
+      raw: result,
+    };
+  }
+
+  async callGoogleAI(seed) {
+    const apiKey = this.googleApiKey || this.openAiKey;
+    const model = this.model;
+    const systemPrompt = this.getSystemInstruction();
+    const url = `https://generativelanguage.googleapis.com/v1beta2/${model}:generateText`;
+    const payload = {
+      prompt: {
+        text: `${systemPrompt}\n\nExecute this Mandell seed: ${seed}`,
+      },
+      temperature: this.temperature,
+      maxOutputTokens: 1024,
+    };
+
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${apiKey}`,
+      },
+      body: JSON.stringify(payload),
+    });
+
+    const result = await response.json();
+    if (!response.ok) {
+      throw new Error(result.error?.message || JSON.stringify(result));
+    }
+
+    const mandellCode = result.candidates?.[0]?.output || result.output?.[0]?.content?.[0]?.text || '';
+    return {
+      status: 'AI_RESPONSE',
+      mandellCode: mandellCode.trim(),
+      seed,
+      provider: 'google',
+      model,
+      raw: result,
+    };
   }
 
   // Process terminal input through entire pipeline
@@ -105,15 +178,13 @@ class TerminalArchitect {
 
       const mandellCode = aiResult.mandellCode || aiResult.response;
 
-      // Step 2: Parse and execute via runtime
-      // (Parser would go here in full implementation)
-
-      // Step 3: Return execution result
       return {
         status: 'EXECUTED',
         seed,
         mandellCode,
         timestamp: Date.now(),
+        provider: aiResult.provider,
+        model: aiResult.model,
       };
     } catch (err) {
       return { error: err.message };

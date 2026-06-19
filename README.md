@@ -41,7 +41,21 @@ node run.js --discover
 
 # Prepare a self-modifying runtime stub
 node run.js --selfmod
+
+# Start the dashboard server
+npm run dashboard
 ```
+
+## Dashboard
+
+The dashboard exposes a web UI for executing Mandell seeds, querying AI, and running AI-generated seeds through the runtime.
+
+- Start the dashboard: `npm run dashboard`
+- Open: `http://localhost:3000`
+- Configure provider: `AI_PROVIDER=openai` or `AI_PROVIDER=google`
+- Set keys in `.env` or environment variables: `OPENAI_API_KEY`, `AI_API_KEY`
+
+For local development, copy `.env.example` to `.env` and update the keys.
 
 ## Architecture Overview
 

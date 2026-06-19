@@ -58,13 +58,6 @@ class MandellOS {
     }
 
     this.persona.snapToPersona('Surgical');
-
-    if (this.streaming) {
-      this.streaming.attachConsole();
-      this.streaming.send('init', { status: 'STREAMING_ENABLED' });
-    }
-
-    this.persona.snapToPersona('Surgical');
   }
 
   // Bounded Orbit Coherence Equation: C(n+1) = C(n)^2 + Δc
@@ -261,6 +254,7 @@ Commands:
   node run.js --distributed                # Start the Dell network distributor server
   node run.js --discover                   # Enable recursive pattern discovery on ASTs
   node run.js --selfmod                    # Ensure a self-modifying runtime stub is available
+  node run.js --dashboard                  # Launch the Mandell web dashboard
   node run.js --interactive --stream       # CLI with streaming updates
   node run.js --stream --workers=4         # Stream with parallel Dell execution
 `;
@@ -298,6 +292,9 @@ async function main() {
   } else if (filteredArgs.includes('--architect')) {
     // Terminal architect interactive mode
     await os.architect.startInteractive();
+  } else if (filteredArgs.includes('--dashboard')) {
+    const DashboardServer = require('./dashboard/dashboard_server.js');
+    await DashboardServer.startServer();
   } else if (filteredArgs.includes('--audit')) {
     console.log('🔎 Running SUSX50 audit harness...');
     const auditor = new SUSX50Auditor();
@@ -306,22 +303,28 @@ async function main() {
     if (!report.passed) {
       process.exit(1);
     }
-  } else if (filteredArgs.length > 0) {
+  } else {
     const helpRequested = filteredArgs.some(arg => ['help', '--help', '-h'].includes(arg.toLowerCase()));
     if (helpRequested) {
       console.log(os.getHelpText());
       return;
     }
-    // Execute provided seed
-    await os.execute(filteredArgs.join(' '));
-  } else {
-    // Default: execute test seed
-    console.log('📍 Running default test seed...\n');
-    await os.execute(testSeed);
+    if (filteredArgs.length > 0) {
+      // Execute provided seed
+      await os.execute(filteredArgs.join(' '));
+    } else {
+      // Default: execute test seed
+      console.log('📍 Running default test seed...\n');
+      await os.execute(testSeed);
+    }
   }
 }
 
-main().catch(err => {
-  console.error('Fatal Error:', err);
-  process.exit(1);
-});
+if (require.main === module) {
+  main().catch(err => {
+    console.error('Fatal Error:', err);
+    process.exit(1);
+  });
+}
+
+module.exports = MandellOS;

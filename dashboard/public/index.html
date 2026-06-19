@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mandell OS Dashboard</title>
+  <style>
+    body { margin: 0; font-family: Inter, system-ui, sans-serif; background: #0a0e18; color: #f4f7ff; }
+    .container { max-width: 960px; margin: 0 auto; padding: 24px; }
+    h1 { margin-bottom: 0.25rem; color: #8ab4f8; }
+    .panel { background: rgba(20,30,55,0.95); border: 1px solid rgba(255,255,255,0.08); border-radius: 18px; padding: 22px; margin-top: 18px; }
+    textarea { width: 100%; min-height: 140px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.12); background: #07101f; color: #eef2ff; padding: 14px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 14px; resize: vertical; }
+    button { border: none; border-radius: 12px; padding: 12px 18px; margin-right: 10px; cursor: pointer; font-weight: 600; background: #4f75ff; color: white; transition: transform 0.15s ease, filter 0.15s ease; }
+    button:hover { transform: translateY(-1px); filter: brightness(1.05); }
+    button.secondary { background: #2f4c7d; }
+    .status { display: inline-flex; align-items: center; gap: 8px; margin-top: 12px; color: #cbd5ff; }
+    .output { white-space: pre-wrap; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; margin-top: 16px; line-height: 1.5; }
+    .toolbar { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+    .footer { margin-top: 28px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.08); color: #9bb0ff; }
+    .tag { display: inline-flex; padding: 6px 10px; border-radius: 999px; background: rgba(79,117,255,0.12); color: #d6e3ff; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Mandell OS Dashboard</h1>
+    <p>Interactive web UI for AI-assisted Mandell seed generation and runtime execution.</p>
+    <div class="panel">
+      <label for="seedInput"><strong>Mandell Seed / Natural English Input</strong></label>
+      <textarea id="seedInput" placeholder="Start create \"notes.txt\" and then show it"></textarea>
+      <div class="toolbar">
+        <button id="executeBtn">Execute Seed</button>
+        <button id="aiBtn" class="secondary">Ask AI for Seed</button>
+        <button id="executeAiBtn" class="secondary">AI + Execute</button>
+      </div>
+      <div class="status" id="statusLine">Loading status…</div>
+    </div>
+    <div class="panel">
+      <h2>Output</h2>
+      <div id="output" class="output">Results will appear here.</div>
+    </div>
+    <div class="footer">
+      <span class="tag">AI provider: <span id="providerLabel">unknown</span></span>
+      <span class="tag">Model: <span id="modelLabel">unknown</span></span>
+    </div>
+  </div>
+  <script>
+    const seedInput = document.getElementById('seedInput');
+    const executeBtn = document.getElementById('executeBtn');
+    const aiBtn = document.getElementById('aiBtn');
+    const executeAiBtn = document.getElementById('executeAiBtn');
+    const output = document.getElementById('output');
+    const statusLine = document.getElementById('statusLine');
+    const providerLabel = document.getElementById('providerLabel');
+    const modelLabel = document.getElementById('modelLabel');
+
+    const updateStatus = message => { statusLine.textContent = message; };
+    const renderJson = data => JSON.stringify(data, null, 2);
+
+    const postJson = async (url, body) => {
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+      return res.json();
+    };
+
+    const loadStatus = async () => {
+      try {
+        const res = await fetch('/api/status');
+        const data = await res.json();
+        providerLabel.textContent = data.provider || 'unknown';
+        modelLabel.textContent = data.model || 'unknown';
+        updateStatus('Dashboard connected. AI ready: ' + data.aiReady);
+      } catch (err) {
+        updateStatus('Unable to connect to dashboard backend.');
+      }
+    };
+
+    executeBtn.addEventListener('click', async () => {
+      const seed = seedInput.value.trim();
+      if (!seed) return;
+      updateStatus('Executing seed...');
+      const result = await postJson('/api/execute', { seed });
+      output.textContent = renderJson(result);
+      updateStatus('Execution complete.');
+    });
+
+    aiBtn.addEventListener('click', async () => {
+      const seed = seedInput.value.trim();
+      if (!seed) return;
+      updateStatus('Querying AI...');
+      const result = await postJson('/api/ai', { seed });
+      output.textContent = renderJson(result);
+      updateStatus('AI response complete.');
+    });
+
+    executeAiBtn.addEventListener('click', async () => {
+      const seed = seedInput.value.trim();
+      if (!seed) return;
+      updateStatus('Querying AI and executing result...');
+      const result = await postJson('/api/execute-ai', { seed });
+      output.textContent = renderJson(result);
+      updateStatus('AI seed executed.');
+    });
+
+    loadStatus();
+  </script>
+</body>
+</html>

@@ -6,6 +6,7 @@
   "type": "commonjs",
   "scripts": {
     "start": "node run.js",
+    "dashboard": "node dashboard/dashboard_server.js",
     "test": "node test/test_runner.js",
     "audit": "node run.js --audit",
     "dev": "node run.js",
@@ -23,7 +24,8 @@
   "license": "MIT",
   "dependencies": {
     "@google/generative-ai": "^0.16.0",
-    "dotenv": "^16.3.1"
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2"
   },
   "devDependencies": {
     "eslint": "^10.5.0",
