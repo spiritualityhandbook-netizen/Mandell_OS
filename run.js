@@ -11,7 +11,6 @@ const GridRenderer = require('./visualizer/grid_render.js');
 const PersonaSnap = require('./persona/persona_snap.js');
 const TerminalArchitect = require('./engine/terminal_architect.js');
 const SUSX50Auditor = require('./audit/susx50_auditor.js');
-const fs = require('fs');
 const readline = require('readline');
 
 class MandellOS {

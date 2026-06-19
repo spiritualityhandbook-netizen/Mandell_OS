@@ -193,6 +193,13 @@ class PersonaSnap {
       }
     }
 
+    // Basic rule checks: if any explicit rule string appears in the text, flag it
+    for (const r of rules) {
+      if (typeof r === 'string' && text.includes(r.split(':')[0])) {
+        violations.push(`Rule triggered: ${r}`);
+      }
+    }
+
     return {
       valid: violations.length === 0,
       violations,

@@ -77,7 +77,7 @@ class HeapManager {
         const data = fs.readFileSync(this.warmMemoryFile, 'utf8');
         return JSON.parse(data);
       }
-    } catch (e) {
+    } catch {
       // Fallback: empty history
     }
     return { sessions: [], rupats: [] };
@@ -119,7 +119,7 @@ class HeapManager {
         const data = fs.readFileSync(this.coldMemoryFile, 'utf8');
         return JSON.parse(data);
       }
-    } catch (e) {
+    } catch {
       // Fallback: empty archive
     }
     return { vectors: [], archive: [] };

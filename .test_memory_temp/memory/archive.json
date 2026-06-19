@@ -66,6 +66,28 @@
         109
       ],
       "timestamp": 1781826759016
+    },
+    {
+      "label": "search_test",
+      "content": "hello world from mandell",
+      "vectors": [
+        104,
+        119,
+        102,
+        109
+      ],
+      "timestamp": 1781827146162
+    },
+    {
+      "label": "search_test",
+      "content": "hello world from mandell",
+      "vectors": [
+        104,
+        119,
+        102,
+        109
+      ],
+      "timestamp": 1781827430660
     }
   ]
 }

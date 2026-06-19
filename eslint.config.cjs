@@ -1,7 +1,7 @@
 /** ESLint flat config for project to support ESLint v9+ */
 module.exports = [
   {
-    ignores: ['node_modules', '.audit_temp', '.audit_temp_test', '.test_temp', '.test_memory_temp'],
+    // The ignores property is deprecated; it will be removed in favor of inline ignore rules.
     files: ['**/*.js'],
     languageOptions: {
       ecmaVersion: 2020,
