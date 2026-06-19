@@ -272,14 +272,30 @@ class MandellParser {
 
     const contentToken = this.consume();
     if (
-      !['IDENTIFIER', 'LATIN_MANDELL', 'NEW_LEIGHT_ROOT', 'ENGLISH_COMMAND'].includes(
-        contentToken.type
-      )
+      ![
+        'IDENTIFIER',
+        'LATIN_MANDELL',
+        'NEW_LEIGHT_ROOT',
+        'ENGLISH_COMMAND',
+        'QUOTED_STRING',
+      ].includes(contentToken.type)
     ) {
       throw new Error(
         `ParseError at position ${contentToken.position}: Invalid container node target: "${contentToken.value}"`
       );
     }
+
+    // 1. Strip structural fluff quotes/apostrophes for resilience against AI-generated payloads
+    const cleanTarget = String(contentToken.value).replace(/['"]/g, '');
+    const validTargetRegex = /^[a-zA-Z0-9_\-\.]+$/;
+    if (!validTargetRegex.test(cleanTarget)) {
+      throw new Error(
+        `ParseError at position ${contentToken.position}: Invalid container node target: "${contentToken.value}"`
+      );
+    }
+
+    // 2. Bind the sanitized target back into the AST
+    contentToken.value = cleanTarget;
 
     this.consume(closeType);
 
