@@ -4,6 +4,9 @@
 // Validates grammar trees and checks bounded orbit limits for stability
 // =====================================================================
 
+const MandellDictionary = require('../lexicon/MandellDictionary.js');
+const GreekmandellRegistry = require('../lexicon/greekmandell_registry.js');
+
 class MandellParser {
   constructor(tokens) {
     this.tokens = tokens;
@@ -46,6 +49,7 @@ class MandellParser {
 
       if (token.type === 'DELL') {
         const node = this.parseOpBox();
+        this.validateNodeMorphemes(node);
         this.evaluateBoundedOrbit(node);
         ast.body.push(node);
       } else if (
@@ -53,10 +57,17 @@ class MandellParser {
         token.type === 'CONTEXT_OPEN' ||
         token.type === 'SCOPE_OPEN'
       ) {
-        ast.body.push(this.parseUnboundBlock());
+        const node = this.parseUnboundBlock();
+        this.validateNodeMorphemes(node);
+        ast.body.push(node);
       } else if (token.type === 'ENGLISH_COMMAND') {
         const node = this.parseEnglishCommand();
+        this.validateNodeMorphemes(node);
         this.evaluateBoundedOrbit(node);
+        ast.body.push(node);
+      } else if (token.type === 'MANOR_BLOCK') {
+        const node = this.parseManorBlock(token);
+        this.validateNodeMorphemes(node);
         ast.body.push(node);
       } else if (token.type.startsWith('FLOW_')) {
         ast.body.push({
@@ -76,6 +87,7 @@ class MandellParser {
       } else if (
         ['IDENTIFIER', 'LATIN_MANDELL', 'NEW_LEIGHT_ROOT', 'QUOTED_STRING'].includes(token.type)
       ) {
+        this.validateMorphemeToken(token, 'LooseNode');
         ast.body.push({
           type: 'LooseNode',
           value: token.value,
@@ -178,6 +190,97 @@ class MandellParser {
     }
   }
 
+  isMorphemeValid(morpheme, type = 'root') {
+    if (!morpheme) return true;
+    const key = typeof morpheme === 'string' ? morpheme : morpheme.morpheme || morpheme;
+    if (type === 'prefix') {
+      return Boolean(MandellDictionary.prefixes[key] || GreekmandellRegistry.prefixes[key]);
+    }
+    if (type === 'suffix') {
+      return Boolean(MandellDictionary.suffixes[key] || GreekmandellRegistry.suffixes[key]);
+    }
+    return Boolean(MandellDictionary.roots[key] || GreekmandellRegistry.roots[key]);
+  }
+
+  isGreekRoot(root) {
+    return Boolean(GreekmandellRegistry.roots[root]);
+  }
+
+  validateMorphemeToken(token, context = 'token') {
+    if (!token || !token.decoded) return;
+    const decoded = token.decoded;
+
+    if (decoded.unknownRoots && decoded.unknownRoots.length > 0) {
+      throw new Error(
+        `GreekmandellValidationError: ${context} contains unknown root(s): ${decoded.unknownRoots.join(', ')}`
+      );
+    }
+
+    if (decoded.prefix && !this.isMorphemeValid(decoded.prefix, 'prefix')) {
+      throw new Error(
+        `GreekmandellValidationError: ${context} contains invalid prefix: ${decoded.prefix.morpheme}`
+      );
+    }
+    if (decoded.suffix && !this.isMorphemeValid(decoded.suffix, 'suffix')) {
+      throw new Error(
+        `GreekmandellValidationError: ${context} contains invalid suffix: ${decoded.suffix.morpheme}`
+      );
+    }
+
+    if (Array.isArray(decoded.roots)) {
+      decoded.roots.forEach(root => {
+        if (!this.isMorphemeValid(root.morpheme, 'root')) {
+          throw new Error(
+            `GreekmandellValidationError: ${context} contains invalid root: ${root.morpheme}`
+          );
+        }
+      });
+    }
+
+    const hasGreek = Array.isArray(decoded.roots) && decoded.roots.some(r => this.isGreekRoot(r.morpheme));
+    const hasLatin = Array.isArray(decoded.roots) && decoded.roots.some(r => !this.isGreekRoot(r.morpheme));
+    if (hasGreek && hasLatin && token.type === 'LATIN_MANDELL') {
+      throw new Error(
+        `GreekmandellValidationError: ${context} contains Greek roots but was classified as LATIN_MANDELL.`
+      );
+    }
+    if (!hasGreek && token.type === 'GREEK_MANDELL') {
+      throw new Error(
+        `GreekmandellValidationError: ${context} was classified as GREEK_MANDELL but contains no Greek roots.`
+      );
+    }
+  }
+
+  validateNodeMorphemes(node) {
+    if (!node) return;
+    if (node.morphemes) {
+      if (Array.isArray(node.morphemes)) {
+        node.morphemes.forEach(part => this.validateMorphemeToken(part, 'ManorBlock part'));
+      } else {
+        this.validateMorphemeToken(node.morphemes, 'Node morphemes');
+      }
+    }
+    if (node.args) {
+      node.args.forEach(arg => {
+        if (arg && arg.decoded) {
+          this.validateMorphemeToken(arg, 'Argument');
+        }
+      });
+    }
+  }
+
+  parseManorBlock(token) {
+    this.cursor++;
+    const node = {
+      type: 'ManorBlock',
+      value: token.value,
+      parts: token.parts,
+      morphemes: token.parts,
+    };
+    token.parts.forEach(part => this.validateMorphemeToken(part, 'MANOR_BLOCK part'));
+    return node;
+  }
+
   parseOpBox() {
     const dellToken = this.consume('DELL');
     const nodes = [];
@@ -224,7 +327,7 @@ class MandellParser {
       if (next.type === 'QUOTED_STRING') {
         args.push(next.value);
       } else if (
-        ['WORD', 'IDENTIFIER', 'LATIN_MANDELL', 'NEW_LEIGHT_ROOT', 'MANDELL_MOJI'].includes(
+        ['WORD', 'IDENTIFIER', 'LATIN_MANDELL', 'GREEK_MANDELL', 'NEW_LEIGHT_ROOT', 'MANDELL_MOJI'].includes(
           next.type
         )
       ) {
@@ -275,6 +378,7 @@ class MandellParser {
       ![
         'IDENTIFIER',
         'LATIN_MANDELL',
+        'GREEK_MANDELL',
         'NEW_LEIGHT_ROOT',
         'ENGLISH_COMMAND',
         'QUOTED_STRING',
@@ -284,6 +388,8 @@ class MandellParser {
         `ParseError at position ${contentToken.position}: Invalid container node target: "${contentToken.value}"`
       );
     }
+
+    this.validateMorphemeToken(contentToken, 'Container node');
 
     // 1. Strip structural fluff quotes/apostrophes for resilience against AI-generated payloads
     const cleanTarget = String(contentToken.value).replace(/['"]/g, '');

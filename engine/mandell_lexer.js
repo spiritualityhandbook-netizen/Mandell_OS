@@ -5,6 +5,7 @@
 // =====================================================================
 
 const MandellDictionary = require('./MandellDictionary.js');
+const GreekmandellRegistry = require('../lexicon/greekmandell_registry.js');
 
 class MandellLexer {
   constructor(inputString) {
@@ -17,6 +18,23 @@ class MandellLexer {
     this.suffixKeys = this.getOrderedKeys(this.lexicon.suffixes);
     this.rootKeys = this.getOrderedKeys(this.lexicon.roots);
     this.lexicon.dynamicRoots = this.lexicon.dynamicRoots || {};
+    this.lexicon.greekRoots = GreekmandellRegistry.roots || {};
+    this.lexicon.greekPrefixes = GreekmandellRegistry.prefixes || {};
+    this.lexicon.greekSuffixes = GreekmandellRegistry.suffixes || {};
+    this.greekRootKeys = this.getOrderedKeys(this.lexicon.greekRoots);
+    this.greekPrefixKeys = this.getOrderedKeys(this.lexicon.greekPrefixes);
+    this.greekSuffixKeys = this.getOrderedKeys(this.lexicon.greekSuffixes);
+
+    // Load emoji manifest (if available) and build dynamic MOJI matcher
+    try {
+      const emojiManifest = require('../lexicon/emoji_manifest.json');
+      const emojiKeys = Object.keys(emojiManifest)
+        .map(k => k.replace(/([.*+?^=!:${}()|[\]\/\\])/g, '\\$1'))
+        .sort((a, b) => b.length - a.length);
+      this._emojiRegex = new RegExp('^(' + emojiKeys.join('|') + ')');
+    } catch (e) {
+      this._emojiRegex = /^(⟐M|⟐|➿|△|❀|♔|♟|❤️|🌱|⬛|∞b|📐|🔄)/;
+    }
 
     // Ordered tokenizer rules matching syntactic hierarchy
     this.rules = [
@@ -36,6 +54,8 @@ class MandellLexer {
       { type: 'FLOW_RECURSIVE', regex: /^⟲/ },
       { type: 'FLOW_CYCLE', regex: /^↺/ },
       { type: 'DELL', regex: /^(0[0-9]|[1-4][0-9]|50)(?=\[|⟨|\s|$|\{)/ },
+      // Capture full bracketed manor blocks like [Com-man-dell]
+      { type: 'MANOR_BLOCK', regex: /^\[([A-Za-z0-9_\-]+)\]/ },
       { type: 'MANOR_OPEN', regex: /^\[/ },
       { type: 'MANOR_CLOSE', regex: /^\]/ },
       { type: 'CONTEXT_OPEN', regex: /^⟨/ },
@@ -50,7 +70,7 @@ class MandellLexer {
           /^(Nova|Origin|Start|Solo|Create|Make|Write|Show|Display|Output|Change|Edit|Update|Test|Check|Bind|Keep|Remember|Void|Clear|Reset|Merge|Split|Filter|Map|Reduce|Sample|Rank|Encrypt|Decrypt|Compress|Expand|Annotate|Validate|Normalize|Profile|Simulate|Project|Route|Stage|Cache|Refresh|Alert|Calculate|Transform|Manifest)\b/i,
       },
       // Captures known visual MandellMojis directly
-      { type: 'MOJI', regex: /^(⟐M|⟐|➿|△|❀|♔|♟|❤️|🌱|⬛|∞b|📐|🔄)/ },
+      { type: 'MOJI', regex: this._emojiRegex },
       { type: 'WORD', regex: /^[A-Za-z0-9_\-\.\/\\]+/ },
       { type: 'SPACE', regex: /^\s+/ },
     ];
@@ -66,12 +86,13 @@ class MandellLexer {
     let remaining = cleanWord;
 
     // 1. Identify the longest matching prefix first
-    for (const prefix of this.prefixKeys) {
+    for (const prefix of [...this.prefixKeys, ...this.greekPrefixKeys]) {
       if (remaining.startsWith(prefix)) {
+        const source = this.lexicon.prefixes[prefix] || this.lexicon.greekPrefixes[prefix];
         result.prefix = {
           morpheme: prefix,
-          def: this.lexicon.prefixes[prefix].d,
-          vectors: this.lexicon.prefixes[prefix].v,
+          def: source.d,
+          vectors: source.v || ['greek', 'prefix'],
         };
         remaining = remaining.slice(prefix.length);
         break;
@@ -79,12 +100,13 @@ class MandellLexer {
     }
 
     // 2. Identify the longest matching suffix first (ensures -dell precedence)
-    for (const suffix of this.suffixKeys) {
+    for (const suffix of [...this.suffixKeys, ...this.greekSuffixKeys]) {
       if (remaining.endsWith(suffix)) {
+        const source = this.lexicon.suffixes[suffix] || this.lexicon.greekSuffixes[suffix];
         result.suffix = {
           morpheme: suffix,
-          def: this.lexicon.suffixes[suffix].d,
-          vectors: this.lexicon.suffixes[suffix].v,
+          def: source.d,
+          vectors: source.v || ['greek', 'suffix'],
         };
         remaining = remaining.slice(0, -suffix.length);
         break;
@@ -93,17 +115,21 @@ class MandellLexer {
 
     // 3. Extract known roots in order of decreasing length
     let progress = true;
-    const rootCandidates = [...this.rootKeys, ...this.getOrderedKeys(this.lexicon.dynamicRoots)];
+    const rootCandidates = [
+      ...this.rootKeys,
+      ...this.greekRootKeys,
+      ...this.getOrderedKeys(this.lexicon.dynamicRoots),
+    ];
 
     while (progress && remaining.length > 0) {
       progress = false;
       for (const root of rootCandidates) {
         if (root && remaining.includes(root)) {
-          const source = this.lexicon.roots[root] || this.lexicon.dynamicRoots[root];
+          const source = this.lexicon.roots[root] || this.lexicon.dynamicRoots[root] || this.lexicon.greekRoots[root];
           result.roots.push({
             morpheme: root,
             def: source.d,
-            vectors: source.v,
+            vectors: source.v || ['greek', 'root'],
           });
           remaining = remaining.replace(root, '');
           progress = true;
@@ -130,8 +156,11 @@ class MandellLexer {
       result.suffix ||
       result.unknownRoots.length > 0
     ) {
+      const mandellType = result.roots.some(r => this.lexicon.greekRoots[r.morpheme])
+        ? 'GREEK_MANDELL'
+        : 'LATIN_MANDELL';
       return {
-        type: 'LATIN_MANDELL',
+        type: mandellType,
         value: word,
         decoded: result,
       };
@@ -151,7 +180,14 @@ class MandellLexer {
         if (match) {
           const matchedValue = match[0];
 
-          if (rule.type === 'WORD') {
+          if (rule.type === 'MANOR_BLOCK') {
+            // group 1 contains the inner hyphenated morpheme sequence
+            const inner = match[1] || matchedValue.slice(1, -1);
+            // split on hyphens to preserve morphemes
+            const parts = inner.split(/-/).filter(Boolean);
+            const decodedParts = parts.map(p => this.dissectWord(p));
+            this.tokens.push({ type: 'MANOR_BLOCK', value: inner, parts: decodedParts, position: this.cursor });
+          } else if (rule.type === 'WORD') {
             const wordToken = this.dissectWord(matchedValue);
             wordToken.position = this.cursor;
             this.tokens.push(wordToken);
@@ -169,7 +205,7 @@ class MandellLexer {
               position: this.cursor,
             });
           } else if (rule.type === 'MOJI') {
-            const mojiData = this.lexicon.mojis[matchedValue] || { d: 'Undefined visual token' };
+            const mojiData = this.lexicon.mojis && this.lexicon.mojis[matchedValue] ? this.lexicon.mojis[matchedValue] : { d: 'Undefined visual token' };
             this.tokens.push({
               type: 'MANDELL_MOJI',
               value: matchedValue,

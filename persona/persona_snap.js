@@ -12,6 +12,7 @@ class PersonaSnap {
   constructor(personaDir = './persona') {
     this.personaDir = personaDir;
     this.currentPersona = null;
+    this.personaLocked = false;
     this.personaRegistry = this.loadPersonaRegistry();
     this.toneMatrix = null;
   }
@@ -110,6 +111,28 @@ class PersonaSnap {
   // Get current persona
   getCurrentPersona() {
     return this.currentPersona;
+  }
+
+  // Check whether persona locking is currently active
+  isPersonaLocked() {
+    return Boolean(this.personaLocked);
+  }
+
+  lockPersona(personaName = null) {
+    if (personaName) {
+      this.snapToPersona(personaName);
+    }
+    this.personaLocked = true;
+    return {
+      status: 'PERSONA_LOCKED',
+      persona: this.currentPersona?.name || personaName,
+      locked: true,
+    };
+  }
+
+  unlockPersona() {
+    this.personaLocked = false;
+    return { status: 'PERSONA_UNLOCKED', persona: this.currentPersona?.name || null };
   }
 
   // Get tone matrix rules

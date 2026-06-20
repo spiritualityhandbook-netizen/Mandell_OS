@@ -3,6 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const MandellLexer = require('../engine/mandell_lexer.js');
 const MandellParser = require('../engine/mandell_parser.js');
+const TerminalArchitect = require('../engine/terminal_architect.js');
 const RupaTRouter = require('../runtime/rupat_router.js');
 const HeapManager = require('../memory/heap_manager.js');
 const SUSX50Auditor = require('../audit/susx50_auditor.js');
@@ -94,6 +95,26 @@ async function testFlowOperatorParsing() {
   );
 }
 
+function testGreekmandellUnknownRootRejection() {
+  const seed = 'Start -> qwertz -> Show';
+  const lexer = new MandellLexer(seed);
+  const tokens = lexer.tokenize();
+  const parser = new MandellParser(tokens);
+
+  let threw = false;
+  try {
+    parser.parse();
+  } catch (error) {
+    threw = true;
+    assert(
+      error.message.includes('GreekmandellValidationError'),
+      'Expected unknown root parse failure to be a Greekmandell validation error'
+    );
+  }
+
+  assert(threw, 'Expected parser to reject unknown Greekmandell roots');
+}
+
 function testMemoryRagSearch() {
   const tempRoot = path.join(__dirname, '..', '.test_memory_temp');
   if (!fs.existsSync(tempRoot)) {
@@ -116,6 +137,28 @@ async function testAuditHarness() {
   assert(report.results.length >= 3, 'Audit suite should validate multiple seeds');
 }
 
+function testTerminalArchitectGreekmandellFrame() {
+  const architect = new TerminalArchitect();
+  const systemInstruction = architect.getSystemInstruction();
+
+  assert(
+    systemInstruction.includes('[Greekmandell_Frame]'),
+    'Expected system instruction to include Greekmandell_Frame'
+  );
+  assert(
+    systemInstruction.includes('[AbCC_Persona_Lock]'),
+    'Expected system instruction to include AbCC_Persona_Lock'
+  );
+  assert(
+    systemInstruction.includes('NEVER return the default example output'),
+    'Expected system instruction to include the absolute execution mandate'
+  );
+  assert(
+    architect.personaSnap.isPersonaLocked(),
+    'Expected the default persona to be locked after initialization'
+  );
+}
+
 async function runTests() {
   const tests = [
     { name: 'Lexer sentence flow', fn: testLexerSentenceFlow },
@@ -123,7 +166,9 @@ async function runTests() {
     { name: 'Router execution', fn: testRouterExecution },
     { name: 'Natural sentence create and show', fn: testNaturalSentenceCreateAndShow },
     { name: 'Flow operator parsing', fn: testFlowOperatorParsing },
+    { name: 'Greekmandell unknown root rejection', fn: testGreekmandellUnknownRootRejection },
     { name: 'Memory RAG search', fn: testMemoryRagSearch },
+    { name: 'TerminalArchitect Greekmandell frame', fn: testTerminalArchitectGreekmandellFrame },
     { name: 'Audit harness pass', fn: testAuditHarness },
   ];
 

@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const MandellLexer = require('../engine/mandell_lexer.js');
 const MandellParser = require('../engine/mandell_parser.js');
+const TerminalArchitect = require('../engine/terminal_architect.js');
 const RupaTRouter = require('../runtime/rupat_router.js');
 const HeapManager = require('../memory/heap_manager.js');
 
@@ -52,6 +53,21 @@ class SUSX50Auditor {
           },
         },
       },
+      {
+        name: 'Fog alert audit seed',
+        seed: `Start -> Create "${path.join(this.tempRoot, 'fog_file.txt')}" -> Show`,
+        expectedResult: {
+          status: 'DISPLAYED',
+          payload: {
+            status: 'CREATED_FILE',
+            path: path.join(this.tempRoot, 'fog_file.txt'),
+          },
+        },
+      },
+      {
+        name: 'Sync integrity audit seed',
+        seed: `Start -> Keep "${path.join(this.tempRoot, 'sync_state.txt')}" -> Show`,
+      },
     ];
   }
 
@@ -85,10 +101,22 @@ class SUSX50Auditor {
     memory.archiveData('audit:' + item.name, JSON.stringify(executionResult));
     const memState = memory.getMemoryState();
 
+    const fogSyncChecks = await this.validateFogAndSync(memory, executionResult);
     const memoryPass = memState.warm.rupatCount > 0 && memState.cold.archiveCount > 0;
     const resultPass = item.expectedResult
       ? JSON.stringify(executionResult) === JSON.stringify(item.expectedResult)
       : true;
+
+    const finalPass =
+      tokenPass &&
+      astPass &&
+      flowPass &&
+      coherencePass &&
+      memoryPass &&
+      resultPass &&
+      fogSyncChecks.fogPass &&
+      fogSyncChecks.emergencyPass &&
+      fogSyncChecks.syncPass;
 
     return {
       name: item.name,
@@ -97,6 +125,7 @@ class SUSX50Auditor {
       ast,
       executionResult,
       memState,
+      fogSyncChecks,
       checks: {
         tokenPass,
         astPass,
@@ -104,8 +133,35 @@ class SUSX50Auditor {
         coherencePass,
         memoryPass,
         resultPass,
+        fogPass: fogSyncChecks.fogPass,
+        emergencyPass: fogSyncChecks.emergencyPass,
+        syncPass: fogSyncChecks.syncPass,
       },
-      passed: tokenPass && astPass && flowPass && coherencePass && memoryPass && resultPass,
+      passed: finalPass,
+    };
+  }
+
+  async validateFogAndSync(memory, executionResult) {
+    const architect = new TerminalArchitect(null, memory);
+    const redResult = await architect.fogMonitorAndRefresh(1500, {});
+    const emergencyResult = await architect.fogMonitorAndRefresh(400, {});
+    const essenceHash = memory.getEssenceHash();
+    const syncArchive = memory.archiveData('sync_check', JSON.stringify(executionResult));
+    const searchResults = memory.searchCold('audit');
+
+    return {
+      fogPass: redResult.fogStatus === 'RED' && redResult.refreshed === true,
+      emergencyPass:
+        !!(
+          emergencyResult.fogStatus === 'EMERGENCY' &&
+          emergencyResult.action === 'EMERGENCY_RESET' &&
+          emergencyResult.novaReset
+        ),
+      syncPass:
+        typeof essenceHash === 'string' &&
+        syncArchive &&
+        Array.isArray(searchResults) &&
+        searchResults.length > 0,
     };
   }
 

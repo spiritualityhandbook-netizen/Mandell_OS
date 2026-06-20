@@ -1,5 +1,106 @@
 {
-  "sessions": [],
+  "sessions": [
+    {
+      "type": "NOVA_RESET",
+      "reason": "fog_emergency",
+      "previousHot": {
+        "focus": {
+          "type": "OpBox",
+          "dell": "00",
+          "command": "Nova",
+          "value": null,
+          "friendly": "Start",
+          "args": []
+        },
+        "context": [
+          [
+            "OpBox",
+            "FlowOperator",
+            "OpBox",
+            "FlowOperator",
+            "OpBox"
+          ]
+        ],
+        "temperature": 26
+      },
+      "timestamp": 1781964629815
+    },
+    {
+      "type": "NOVA_RESET",
+      "reason": "fog_emergency",
+      "previousHot": {
+        "focus": {
+          "type": "OpBox",
+          "dell": "00",
+          "command": "Nova",
+          "value": null,
+          "friendly": "Start",
+          "args": []
+        },
+        "context": [
+          [
+            "OpBox",
+            "FlowOperator",
+            "OpBox",
+            "FlowOperator",
+            "OpBox"
+          ]
+        ],
+        "temperature": 26
+      },
+      "timestamp": 1781964734308
+    },
+    {
+      "type": "NOVA_RESET",
+      "reason": "fog_emergency",
+      "previousHot": {
+        "focus": {
+          "type": "OpBox",
+          "dell": "00",
+          "command": "Nova",
+          "value": null,
+          "friendly": "Start",
+          "args": []
+        },
+        "context": [
+          [
+            "OpBox",
+            "FlowOperator",
+            "OpBox",
+            "FlowOperator",
+            "OpBox"
+          ]
+        ],
+        "temperature": 26
+      },
+      "timestamp": 1781964879678
+    },
+    {
+      "type": "NOVA_RESET",
+      "reason": "fog_emergency",
+      "previousHot": {
+        "focus": {
+          "type": "OpBox",
+          "dell": "00",
+          "command": "Nova",
+          "value": null,
+          "friendly": "Start",
+          "args": []
+        },
+        "context": [
+          [
+            "OpBox",
+            "FlowOperator",
+            "OpBox",
+            "FlowOperator",
+            "OpBox"
+          ]
+        ],
+        "temperature": 26
+      },
+      "timestamp": 1781964941569
+    }
+  ],
   "rupats": [
     {
       "timestamp": 1781831205982,
@@ -733,6 +834,847 @@
         "payload": {
           "status": "CREATED_FILE",
           "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
+        }
+      }
+    },
+    {
+      "timestamp": 1781964379271,
+      "dell": "00",
+      "input": null,
+      "output": {
+        "status": "CLEARED",
+        "origin": true
+      }
+    },
+    {
+      "timestamp": 1781964379273,
+      "dell": "08",
+      "input": [
+        "/home/acetoocold24/Mandell_OS/.audit_temp_test/test_output.txt"
+      ],
+      "output": {
+        "status": "CREATED_FILE",
+        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/test_output.txt"
+      }
+    },
+    {
+      "timestamp": 1781964379274,
+      "dell": "09",
+      "input": {
+        "status": "CREATED_FILE",
+        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/test_output.txt"
+      },
+      "output": {
+        "status": "DISPLAYED",
+        "payload": {
+          "status": "CREATED_FILE",
+          "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/test_output.txt"
+        }
+      }
+    },
+    {
+      "timestamp": 1781964379281,
+      "dell": "00",
+      "input": null,
+      "output": {
+        "status": "CLEARED",
+        "origin": true
+      }
+    },
+    {
+      "timestamp": 1781964379282,
+      "dell": "08",
+      "input": [
+        "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
+      ],
+      "output": {
+        "status": "CREATED_FILE",
+        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
+      }
+    },
+    {
+      "timestamp": 1781964379284,
+      "dell": "09",
+      "input": {
+        "status": "CREATED_FILE",
+        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
+      },
+      "output": {
+        "status": "DISPLAYED",
+        "payload": {
+          "status": "CREATED_FILE",
+          "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
+        }
+      }
+    },
+    {
+      "timestamp": 1781964379288,
+      "dell": "00",
+      "input": null,
+      "output": {
+        "status": "CLEARED",
+        "origin": true
+      }
+    },
+    {
+      "timestamp": 1781964379290,
+      "dell": "08",
+      "input": [
+        "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
+      ],
+      "output": {
+        "status": "CREATED_FILE",
+        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
+      }
+    },
+    {
+      "timestamp": 1781964379291,
+      "dell": "09",
+      "input": {
+        "status": "CREATED_FILE",
+        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
+      },
+      "output": {
+        "status": "DISPLAYED",
+        "payload": {
+          "status": "CREATED_FILE",
+          "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
+        }
+      }
+    },
+    {
+      "timestamp": 1781964628414,
+      "dell": "00",
+      "input": null,
+      "output": {
+        "status": "CLEARED",
+        "origin": true
+      }
+    },
+    {
+      "timestamp": 1781964628417,
+      "dell": "08",
+      "input": [
+        "/home/acetoocold24/Mandell_OS/.audit_temp_test/test_output.txt"
+      ],
+      "output": {
+        "status": "CREATED_FILE",
+        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/test_output.txt"
+      }
+    },
+    {
+      "timestamp": 1781964628480,
+      "dell": "09",
+      "input": {
+        "status": "CREATED_FILE",
+        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/test_output.txt"
+      },
+      "output": {
+        "status": "DISPLAYED",
+        "payload": {
+          "status": "CREATED_FILE",
+          "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/test_output.txt"
+        }
+      }
+    },
+    {
+      "timestamp": 1781964628657,
+      "dell": "00",
+      "input": null,
+      "output": {
+        "status": "CLEARED",
+        "origin": true
+      }
+    },
+    {
+      "timestamp": 1781964628658,
+      "dell": "08",
+      "input": [
+        "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
+      ],
+      "output": {
+        "status": "CREATED_FILE",
+        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
+      }
+    },
+    {
+      "timestamp": 1781964628970,
+      "dell": "09",
+      "input": {
+        "status": "CREATED_FILE",
+        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
+      },
+      "output": {
+        "status": "DISPLAYED",
+        "payload": {
+          "status": "CREATED_FILE",
+          "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
+        }
+      }
+    },
+    {
+      "timestamp": 1781964629109,
+      "dell": "00",
+      "input": null,
+      "output": {
+        "status": "CLEARED",
+        "origin": true
+      }
+    },
+    {
+      "timestamp": 1781964629111,
+      "dell": "08",
+      "input": [
+        "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
+      ],
+      "output": {
+        "status": "CREATED_FILE",
+        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
+      }
+    },
+    {
+      "timestamp": 1781964629145,
+      "dell": "09",
+      "input": {
+        "status": "CREATED_FILE",
+        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
+      },
+      "output": {
+        "status": "DISPLAYED",
+        "payload": {
+          "status": "CREATED_FILE",
+          "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
+        }
+      }
+    },
+    {
+      "timestamp": 1781964629156,
+      "dell": "00",
+      "input": null,
+      "output": {
+        "status": "CLEARED",
+        "origin": true
+      }
+    },
+    {
+      "timestamp": 1781964629180,
+      "dell": "08",
+      "input": [
+        "/home/acetoocold24/Mandell_OS/.audit_temp_test/fog_file.txt"
+      ],
+      "output": {
+        "status": "CREATED_FILE",
+        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/fog_file.txt"
+      }
+    },
+    {
+      "timestamp": 1781964629228,
+      "dell": "09",
+      "input": {
+        "status": "CREATED_FILE",
+        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/fog_file.txt"
+      },
+      "output": {
+        "status": "DISPLAYED",
+        "payload": {
+          "status": "CREATED_FILE",
+          "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/fog_file.txt"
+        }
+      }
+    },
+    {
+      "timestamp": 1781964629353,
+      "dell": "00",
+      "input": null,
+      "output": {
+        "status": "CLEARED",
+        "origin": true
+      }
+    },
+    {
+      "timestamp": 1781964629355,
+      "dell": "10",
+      "input": [
+        "/home/acetoocold24/Mandell_OS/.audit_temp_test/sync_state.txt"
+      ],
+      "output": {
+        "status": "PINNED",
+        "contextLength": 1,
+        "item": [
+          "/home/acetoocold24/Mandell_OS/.audit_temp_test/sync_state.txt"
+        ]
+      }
+    },
+    {
+      "timestamp": 1781964629406,
+      "dell": "09",
+      "input": {
+        "status": "PINNED",
+        "contextLength": 1,
+        "item": [
+          "/home/acetoocold24/Mandell_OS/.audit_temp_test/sync_state.txt"
+        ]
+      },
+      "output": {
+        "status": "DISPLAYED",
+        "payload": {
+          "status": "PINNED",
+          "contextLength": 1,
+          "item": [
+            "/home/acetoocold24/Mandell_OS/.audit_temp_test/sync_state.txt"
+          ]
+        }
+      }
+    },
+    {
+      "timestamp": 1781964729868,
+      "dell": "00",
+      "input": null,
+      "output": {
+        "status": "CLEARED",
+        "origin": true
+      }
+    },
+    {
+      "timestamp": 1781964729871,
+      "dell": "08",
+      "input": [
+        "/home/acetoocold24/Mandell_OS/.audit_temp_test/test_output.txt"
+      ],
+      "output": {
+        "status": "CREATED_FILE",
+        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/test_output.txt"
+      }
+    },
+    {
+      "timestamp": 1781964730041,
+      "dell": "09",
+      "input": {
+        "status": "CREATED_FILE",
+        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/test_output.txt"
+      },
+      "output": {
+        "status": "DISPLAYED",
+        "payload": {
+          "status": "CREATED_FILE",
+          "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/test_output.txt"
+        }
+      }
+    },
+    {
+      "timestamp": 1781964733285,
+      "dell": "00",
+      "input": null,
+      "output": {
+        "status": "CLEARED",
+        "origin": true
+      }
+    },
+    {
+      "timestamp": 1781964733305,
+      "dell": "08",
+      "input": [
+        "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
+      ],
+      "output": {
+        "status": "CREATED_FILE",
+        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
+      }
+    },
+    {
+      "timestamp": 1781964733402,
+      "dell": "09",
+      "input": {
+        "status": "CREATED_FILE",
+        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
+      },
+      "output": {
+        "status": "DISPLAYED",
+        "payload": {
+          "status": "CREATED_FILE",
+          "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
+        }
+      }
+    },
+    {
+      "timestamp": 1781964733664,
+      "dell": "00",
+      "input": null,
+      "output": {
+        "status": "CLEARED",
+        "origin": true
+      }
+    },
+    {
+      "timestamp": 1781964733667,
+      "dell": "08",
+      "input": [
+        "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
+      ],
+      "output": {
+        "status": "CREATED_FILE",
+        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
+      }
+    },
+    {
+      "timestamp": 1781964733707,
+      "dell": "09",
+      "input": {
+        "status": "CREATED_FILE",
+        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
+      },
+      "output": {
+        "status": "DISPLAYED",
+        "payload": {
+          "status": "CREATED_FILE",
+          "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
+        }
+      }
+    },
+    {
+      "timestamp": 1781964733867,
+      "dell": "00",
+      "input": null,
+      "output": {
+        "status": "CLEARED",
+        "origin": true
+      }
+    },
+    {
+      "timestamp": 1781964733870,
+      "dell": "08",
+      "input": [
+        "/home/acetoocold24/Mandell_OS/.audit_temp_test/fog_file.txt"
+      ],
+      "output": {
+        "status": "CREATED_FILE",
+        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/fog_file.txt"
+      }
+    },
+    {
+      "timestamp": 1781964733888,
+      "dell": "09",
+      "input": {
+        "status": "CREATED_FILE",
+        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/fog_file.txt"
+      },
+      "output": {
+        "status": "DISPLAYED",
+        "payload": {
+          "status": "CREATED_FILE",
+          "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/fog_file.txt"
+        }
+      }
+    },
+    {
+      "timestamp": 1781964733943,
+      "dell": "00",
+      "input": null,
+      "output": {
+        "status": "CLEARED",
+        "origin": true
+      }
+    },
+    {
+      "timestamp": 1781964733949,
+      "dell": "10",
+      "input": [
+        "/home/acetoocold24/Mandell_OS/.audit_temp_test/sync_state.txt"
+      ],
+      "output": {
+        "status": "PINNED",
+        "contextLength": 1,
+        "item": [
+          "/home/acetoocold24/Mandell_OS/.audit_temp_test/sync_state.txt"
+        ]
+      }
+    },
+    {
+      "timestamp": 1781964733964,
+      "dell": "09",
+      "input": {
+        "status": "PINNED",
+        "contextLength": 1,
+        "item": [
+          "/home/acetoocold24/Mandell_OS/.audit_temp_test/sync_state.txt"
+        ]
+      },
+      "output": {
+        "status": "DISPLAYED",
+        "payload": {
+          "status": "PINNED",
+          "contextLength": 1,
+          "item": [
+            "/home/acetoocold24/Mandell_OS/.audit_temp_test/sync_state.txt"
+          ]
+        }
+      }
+    },
+    {
+      "timestamp": 1781964879570,
+      "dell": "00",
+      "input": null,
+      "output": {
+        "status": "CLEARED",
+        "origin": true
+      }
+    },
+    {
+      "timestamp": 1781964879579,
+      "dell": "08",
+      "input": [
+        "/home/acetoocold24/Mandell_OS/.audit_temp_test/test_output.txt"
+      ],
+      "output": {
+        "status": "CREATED_FILE",
+        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/test_output.txt"
+      }
+    },
+    {
+      "timestamp": 1781964879581,
+      "dell": "09",
+      "input": {
+        "status": "CREATED_FILE",
+        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/test_output.txt"
+      },
+      "output": {
+        "status": "DISPLAYED",
+        "payload": {
+          "status": "CREATED_FILE",
+          "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/test_output.txt"
+        }
+      }
+    },
+    {
+      "timestamp": 1781964879603,
+      "dell": "00",
+      "input": null,
+      "output": {
+        "status": "CLEARED",
+        "origin": true
+      }
+    },
+    {
+      "timestamp": 1781964879604,
+      "dell": "08",
+      "input": [
+        "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
+      ],
+      "output": {
+        "status": "CREATED_FILE",
+        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
+      }
+    },
+    {
+      "timestamp": 1781964879607,
+      "dell": "09",
+      "input": {
+        "status": "CREATED_FILE",
+        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
+      },
+      "output": {
+        "status": "DISPLAYED",
+        "payload": {
+          "status": "CREATED_FILE",
+          "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
+        }
+      }
+    },
+    {
+      "timestamp": 1781964879615,
+      "dell": "00",
+      "input": null,
+      "output": {
+        "status": "CLEARED",
+        "origin": true
+      }
+    },
+    {
+      "timestamp": 1781964879617,
+      "dell": "08",
+      "input": [
+        "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
+      ],
+      "output": {
+        "status": "CREATED_FILE",
+        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
+      }
+    },
+    {
+      "timestamp": 1781964879618,
+      "dell": "09",
+      "input": {
+        "status": "CREATED_FILE",
+        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
+      },
+      "output": {
+        "status": "DISPLAYED",
+        "payload": {
+          "status": "CREATED_FILE",
+          "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
+        }
+      }
+    },
+    {
+      "timestamp": 1781964879630,
+      "dell": "00",
+      "input": null,
+      "output": {
+        "status": "CLEARED",
+        "origin": true
+      }
+    },
+    {
+      "timestamp": 1781964879631,
+      "dell": "08",
+      "input": [
+        "/home/acetoocold24/Mandell_OS/.audit_temp_test/fog_file.txt"
+      ],
+      "output": {
+        "status": "CREATED_FILE",
+        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/fog_file.txt"
+      }
+    },
+    {
+      "timestamp": 1781964879633,
+      "dell": "09",
+      "input": {
+        "status": "CREATED_FILE",
+        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/fog_file.txt"
+      },
+      "output": {
+        "status": "DISPLAYED",
+        "payload": {
+          "status": "CREATED_FILE",
+          "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/fog_file.txt"
+        }
+      }
+    },
+    {
+      "timestamp": 1781964879642,
+      "dell": "00",
+      "input": null,
+      "output": {
+        "status": "CLEARED",
+        "origin": true
+      }
+    },
+    {
+      "timestamp": 1781964879644,
+      "dell": "10",
+      "input": [
+        "/home/acetoocold24/Mandell_OS/.audit_temp_test/sync_state.txt"
+      ],
+      "output": {
+        "status": "PINNED",
+        "contextLength": 1,
+        "item": [
+          "/home/acetoocold24/Mandell_OS/.audit_temp_test/sync_state.txt"
+        ]
+      }
+    },
+    {
+      "timestamp": 1781964879646,
+      "dell": "09",
+      "input": {
+        "status": "PINNED",
+        "contextLength": 1,
+        "item": [
+          "/home/acetoocold24/Mandell_OS/.audit_temp_test/sync_state.txt"
+        ]
+      },
+      "output": {
+        "status": "DISPLAYED",
+        "payload": {
+          "status": "PINNED",
+          "contextLength": 1,
+          "item": [
+            "/home/acetoocold24/Mandell_OS/.audit_temp_test/sync_state.txt"
+          ]
+        }
+      }
+    },
+    {
+      "timestamp": 1781964940544,
+      "dell": "00",
+      "input": null,
+      "output": {
+        "status": "CLEARED",
+        "origin": true
+      }
+    },
+    {
+      "timestamp": 1781964940555,
+      "dell": "08",
+      "input": [
+        "/home/acetoocold24/Mandell_OS/.audit_temp_test/test_output.txt"
+      ],
+      "output": {
+        "status": "CREATED_FILE",
+        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/test_output.txt"
+      }
+    },
+    {
+      "timestamp": 1781964940584,
+      "dell": "09",
+      "input": {
+        "status": "CREATED_FILE",
+        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/test_output.txt"
+      },
+      "output": {
+        "status": "DISPLAYED",
+        "payload": {
+          "status": "CREATED_FILE",
+          "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/test_output.txt"
+        }
+      }
+    },
+    {
+      "timestamp": 1781964940971,
+      "dell": "00",
+      "input": null,
+      "output": {
+        "status": "CLEARED",
+        "origin": true
+      }
+    },
+    {
+      "timestamp": 1781964940975,
+      "dell": "08",
+      "input": [
+        "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
+      ],
+      "output": {
+        "status": "CREATED_FILE",
+        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
+      }
+    },
+    {
+      "timestamp": 1781964940989,
+      "dell": "09",
+      "input": {
+        "status": "CREATED_FILE",
+        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
+      },
+      "output": {
+        "status": "DISPLAYED",
+        "payload": {
+          "status": "CREATED_FILE",
+          "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/english_file.txt"
+        }
+      }
+    },
+    {
+      "timestamp": 1781964941082,
+      "dell": "00",
+      "input": null,
+      "output": {
+        "status": "CLEARED",
+        "origin": true
+      }
+    },
+    {
+      "timestamp": 1781964941103,
+      "dell": "08",
+      "input": [
+        "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
+      ],
+      "output": {
+        "status": "CREATED_FILE",
+        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
+      }
+    },
+    {
+      "timestamp": 1781964941119,
+      "dell": "09",
+      "input": {
+        "status": "CREATED_FILE",
+        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
+      },
+      "output": {
+        "status": "DISPLAYED",
+        "payload": {
+          "status": "CREATED_FILE",
+          "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/sentence_file.txt"
+        }
+      }
+    },
+    {
+      "timestamp": 1781964941164,
+      "dell": "00",
+      "input": null,
+      "output": {
+        "status": "CLEARED",
+        "origin": true
+      }
+    },
+    {
+      "timestamp": 1781964941235,
+      "dell": "08",
+      "input": [
+        "/home/acetoocold24/Mandell_OS/.audit_temp_test/fog_file.txt"
+      ],
+      "output": {
+        "status": "CREATED_FILE",
+        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/fog_file.txt"
+      }
+    },
+    {
+      "timestamp": 1781964941285,
+      "dell": "09",
+      "input": {
+        "status": "CREATED_FILE",
+        "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/fog_file.txt"
+      },
+      "output": {
+        "status": "DISPLAYED",
+        "payload": {
+          "status": "CREATED_FILE",
+          "path": "/home/acetoocold24/Mandell_OS/.audit_temp_test/fog_file.txt"
+        }
+      }
+    },
+    {
+      "timestamp": 1781964941328,
+      "dell": "00",
+      "input": null,
+      "output": {
+        "status": "CLEARED",
+        "origin": true
+      }
+    },
+    {
+      "timestamp": 1781964941353,
+      "dell": "10",
+      "input": [
+        "/home/acetoocold24/Mandell_OS/.audit_temp_test/sync_state.txt"
+      ],
+      "output": {
+        "status": "PINNED",
+        "contextLength": 1,
+        "item": [
+          "/home/acetoocold24/Mandell_OS/.audit_temp_test/sync_state.txt"
+        ]
+      }
+    },
+    {
+      "timestamp": 1781964941434,
+      "dell": "09",
+      "input": {
+        "status": "PINNED",
+        "contextLength": 1,
+        "item": [
+          "/home/acetoocold24/Mandell_OS/.audit_temp_test/sync_state.txt"
+        ]
+      },
+      "output": {
+        "status": "DISPLAYED",
+        "payload": {
+          "status": "PINNED",
+          "contextLength": 1,
+          "item": [
+            "/home/acetoocold24/Mandell_OS/.audit_temp_test/sync_state.txt"
+          ]
         }
       }
     }

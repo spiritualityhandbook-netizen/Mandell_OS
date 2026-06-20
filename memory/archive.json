@@ -129,6 +129,254 @@
         123
       ],
       "timestamp": 1781833704349
+    },
+    {
+      "label": "nova_reset_1781963314398",
+      "content": "{\"type\":\"NOVA_RESET\",\"reason\":\"test_reset\",\"previousHot\":{\"focus\":\"test_node\",\"context\":[[\"node1\",\"node2\"]],\"temperature\":26},\"timestamp\":1781963314357}",
+      "vectors": [
+        123
+      ],
+      "timestamp": 1781963314402
+    },
+    {
+      "label": "nova_reset_1781963314525",
+      "content": "{\"type\":\"NOVA_RESET\",\"reason\":\"preservation_test\",\"previousHot\":{\"focus\":null,\"context\":[[\"critical_data\"]],\"temperature\":26},\"timestamp\":1781963314417}",
+      "vectors": [
+        123
+      ],
+      "timestamp": 1781963314526
+    },
+    {
+      "label": "nova_reset_1781963314634",
+      "content": "{\"type\":\"NOVA_RESET\",\"reason\":\"timing_test\",\"previousHot\":{\"focus\":null,\"context\":[],\"temperature\":26},\"timestamp\":1781963314534}",
+      "vectors": [
+        123
+      ],
+      "timestamp": 1781963314635
+    },
+    {
+      "label": "nova_reset_1781963314896",
+      "content": "{\"type\":\"NOVA_RESET\",\"reason\":\"hash_test\",\"previousHot\":{\"focus\":\"initial_focus\",\"context\":[],\"temperature\":26},\"timestamp\":1781963314894}",
+      "vectors": [
+        123
+      ],
+      "timestamp": 1781963314896
+    },
+    {
+      "label": "test_key",
+      "content": "test_data",
+      "vectors": [
+        116
+      ],
+      "timestamp": 1781963314972
+    },
+    {
+      "label": "nova_reset_1781963314988",
+      "content": "{\"type\":\"NOVA_RESET\",\"reason\":\"first_reset\",\"previousHot\":{\"focus\":\"reset1_focus\",\"context\":[],\"temperature\":26},\"timestamp\":1781963314986}",
+      "vectors": [
+        123
+      ],
+      "timestamp": 1781963314989
+    },
+    {
+      "label": "nova_reset_1781963315032",
+      "content": "{\"type\":\"NOVA_RESET\",\"reason\":\"second_reset\",\"previousHot\":{\"focus\":\"reset2_focus\",\"context\":[],\"temperature\":26},\"timestamp\":1781963315031}",
+      "vectors": [
+        123
+      ],
+      "timestamp": 1781963315033
+    },
+    {
+      "label": "nova_reset_1781963315076",
+      "content": "{\"type\":\"NOVA_RESET\",\"reason\":\"preservation\",\"previousHot\":{\"focus\":\"important_data\",\"context\":[[\"critical\",\"information\"]],\"temperature\":26},\"timestamp\":1781963315074}",
+      "vectors": [
+        123
+      ],
+      "timestamp": 1781963315076
+    },
+    {
+      "label": "nova_reset_1781963371660",
+      "content": "{\"type\":\"NOVA_RESET\",\"reason\":\"test_reset\",\"previousHot\":{\"focus\":\"test_node\",\"context\":[[\"node1\",\"node2\"]],\"temperature\":26},\"timestamp\":1781963371545}",
+      "vectors": [
+        123
+      ],
+      "timestamp": 1781963371663
+    },
+    {
+      "label": "nova_reset_1781963371795",
+      "content": "{\"type\":\"NOVA_RESET\",\"reason\":\"preservation_test\",\"previousHot\":{\"focus\":null,\"context\":[[\"critical_data\"]],\"temperature\":26},\"timestamp\":1781963371793}",
+      "vectors": [
+        123
+      ],
+      "timestamp": 1781963371797
+    },
+    {
+      "label": "nova_reset_1781963371857",
+      "content": "{\"type\":\"NOVA_RESET\",\"reason\":\"timing_test\",\"previousHot\":{\"focus\":null,\"context\":[],\"temperature\":26},\"timestamp\":1781963371802}",
+      "vectors": [
+        123
+      ],
+      "timestamp": 1781963371858
+    },
+    {
+      "label": "nova_reset_1781963372257",
+      "content": "{\"type\":\"NOVA_RESET\",\"reason\":\"hash_test\",\"previousHot\":{\"focus\":\"initial_focus\",\"context\":[],\"temperature\":26},\"timestamp\":1781963372215}",
+      "vectors": [
+        123
+      ],
+      "timestamp": 1781963372257
+    },
+    {
+      "label": "test_key",
+      "content": "test_data",
+      "vectors": [
+        116
+      ],
+      "timestamp": 1781963372353
+    },
+    {
+      "label": "nova_reset_1781963372366",
+      "content": "{\"type\":\"NOVA_RESET\",\"reason\":\"first_reset\",\"previousHot\":{\"focus\":\"reset1_focus\",\"context\":[],\"temperature\":26},\"timestamp\":1781963372364}",
+      "vectors": [
+        123
+      ],
+      "timestamp": 1781963372366
+    },
+    {
+      "label": "nova_reset_1781963372476",
+      "content": "{\"type\":\"NOVA_RESET\",\"reason\":\"second_reset\",\"previousHot\":{\"focus\":\"reset2_focus\",\"context\":[],\"temperature\":26},\"timestamp\":1781963372475}",
+      "vectors": [
+        123
+      ],
+      "timestamp": 1781963372477
+    },
+    {
+      "label": "nova_reset_1781963372801",
+      "content": "{\"type\":\"NOVA_RESET\",\"reason\":\"preservation\",\"previousHot\":{\"focus\":\"important_data\",\"context\":[[\"critical\",\"information\"]],\"temperature\":26},\"timestamp\":1781963372649}",
+      "vectors": [
+        123
+      ],
+      "timestamp": 1781963372801
+    },
+    {
+      "label": "nova_reset_1781963389582",
+      "content": "{\"type\":\"NOVA_RESET\",\"reason\":\"cli_trigger\",\"previousHot\":{\"focus\":null,\"context\":[],\"temperature\":26},\"timestamp\":1781963389575}",
+      "vectors": [
+        123
+      ],
+      "timestamp": 1781963389585
+    },
+    {
+      "label": "nova_reset_1781963409810",
+      "content": "{\"type\":\"NOVA_RESET\",\"reason\":\"fog_emergency\",\"previousHot\":{\"focus\":null,\"context\":[],\"temperature\":26},\"timestamp\":1781963409808}",
+      "vectors": [
+        123
+      ],
+      "timestamp": 1781963409812
+    },
+    {
+      "label": "nova_reset_1781963471211",
+      "content": "{\"type\":\"NOVA_RESET\",\"reason\":\"test_reset\",\"previousHot\":{\"focus\":\"test_node\",\"context\":[[\"node1\",\"node2\"]],\"temperature\":26},\"timestamp\":1781963471207}",
+      "vectors": [
+        123
+      ],
+      "timestamp": 1781963471213
+    },
+    {
+      "label": "nova_reset_1781963471222",
+      "content": "{\"type\":\"NOVA_RESET\",\"reason\":\"preservation_test\",\"previousHot\":{\"focus\":null,\"context\":[[\"critical_data\"]],\"temperature\":26},\"timestamp\":1781963471221}",
+      "vectors": [
+        123
+      ],
+      "timestamp": 1781963471223
+    },
+    {
+      "label": "nova_reset_1781963471228",
+      "content": "{\"type\":\"NOVA_RESET\",\"reason\":\"timing_test\",\"previousHot\":{\"focus\":null,\"context\":[],\"temperature\":26},\"timestamp\":1781963471227}",
+      "vectors": [
+        123
+      ],
+      "timestamp": 1781963471228
+    },
+    {
+      "label": "nova_reset_1781963471245",
+      "content": "{\"type\":\"NOVA_RESET\",\"reason\":\"hash_test\",\"previousHot\":{\"focus\":\"initial_focus\",\"context\":[],\"temperature\":26},\"timestamp\":1781963471244}",
+      "vectors": [
+        123
+      ],
+      "timestamp": 1781963471246
+    },
+    {
+      "label": "test_key",
+      "content": "test_data",
+      "vectors": [
+        116
+      ],
+      "timestamp": 1781963471262
+    },
+    {
+      "label": "nova_reset_1781963471275",
+      "content": "{\"type\":\"NOVA_RESET\",\"reason\":\"first_reset\",\"previousHot\":{\"focus\":\"reset1_focus\",\"context\":[],\"temperature\":26},\"timestamp\":1781963471274}",
+      "vectors": [
+        123
+      ],
+      "timestamp": 1781963471275
+    },
+    {
+      "label": "nova_reset_1781963471278",
+      "content": "{\"type\":\"NOVA_RESET\",\"reason\":\"second_reset\",\"previousHot\":{\"focus\":\"reset2_focus\",\"context\":[],\"temperature\":26},\"timestamp\":1781963471276}",
+      "vectors": [
+        123
+      ],
+      "timestamp": 1781963471278
+    },
+    {
+      "label": "nova_reset_1781963471282",
+      "content": "{\"type\":\"NOVA_RESET\",\"reason\":\"preservation\",\"previousHot\":{\"focus\":\"important_data\",\"context\":[[\"critical\",\"information\"]],\"temperature\":26},\"timestamp\":1781963471281}",
+      "vectors": [
+        123
+      ],
+      "timestamp": 1781963471282
+    },
+    {
+      "label": "nova_reset_1781963472419",
+      "content": "{\"type\":\"NOVA_RESET\",\"reason\":\"cli_trigger\",\"previousHot\":{\"focus\":null,\"context\":[],\"temperature\":26},\"timestamp\":1781963472415}",
+      "vectors": [
+        123
+      ],
+      "timestamp": 1781963472421
+    },
+    {
+      "label": "nova_reset_1781963473142",
+      "content": "{\"type\":\"NOVA_RESET\",\"reason\":\"fog_emergency\",\"previousHot\":{\"focus\":null,\"context\":[],\"temperature\":26},\"timestamp\":1781963473139}",
+      "vectors": [
+        123
+      ],
+      "timestamp": 1781963473144
+    },
+    {
+      "label": "nova_reset_1781963631324",
+      "content": "{\"type\":\"NOVA_RESET\",\"reason\":\"fog_emergency\",\"previousHot\":{\"focus\":null,\"context\":[],\"temperature\":26},\"timestamp\":1781963631322}",
+      "vectors": [
+        123
+      ],
+      "timestamp": 1781963631324
+    },
+    {
+      "label": "nova_reset_1781963631398",
+      "content": "{\"type\":\"NOVA_RESET\",\"reason\":\"fog_emergency\",\"previousHot\":{\"focus\":null,\"context\":[],\"temperature\":26},\"timestamp\":1781963631396}",
+      "vectors": [
+        123
+      ],
+      "timestamp": 1781963631398
+    },
+    {
+      "label": "nova_reset_1781963644371",
+      "content": "{\"type\":\"NOVA_RESET\",\"reason\":\"fog_emergency\",\"previousHot\":{\"focus\":null,\"context\":[],\"temperature\":26},\"timestamp\":1781963644368}",
+      "vectors": [
+        123
+      ],
+      "timestamp": 1781963644374
     }
   ]
 }

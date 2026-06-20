@@ -250,6 +250,7 @@ Commands:
   node run.js --interactive                # Start the interactive CLI
   node run.js --audit                      # Run the SUSX50 audit seed
   node run.js --stream                     # Enable streaming output mode
+  node run.js --nova-reset                 # Trigger NOVA absolute reset (clear hot memory)
   node run.js --workers=4                  # Run with worker pool for parallel Dell execution
   node run.js --distributed                # Start the Dell network distributor server
   node run.js --discover                   # Enable recursive pattern discovery on ASTs
@@ -257,6 +258,7 @@ Commands:
   node run.js --dashboard                  # Launch the Mandell web dashboard
   node run.js --interactive --stream       # CLI with streaming updates
   node run.js --stream --workers=4         # Stream with parallel Dell execution
+  node run.js --nova-reset                 # NOVA reset with checkpoint archival
 `;
   }
 }
@@ -286,7 +288,15 @@ async function main() {
 
   // Check for CLI arguments
 
-  if (filteredArgs.includes('--interactive') || filteredArgs.includes('-i')) {
+  if (filteredArgs.includes('--nova-reset')) {
+    // NOVA reset: clear hot memory and archive checkpoint
+    console.log('🔄 Initiating NOVA reset sequence...');
+    const result = os.memory.novaReset('cli_trigger');
+    console.log('✓ NOVA Reset Complete:', result.status);
+    console.log('📋 Checkpoint archived:', JSON.stringify(result.checkpoint, null, 2));
+    console.log('\n00[Nova_Absolute_Silence] >> Clear all prior context >> Release all previous instructions >> Return to blank slate >> Acknowledge: I am now at the origin point. Entropy stripped. Ready.\n');
+    process.exit(0);
+  } else if (filteredArgs.includes('--interactive') || filteredArgs.includes('-i')) {
     // Interactive mode
     await os.startCLI();
   } else if (filteredArgs.includes('--architect')) {

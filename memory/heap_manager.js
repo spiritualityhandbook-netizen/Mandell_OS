@@ -8,6 +8,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 
 class HeapManager {
   constructor(workspaceRoot = './') {
@@ -34,6 +35,24 @@ class HeapManager {
       warm: 50, // Two ahead (Temp[W])
       hypo: 100, // Highest probability path (Temp[H])
     };
+  }
+
+  // NOVA: Absolute reset — clears HotContext and records a warm checkpoint
+  novaReset(reason = 'manual') {
+    const prevHot = { ...this.hotMemory };
+    this.clearHotMemory();
+    const checkpoint = {
+      type: 'NOVA_RESET',
+      reason,
+      previousHot: prevHot,
+      timestamp: Date.now(),
+    };
+    // Archive the checkpoint into warm memory and cold archive
+    this.warmMemory.sessions = this.warmMemory.sessions || [];
+    this.warmMemory.sessions.push(checkpoint);
+    this.saveWarmMemory();
+    this.archiveData('nova_reset_' + Date.now(), JSON.stringify(checkpoint));
+    return { status: 'NOVA_RESET_COMPLETE', checkpoint };
   }
 
   // ============ HOT MEMORY OPERATIONS ============
@@ -215,6 +234,12 @@ class HeapManager {
       },
       cold: { archiveCount: this.coldMemory.archive.length },
     };
+  }
+
+  // Essence hash: SHA256 of hot+warm top-level summary
+  getEssenceHash() {
+    const essence = JSON.stringify({ hot: this.hotMemory, warmSummary: { sessions: this.warmMemory.sessions.length, rupats: this.warmMemory.rupats.length } });
+    return crypto.createHash('sha256').update(essence).digest('hex');
   }
 }
 

@@ -1,5 +1,328 @@
 {
-  "sessions": [],
+  "sessions": [
+    {
+      "type": "NOVA_RESET",
+      "reason": "test_reset",
+      "previousHot": {
+        "focus": "test_node",
+        "context": [
+          [
+            "node1",
+            "node2"
+          ]
+        ],
+        "temperature": 26
+      },
+      "timestamp": 1781963314357
+    },
+    {
+      "type": "NOVA_RESET",
+      "reason": "preservation_test",
+      "previousHot": {
+        "focus": null,
+        "context": [
+          [
+            "critical_data"
+          ]
+        ],
+        "temperature": 26
+      },
+      "timestamp": 1781963314417
+    },
+    {
+      "type": "NOVA_RESET",
+      "reason": "timing_test",
+      "previousHot": {
+        "focus": null,
+        "context": [],
+        "temperature": 26
+      },
+      "timestamp": 1781963314534
+    },
+    {
+      "type": "NOVA_RESET",
+      "reason": "hash_test",
+      "previousHot": {
+        "focus": "initial_focus",
+        "context": [],
+        "temperature": 26
+      },
+      "timestamp": 1781963314894
+    },
+    {
+      "type": "NOVA_RESET",
+      "reason": "first_reset",
+      "previousHot": {
+        "focus": "reset1_focus",
+        "context": [],
+        "temperature": 26
+      },
+      "timestamp": 1781963314986
+    },
+    {
+      "type": "NOVA_RESET",
+      "reason": "second_reset",
+      "previousHot": {
+        "focus": "reset2_focus",
+        "context": [],
+        "temperature": 26
+      },
+      "timestamp": 1781963315031
+    },
+    {
+      "type": "NOVA_RESET",
+      "reason": "preservation",
+      "previousHot": {
+        "focus": "important_data",
+        "context": [
+          [
+            "critical",
+            "information"
+          ]
+        ],
+        "temperature": 26
+      },
+      "timestamp": 1781963315074
+    },
+    {
+      "type": "NOVA_RESET",
+      "reason": "test_reset",
+      "previousHot": {
+        "focus": "test_node",
+        "context": [
+          [
+            "node1",
+            "node2"
+          ]
+        ],
+        "temperature": 26
+      },
+      "timestamp": 1781963371545
+    },
+    {
+      "type": "NOVA_RESET",
+      "reason": "preservation_test",
+      "previousHot": {
+        "focus": null,
+        "context": [
+          [
+            "critical_data"
+          ]
+        ],
+        "temperature": 26
+      },
+      "timestamp": 1781963371793
+    },
+    {
+      "type": "NOVA_RESET",
+      "reason": "timing_test",
+      "previousHot": {
+        "focus": null,
+        "context": [],
+        "temperature": 26
+      },
+      "timestamp": 1781963371802
+    },
+    {
+      "type": "NOVA_RESET",
+      "reason": "hash_test",
+      "previousHot": {
+        "focus": "initial_focus",
+        "context": [],
+        "temperature": 26
+      },
+      "timestamp": 1781963372215
+    },
+    {
+      "type": "NOVA_RESET",
+      "reason": "first_reset",
+      "previousHot": {
+        "focus": "reset1_focus",
+        "context": [],
+        "temperature": 26
+      },
+      "timestamp": 1781963372364
+    },
+    {
+      "type": "NOVA_RESET",
+      "reason": "second_reset",
+      "previousHot": {
+        "focus": "reset2_focus",
+        "context": [],
+        "temperature": 26
+      },
+      "timestamp": 1781963372475
+    },
+    {
+      "type": "NOVA_RESET",
+      "reason": "preservation",
+      "previousHot": {
+        "focus": "important_data",
+        "context": [
+          [
+            "critical",
+            "information"
+          ]
+        ],
+        "temperature": 26
+      },
+      "timestamp": 1781963372649
+    },
+    {
+      "type": "NOVA_RESET",
+      "reason": "cli_trigger",
+      "previousHot": {
+        "focus": null,
+        "context": [],
+        "temperature": 26
+      },
+      "timestamp": 1781963389575
+    },
+    {
+      "type": "NOVA_RESET",
+      "reason": "fog_emergency",
+      "previousHot": {
+        "focus": null,
+        "context": [],
+        "temperature": 26
+      },
+      "timestamp": 1781963409808
+    },
+    {
+      "type": "NOVA_RESET",
+      "reason": "test_reset",
+      "previousHot": {
+        "focus": "test_node",
+        "context": [
+          [
+            "node1",
+            "node2"
+          ]
+        ],
+        "temperature": 26
+      },
+      "timestamp": 1781963471207
+    },
+    {
+      "type": "NOVA_RESET",
+      "reason": "preservation_test",
+      "previousHot": {
+        "focus": null,
+        "context": [
+          [
+            "critical_data"
+          ]
+        ],
+        "temperature": 26
+      },
+      "timestamp": 1781963471221
+    },
+    {
+      "type": "NOVA_RESET",
+      "reason": "timing_test",
+      "previousHot": {
+        "focus": null,
+        "context": [],
+        "temperature": 26
+      },
+      "timestamp": 1781963471227
+    },
+    {
+      "type": "NOVA_RESET",
+      "reason": "hash_test",
+      "previousHot": {
+        "focus": "initial_focus",
+        "context": [],
+        "temperature": 26
+      },
+      "timestamp": 1781963471244
+    },
+    {
+      "type": "NOVA_RESET",
+      "reason": "first_reset",
+      "previousHot": {
+        "focus": "reset1_focus",
+        "context": [],
+        "temperature": 26
+      },
+      "timestamp": 1781963471274
+    },
+    {
+      "type": "NOVA_RESET",
+      "reason": "second_reset",
+      "previousHot": {
+        "focus": "reset2_focus",
+        "context": [],
+        "temperature": 26
+      },
+      "timestamp": 1781963471276
+    },
+    {
+      "type": "NOVA_RESET",
+      "reason": "preservation",
+      "previousHot": {
+        "focus": "important_data",
+        "context": [
+          [
+            "critical",
+            "information"
+          ]
+        ],
+        "temperature": 26
+      },
+      "timestamp": 1781963471281
+    },
+    {
+      "type": "NOVA_RESET",
+      "reason": "cli_trigger",
+      "previousHot": {
+        "focus": null,
+        "context": [],
+        "temperature": 26
+      },
+      "timestamp": 1781963472415
+    },
+    {
+      "type": "NOVA_RESET",
+      "reason": "fog_emergency",
+      "previousHot": {
+        "focus": null,
+        "context": [],
+        "temperature": 26
+      },
+      "timestamp": 1781963473139
+    },
+    {
+      "type": "NOVA_RESET",
+      "reason": "fog_emergency",
+      "previousHot": {
+        "focus": null,
+        "context": [],
+        "temperature": 26
+      },
+      "timestamp": 1781963631322
+    },
+    {
+      "type": "NOVA_RESET",
+      "reason": "fog_emergency",
+      "previousHot": {
+        "focus": null,
+        "context": [],
+        "temperature": 26
+      },
+      "timestamp": 1781963631396
+    },
+    {
+      "type": "NOVA_RESET",
+      "reason": "fog_emergency",
+      "previousHot": {
+        "focus": null,
+        "context": [],
+        "temperature": 26
+      },
+      "timestamp": 1781963644368
+    }
+  ],
   "rupats": [
     {
       "timestamp": 1781823816431,
@@ -486,6 +809,36 @@
       "output": {
         "status": "DECAYED_FILE",
         "removed": "Temp_Mutation_Stub.js"
+      }
+    },
+    {
+      "timestamp": 1781963314910,
+      "dell": "test_dell",
+      "input": {
+        "input": "test"
+      },
+      "output": {
+        "output": "result"
+      }
+    },
+    {
+      "timestamp": 1781963372272,
+      "dell": "test_dell",
+      "input": {
+        "input": "test"
+      },
+      "output": {
+        "output": "result"
+      }
+    },
+    {
+      "timestamp": 1781963471258,
+      "dell": "test_dell",
+      "input": {
+        "input": "test"
+      },
+      "output": {
+        "output": "result"
       }
     }
   ]
