@@ -1,0 +1,6 @@
+00[Nova_Phase0_Audit][Audit]
+>>>14:Bind>[CurrentState]>>05>Analyze:02[Mandell_OS_Structure]>>08:Create[AuditReport]>>09:Show[FullStatus]
+>>>14:Bind>[Dells]>>05>List:02[AllCurrentlyWorkingDells]>>09:Show[AvailableTools]
+>>>14:Bind>[Memory]>>05>Check:02[HotWarmColdHypoLayers]>>09:Show[WhatExists]
+>>>14:Bind>[Visualizer]>>05>Test:02[CanItDrawLattice]>>09:Show[VisualizerStatus]
+>>>14:Bind>[Folders]>>05>Scan:02[CurrentStructure]>>09:Show[WhereToBuildManelody]
